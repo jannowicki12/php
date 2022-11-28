@@ -32,9 +32,7 @@ if (empty($uname)) {
         header("Location: index.php?error=email jest juz zarejestrowany");
         exit();
     } else {
-
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT); 
-        $query = "INSERT INTO users (user_name, email, password) VALUES ('$uname', '$email', '$hashedPassword')";
+        $query = "INSERT INTO users (user_name, email, password) VALUES ('$uname', '$email', '$password')";
         
         if (!mysqli_query($connection, $query)){
             $error ="<p>Nie mozesz sie zarejestrować? spróbuj ponownie.</p>";
