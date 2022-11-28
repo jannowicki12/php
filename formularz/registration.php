@@ -22,6 +22,8 @@ if (empty($uname)) {
 }else if($password !== $repassword){
     header("Location: index.php?error=Haslo sie nie zgadza");
     exit();
+}else if(strlen($password) < 8){
+    header("Location: index.php?error=Haslo jest za krótkie, powinno sie skladac z minimum 8 znaków");
 }else {
 
     $query = "SELECT id FROM users WHERE email = '$email'";
