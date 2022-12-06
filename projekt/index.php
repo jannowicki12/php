@@ -28,6 +28,9 @@ $main = new MainClass();
             interfaceClass::interfaceNota();
             interfaceClass::interfacePanel();
 			?>
+			            <?php if (isset($_GET['error'])) { ?>
+                <p class="error"><?php echo $_GET['error']; ?></p>
+            <?php } ?>
 			<div class="alert">Moja Galeria</div>
 				<?php
 					// require_once ('config.class.php');
