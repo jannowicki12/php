@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("config.class.php");
+require_once("interfaceClass.php");
 $main = new MainClass();
 $connection = $main -> db_connect();
 
@@ -36,14 +36,15 @@ if (empty($uname)) {
         $query = "INSERT INTO users (user_name, email, password) VALUES ('$uname', '$email', '$password')";
         
         if (!mysqli_query($connection, $query)){
-            $error ="<p>Nie mozesz sie zarejestrować? spróbuj ponownie.</p>";
+            header("Location: register.php?error=Nie mozesz sie zarejestrowac? sproboj ponownie");
+            exit();
             } else {
             $row = mysqli_fetch_assoc($result);
             $_SESSION['user_name'] = $row['user_name'];
             $_SESSION['id'] = $row['id'];
             $_SESSION['signed_in'] = true;
             }
-            header("Location: galeria.php");  
+            header("Location: index.php");  
         
             }
         

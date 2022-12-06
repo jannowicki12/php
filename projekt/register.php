@@ -5,7 +5,7 @@ session_start();
 <html lang="pl">
     <head>
         <title>Register</title>
-        <link rel="stylesheet" href="assets/style.css">
+        <link rel="stylesheet" href="assets/css/login/style.css">
     </head>
     <body>
         <form action="registration.php" method="post">

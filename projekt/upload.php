@@ -1,5 +1,6 @@
 <?php
-	require_once("config.class.php");
+	session_start();
+	require_once("interfaceClass.php");
 	$main = new MainClass();
 	$connection = $main -> db_connect();
 	
@@ -14,18 +15,15 @@
 		$path = "upload/".$name;
 		if(in_array($end, $allowed_ext)){
 			if($image_size > 5242880){
-				echo "<script>alert('Plik waży za dużo!')</script>";
-				echo "<script>window.location = 'galeria.php'</script>";
+				header("Location: index.php?error=zdjęcie wazy za duzo");
 			}else{
 				if(move_uploaded_file($image_temp, $path)){
 					mysqli_query($connection, "INSERT INTO `image` VALUES('', '$name', '$path')") or die(mysqli_error());
-					echo "<script>alert('Zdjęcie zastało wrzucone!')</script>";
-					echo "<script>window.location = 'galeria.php'</script>";
+					header("Location: index.php");
 				}
 			}
 		}else{
-			echo "<script>alert('Zły format!')</script>";
-			echo "<script>window.location = 'galeria.php'</script>";
+			header("Location: index.php?error=zły format");
 		}
 	}
 ?>

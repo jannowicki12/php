@@ -7,24 +7,30 @@
 		private $pass;
 		private $db;
 
+		public static function printHead($stylesPath) {
+			echo "
+			<head>
+				<meta charset='UTF-8'>
+				<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+				<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+				<link rel='stylesheet' href='$stylesPath'>
+				<link rel='icon' href='assets/img/icon.jpg'>
+				<title>Galeria</title>
+				<script type='module' src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js'></script>
+				<script nomodule src='https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js'></script>
+			</head>";
+		}
 		public function __construct()
 		{
 			$this->host = "localhost";
 			$this->user = "root";
 			$this->pass = "";
-			$this->db = "db_formularz";
+			$this->db = "db_projekt";
 		}
 		public function db_connect()
 		{
 			$connect = mysqli_connect($this->host, $this->user, $this->pass, $this->db);
 			return $connect;
-		}
-		public function d_session()
-		{
-			
-			if(!isset($_SESSION["signed_in"])) {
-				header("Location: index.php");
-			}
 		}
 	}
 ?>
