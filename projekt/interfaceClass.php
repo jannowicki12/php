@@ -36,7 +36,7 @@ class InterfaceClass extends MainClass {
     }
     
     public static function interfaceFooter(){
-        echo "";
+        echo "<p> Strona stworzona przez Jana Nowickiego i Jakuba Wyszyńskiego</p>";
     }
     public static function printHeroSection($title, $description) {
         echo "

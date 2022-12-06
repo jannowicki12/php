@@ -1,11 +1,14 @@
 <?php
 session_start();
+require_once ("interfaceClass.php");
+$interfaceClass = new InterfaceClass();
 ?>
 <!DOCTYPE html>
 <html lang="pl">
     <head>
-        <title>Register</title>
-        <link rel="stylesheet" href="assets/css/login/style.css">
+        <?php
+        interfaceClass::printHead("Rejestracja", "./assets/css/login/style.css");
+        ?>
     </head>
     <body>
         <form action="registration.php" method="post">
@@ -23,4 +26,7 @@ session_start();
             <input type="password" name="re-password" placeholder="Powtórz hasło"><br>
             <button type="submit">register</button>
         </form>
+        <?php
+        interfaceClass::interfaceFooter();
+        ?>
     </body>

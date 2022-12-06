@@ -9,7 +9,7 @@ $main = new MainClass();
 <html lang="pl">
 	<head>
 	    <?php
-		interfaceClass::printHead('./assets/css/glowny/style.css');
+		interfaceClass::printHead("Galeria", "./assets/css/glowny/style.css");
 		?>
 	</head>
 	<body>
