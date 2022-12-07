@@ -14,7 +14,7 @@ class InterfaceClass extends MainClass {
         if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true) { 
             echo "
             <div class='panel'>
-                    <h3 class='tytul'>Galeria</h3>
+                    <h3 class='tytul'>Wrzucanie zdjęć</h3>
                     <hr style='border-top:1px dotted #ccc;'/>
                     <form method='POST' action='upload.php' enctype='multipart/form-data'>
                         
@@ -22,6 +22,7 @@ class InterfaceClass extends MainClass {
                             <label>Wrzuc tutaj</label>
                             <input type='file' name='image' class='form-control' required='required'/>
                             <button class='button' name='upload'><ion-icon name='cloud-upload-outline'></ion-icon></span>Upload</button>
+                            <p style='font-size: 9px;'>     mozesz wrzucic zdjęcia tylko w formacie(.jpg, .png, .gif, .jpeg), oraz maksymalna waga pliku to 5 MB</p>
                         </div>
                     </form>
                     <br/>

@@ -15,7 +15,7 @@
 		$path = "upload/".$name;
 		if(in_array($end, $allowed_ext)){
 			if($image_size > 5242880){
-				header("Location: index.php?error=zdjęcie wazy za duzo");
+				header("Location: index.php?error=zdjęcie waży za duzo");
 			}else{
 				if(move_uploaded_file($image_temp, $path)){
 					mysqli_query($connection, "INSERT INTO `image` VALUES('', '$name', '$path')") or die(mysqli_error());
@@ -23,7 +23,7 @@
 				}
 			}
 		}else{
-			header("Location: index.php?error=zły format");
+			header("Location: index.php?error=Zły format");
 		}
 	}
 ?>

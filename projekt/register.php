@@ -7,7 +7,7 @@ $interfaceClass = new InterfaceClass();
 <html lang="pl">
     <head>
         <?php
-        interfaceClass::printHead("Rejestracja", "./assets/css/login/style.css");
+        interfaceClass::printHead("Rejestracja", "./assets/css/login/style.css", "./assets/img/login.jpg");
         ?>
     </head>
     <body>

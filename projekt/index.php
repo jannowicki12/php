@@ -9,7 +9,7 @@ $main = new MainClass();
 <html lang="pl">
 	<head>
 	    <?php
-		interfaceClass::printHead("Galeria", "./assets/css/glowny/style.css");
+		interfaceClass::printHead("Galeria", "./assets/css/glowny/style.css", "./assets/img/icon.jpg");
 		?>
 	</head>
 	<body>
@@ -31,7 +31,7 @@ $main = new MainClass();
 			            <?php if (isset($_GET['error'])) { ?>
                 <p class="error"><?php echo $_GET['error']; ?></p>
             <?php } ?>
-			<div class="alert">Moja Galeria</div>
+			<div class="alert">Galeria</div>
 				<?php
 					// require_once ('config.class.php');
 					// $main = new MainClass();

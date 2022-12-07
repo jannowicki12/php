@@ -7,7 +7,7 @@ $interfaceClass = new InterfaceClass();
 <html lang="pl">
     <head>
         <?php
-        interfaceClass::printHead("Logowanie", "./assets/css/login/style.css");
+        interfaceClass::printHead("Logowanie", "./assets/css/login/style.css", "./assets/img/login.jpg");
         ?>
     </head>
     <body>
@@ -20,9 +20,9 @@ $interfaceClass = new InterfaceClass();
             <input type="text" name="uname" placeholder="Nazwa Użytkownika"><br>
             <label>Hasło:</label>
             <input type="password" name="password" placeholder="Hasło"><br>
-            <button type="submit">Login</button>
+            <button type="submit">Login<ion-icon name="log-in-outline"></ion-icon></button>
             <div class="noaccount">
-                <p>Nie posiadasz konta?<section class="driv"><a href="register.php">Zarejestruj sie</a></p></section>
+                <p>Nie posiadasz konta?<section class="driv"><a href="register.php">Zarejestruj sie<ion-icon name="enter-outline"></ion-icon></a></p></section>
             </div>
         </form>
     </body>

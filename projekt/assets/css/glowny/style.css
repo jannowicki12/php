@@ -5,7 +5,7 @@
 
 body {
   margin: 0;
-  background-color: whitesmoke;
+  background-color: white;
   padding: 0;
 }
 
@@ -44,7 +44,7 @@ button {
 }
 
 .navbar {
-  background-color: darkslategray;
+  background-color: skyblue;
   border-top: 1px solid #ccc;
   color: white;
   margin: 0;
@@ -57,7 +57,7 @@ button {
 }
 
 nav {
-  background-color: darkslategray;
+  background-color: skyblue;
   border-top: 1px solid #ccc;
   color: white;
   margin: 0;

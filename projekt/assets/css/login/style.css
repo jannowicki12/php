@@ -1,5 +1,5 @@
 body {
-  background: #1690A7;
+  background: lightblue;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,25 +13,25 @@ body {
 }
 
 form {
-  width: 500px;
-  border: 2px solid #ccc;
-  padding: 30px;
-  background: #fff;
-  border-radius: 15px;
+  width: 400px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background: lightsalmon;
+  border-radius: 5px;
 }
 
 h2 {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 input {
   display: block;
   border: 2px solid #ccc;
   width: 95%;
-  padding: 10px;
-  margin: 10px auto;
-  border-radius: 5px;
+  padding: 3px;
+  margin: 5px auto;
+  border-radius: 6px;
 }
 
 label {
@@ -43,14 +43,14 @@ label {
 button {
   float: right;
   background: #555;
-  padding: 10px 15px;
+  padding: 5px 5px;
   color: #fff;
   border-radius: 5px;
-  margin-right: 10px;
+  margin-right: 5px;
   border: none;
 }
 button:hover {
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .error {
