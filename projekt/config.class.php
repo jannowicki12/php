@@ -25,7 +25,7 @@
 			$this->host = "localhost";
 			$this->user = "root";
 			$this->pass = "";
-			$this->db = "db_projekt";
+			$this->db = "db_projektedit";
 		}
 		public function db_connect()
 		{

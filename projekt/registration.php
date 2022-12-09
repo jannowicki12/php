@@ -39,12 +39,8 @@ if (empty($uname)) {
             header("Location: register.php?error=Nie mozesz sie zarejestrowac? sproboj ponownie");
             exit();
             } else {
-            $row = mysqli_fetch_assoc($result);
-            $_SESSION['user_name'] = $row['user_name'];
-            $_SESSION['id'] = $row['id'];
-            $_SESSION['signed_in'] = true;
-            }
-            header("Location: index.php");  
+                header("Location: login.php"); 
+            } 
         
             }
         

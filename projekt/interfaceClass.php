@@ -50,5 +50,30 @@ class InterfaceClass extends MainClass {
         </section>";
         
     }
+    public static function interfaceNota1($title, $description) {
+        if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true) {
+            echo "
+        <section class='hero'>
+            <h1>$title</h1>
+            <p>$description</p>
+        </section>";
+        }
+        
+    }
+    public static function interfaceNota2($title, $description)
+    {
+        if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true) {
+            echo "
+        <section class='hero'>
+            <h1>$title</h1>
+            <p>$description</p>
+        </section>";
+        }
+    }
+    public static function interfaceNota3(){
+        if (!isset($_SESSION['signed_in'])) {
+            echo " <p class='nota'>Musisz sie zalogowac by wrzucic zdjecia</p>";
+        }
+    }
 }
 ?>

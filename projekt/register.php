@@ -19,7 +19,7 @@ $interfaceClass = new InterfaceClass();
             <label>Nazwa:</label>
             <input type="text" name="uname" placeholder="Podaj Nazwa Użytkownika"><br>
             <label>Email:</label>
-            <input type="text" name="email" placeholder="Podaj email"><br>
+            <input type="email" name="email" placeholder="Podaj email"><br>
             <label>Hasło:</label>
             <input type="password" name="password" placeholder="Hasło"><br>
             <label>Powtórz Hasło:</label>
