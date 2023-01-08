@@ -24,7 +24,7 @@ $main = new MainClass();
 		<section class="sekcja">
 			<?php
             interfaceClass::interfaceNota(); //klasa interface oraz wykorzystanie z jej funkcji
-			interfaceClass::interfaceNota1("Witaj ".$_SESSION['user_name']."#".$_SESSION['id'], "lorem");
+			interfaceClass::interfaceNota1();
             interfaceClass::interfaceNota2("Rogal ddl - OCB/NWS", "lorem");
             interfaceClass::interfacePanel(); //klasa interface oraz wykorzystanie z jej funkcji
 			?>
@@ -44,8 +44,6 @@ $main = new MainClass();
 			}
 			?>
 				<?php
-					// require_once ('config.class.php');
-					// $main = new MainClass();
 					$connection = $main -> db_connect(); //lączenie z bazą danych
 					$query = mysqli_query($connection, "SELECT * FROM `image`") or die(mysqli_error());
 					if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true) {
@@ -60,13 +58,13 @@ $main = new MainClass();
 						}
 					}
 					else {
-					while ($fetch = mysqli_fetch_array($query)) {
-						?>
-								<div style="border:1px solid #000; height:190px; width:190px; padding:4px; float:left; margin:10px;">
-									<a href="<?php echo $fetch['location'] ?>"><img src="<?php echo $fetch['location'] ?>" width="180" height="180"/></a>
-								</div>
-						<?php
-						}
+						while ($fetch = mysqli_fetch_array($query)) {
+							?>
+									<div style="border:1px solid #000; height:190px; width:190px; padding:4px; float:left; margin:10px;">
+										<a href="<?php echo $fetch['location'] ?>"><img src="<?php echo $fetch['location'] ?>" width="180" height="180"/></a>
+									</div>
+							<?php
+							}
 					}
 				?>
 			</div>

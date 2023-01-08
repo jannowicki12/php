@@ -50,15 +50,15 @@ class InterfaceClass extends MainClass {
         </section>";
         
     }
-    public static function interfaceNota1($title, $description) {
+    public static function interfaceNota1()
+    {
         if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true) {
-            echo "
-        <section class='hero'>
-            <h1>$title</h1>
-            <p>$description</p>
-        </section>";
+            echo '
+        <section class="hero">
+            <h1>Witaj '.$_SESSION["user_name"].'#'.$_SESSION["id"].'</h1>
+            <p>Witaj w galerii publicznej! Jesteśmy tu po to, aby dzielić się z Tobą naszymi najnowszymi pracami i zapewniać Ci inspirację i wrażenia wizualne. Przeglądaj nasze ekspozycje, korzystaj z naszych usług artystycznych oraz doświadcz wyjątkowych przeżyć. Miło Cię widzieć!</p>
+        </section>';
         }
-        
     }
     public static function interfaceNota2($title, $description)
     {
