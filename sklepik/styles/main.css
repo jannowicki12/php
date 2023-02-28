@@ -1,0 +1,71 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style-type: none;
+  color: white;
+  overflow-x: hidden;
+  font-family: "Lato", "sans-serif";
+}
+
+body {
+  background-color: #20211e;
+  font-size: 16px;
+}
+
+.inner--default, header .header__container {
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+header {
+  position: fixed;
+  width: 100vw;
+  padding: 2rem 0;
+  background-color: #20211e;
+}
+header .header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .header__container ul {
+  display: flex;
+}
+header .header__container ul li {
+  margin-left: 1rem;
+  border-bottom: 0.063rem solid transparent;
+  cursor: pointer;
+}
+header .header__container ul li:hover {
+  border-bottom: 0.063rem solid;
+  border-image-source: linear-gradient(to right, #ff53a5, #00bfcc);
+  border-image-slice: 1;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
+}
+.hero {
+  margin-left: 20px;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+.hero1 {
+  margin-left: 20px;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+
+/*# sourceMappingURL=main.css.map */
