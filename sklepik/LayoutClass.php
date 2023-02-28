@@ -45,6 +45,7 @@ class LayoutClass {
                 background: lightblue;
                 display: flex;
                 justify-content: center;
+                color: black;
                 align-items: center;
                 height: 100vh;
                 flex-direction: column;
@@ -55,6 +56,7 @@ class LayoutClass {
               }
               
               form {
+                color: black;
                 width: 400px;
                 border: 1px solid #ccc;
                 padding: 10px;
@@ -116,7 +118,7 @@ class LayoutClass {
               a:hover {
                 opacity: 0.7;
               } /*# sourceMappingURL=style.css.map *//*# sourceMappingURL=style.css.map */</style>
-            <form action='loginscript.php' method='post'>
+            <form action='<?php Systemclass::LoginScript()?>' method='post'>
                 <h2>Login</h2>
                 <label>Email:</label>
                 <input type='email' name='email' placeholder='Podaj Email'><br>
