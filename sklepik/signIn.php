@@ -19,8 +19,8 @@
         if($result = $connection -> query($sql)) {
             if($result -> num_rows > 0){
                 $data = $result -> fetch_assoc();
-                $firstName = $data['firstName'];
                 $email = $data['email'];
+                $_SESSION['email'] = $data['email'];
                 $_SESSION['signedIn'] = true;
                 unset($_SESSION['signInError']);
 

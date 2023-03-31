@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    color: black;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+    overflow-x: hidden;
+    font-family: "Poppins", "sans-serif";
+}
+
+header {
+    width: 100vw;
+    padding: 2rem 0;
+    background-color: #20211e;
+}
+header .header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+header .header__container ul {
+    display: flex;
+}
+header .header__container ul li {
+    margin-left: 1rem;
+    border-bottom: 0.063rem solid transparent;
+    cursor: pointer;
+}
+header .header__container ul li:hover {
+    border-bottom: 0.063rem solid;
+    border-image-source: linear-gradient(to right, #ff53a5, #00bfcc);
+    border-image-slice: 1;
+}
+.kategorie{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: auto;
+    border: 1px solid black;
+}
+.tools{
+    margin-top: 50px;
+    width: 80vw;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+table{
+    text-align: center;
+    margin: auto;
+    width: 70vw;
+}
+.tabela table{
+    border:1px solid black;
+}
+.tabela th{
+    border:1px solid black;
+    background-color: gray;
+}
+.tabela tr{
+    border:1px solid black;
+}
+.tabela td{
+    border:1px solid black;
+}
+textarea{
+    resize: none;
+    margin-top:5px;
+}
+form input[type='text']{
+    margin-top:5px;
+}
+form input[type='number']{
+    margin-top:5px;
+}
+form input[type='submit']{
+    margin-top:5px;
+}
+form input[type='file']{
+    margin-top:5px;
+}
+  
