@@ -13,12 +13,15 @@ class LayoutClass {
             if($res['isadmin'] == 1){
                 $conditionRender = "
                     <li><a href='AdminPanel.php'>Panel Admina</a></li>
+                    <li><a href='cart.php'>Cart</a></li>
                     <li><a href='logout.php'>Wyloguj się</a></li>
                 ";
 
             }
             else {
-                $conditionRender ="<li><a href='logout.php'>Wyloguj się</a></li>";
+                $conditionRender ="
+                <li><a href='cart.php'>Cart</a></li>
+                <li><a href='logout.php'>Wyloguj się</a></li>";
             }
         }
         else {
@@ -143,8 +146,10 @@ class LayoutClass {
             </section>
         ";
     }
+    
 
     public static function showProduct() {
+        
         $connection = SystemClass::dbConnect();
         $product_id = $_REQUEST['product_id'];
         $sql = "SELECT * FROM product WHERE id=$product_id";
@@ -155,6 +160,7 @@ class LayoutClass {
         $name = $row['name'];
         $desc = $row['desc'];
         $price = $row['price'];
+        $count = $row['count'];
 
         echo "
             <section class='product__container'>
@@ -163,11 +169,38 @@ class LayoutClass {
                     <h2 class='titleproduct'>$name</h2>
                     <p class='product_desc'>$desc</p>
                     <p class='product_price'>$price PLN</p>
-                    <button type='button' class='product_btn'> Dodaj do koszyka</button>
+                    <p class='product_count'>W magazynie $count sztuk</p>
+                    <form action='productPage.php?product_id=$product_id' method='POST'>
+                    <input name='dodaj_do_koszyka' type='submit' value='Do koszyka!'>
                 </div>
             </section>
 
         ";
+
+        if(isset($_POST['dodaj_do_koszyka'])){
+            if(isset($_SESSION['email'])){
+                $mail = $_SESSION['email'];
+                $sprilosc = "SELECT count FROM cart WHERE name = '$name' AND user = '$mail'";
+                $spriloscquery = mysqli_query($connection, $sprilosc);
+                if(mysqli_num_rows($spriloscquery) > 0 ){
+                    setcookie("powiadomienie", "PRODUKT JUZ JEST W KOSZYKU!");
+                    header("Location: productPage.php?product_id=$product_id");
+                }else{
+                    $do_koszyka_sql = "INSERT INTO cart (name, price, user, count) VALUES ('$name', '$price', '$mail','1')";
+                    $connection->query($do_koszyka_sql);
+                    setcookie("powiadomienie", "DODANO DO KOSZYKA!");
+                    header("Location: productPage.php?product_id=$product_id");
+                }
+            }else{
+                setcookie("powiadomienie", "MUSISZ BYC ZALOGOWANY!");
+                header("Location: productPage.php?product_id=$product_id");
+            }
+        }
+        if (isset($_COOKIE['powiadomienie'])) {
+            $powiadomienie = $_COOKIE['powiadomienie'];
+            echo "<div class='powiadomienie' id='mess' onclick='this.remove();'> <p>$powiadomienie</p> </div> ";
+            setcookie("powiadomienie", "", time()-3600);
+        }
     }
 
 

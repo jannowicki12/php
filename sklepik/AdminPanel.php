@@ -23,7 +23,6 @@ if(isset($_POST['dodajprodukt'])){
     $filename = $_FILES['zdj']['tmp_name'];
     move_uploaded_file($filename, 'images/'.$nowanazwa);
     $nazwa = $_POST['nazwa'];
-    $gatunek = $_POST['gatunek'];
     $cena = $_POST['cena'];
     $opis = $_POST['opis'];
     $ilosc = $_POST['ilosc'];
@@ -37,8 +36,11 @@ if(isset($_POST['deluser'])){
     $connection->query("DELETE FROM users WHERE id = '$iduser'");
     header("Location:AdminPanel.php?panel=uzytkownicy");
 }
-
-
+if(isset($_POST['delprodukt'])){
+    $idproduktu = $_POST['idprodukt'];
+    $connection->query("DELETE FROM product WHERE id = '$idproduktu'");
+    header("Location:AdminPanel.php?panel=listaproduktow");
+}
 
 ?>
 <!doctype html>
@@ -73,6 +75,7 @@ if(isset($_POST['deluser'])){
 
         <a href="AdminPanel.php?panel=uzytkownicy"> <h3 style='color: blue;'> Użytkownicy</h3></a>
         <a href="AdminPanel.php?panel=dodajprodukt"> <h3 style='color: green;'> dodaj produkt </h3></a>
+        <a href="AdminPanel.php?panel=listaproduktow"> <h3 style='color: red;'> lista produktow </h3></a>
     </div>
     <div class="tools">
         <?php
@@ -84,6 +87,11 @@ if(isset($_POST['deluser'])){
             if($_GET['panel'] == "dodajprodukt"){
                 $admin ->dodajprodukt();
             }
+            if($_GET['panel'] == "listaproduktow"){
+                $admin ->listaproduktow();
+            }
+
+
         }
         ?>
     </div>

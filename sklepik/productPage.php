@@ -1,5 +1,5 @@
 <?php
-    require_once "systemClass.php";
+    require_once "SystemClass.php";
     require_once "LayoutClass.php"
 ?>
 
