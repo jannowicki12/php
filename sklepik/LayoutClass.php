@@ -21,7 +21,8 @@ class LayoutClass {
                 <h4>LOGO</h4>
                 <nav>
                     <ul>
-                        <li><a>Home</a></li>
+                        <li><a href='index.php'>Home</a></li>
+                        <li><a href='shopPage.php'>Sklep</a></li>
                         <li><a>About Us</a></li>
                         <li><a>Contact</a></li>
                         $conditionRender
@@ -31,113 +32,89 @@ class LayoutClass {
         </header>
         ";
     }
-    static function printLogin() {
-        $conditionLogin = "";
-        if(isset($_SESSION["signedIn"]) && $_SESSION["signedIn"] === true ){
-            $conditionLogin = "
-                header('Location: index.php');
-            ";
-        }
-        else {
-            $conditionLogin = "
-            <style>
-            body {
-                background: lightblue;
-                display: flex;
-                justify-content: center;
-                color: black;
-                align-items: center;
-                height: 100vh;
-                flex-direction: column;
-              }
-              
-              * {
-                box-sizing: border-box;
-              }
-              
-              form {
-                color: black;
-                width: 400px;
-                border: 1px solid #ccc;
-                padding: 10px;
-                background: lightsalmon;
-                border-radius: 20px;
-              }
-              
-              h2 {
-                text-align: center;
-                margin-bottom: 30px;
-              }
-              
-              input {
-                display: block;
-                border: 2px solid #ccc;
-                width: 95%;
-                padding: 3px;
-                margin: 5px auto;
-                border-radius: 6px;
-              }
-              
-              label {
-                color: #888;
-                font-size: 18px;
-                padding: 10px;
-              }
-              
-              button {
-                float: right;
-                background: #555;
-                padding: 5px 5px;
-                color: #fff;
-                border-radius: 5px;
-                margin-right: 50px;
-                margin-left:50px;
-                width: 70%;
-                border: none;
-              }
-              
-              button:hover {
-                opacity: 0.8;
-              }
-              
-              h1 {
-                text-align: center;
-                color: #fff;
-              }
-              
-              a {
-                float: left;
-                background: #555;
-                padding: 5px 5px;
-                color: #fff;
-                border-radius: 5px;
-                border: none;
-                text-decoration: none;
-              }
-              
-              a:hover {
-                opacity: 0.7;
-              } /*# sourceMappingURL=style.css.map *//*# sourceMappingURL=style.css.map */</style>
-            <form action='<?php Systemclass::LoginScript()?>' method='post'>
-                <h2>Login</h2>
-                <label>Email:</label>
-                <input type='email' name='email' placeholder='Podaj Email'><br>
-                <label>Hasło:</label>
-                <input type='password' name='password' placeholder='Hasło'><br>
-                <button type='submit' name='login'>Login<ion-icon name='log-in-outline'></ion-icon></button>
-            ";
-        }
-        echo "<body>
-        $conditionLogin
-        </body>";
-    }
-    static function printFooter() {
-      echo "<div class='footer'>footer</div>";
-    }
+    
     public static function printHero($title1, $description) {
-      echo "<section class='hero'
-      <h1>$title1</h1>
-      <p>$description</p>
-      </section>";
+        echo "<section class='hero'
+        <h1>$title1</h1>
+        <p>$description</p>
+        </section>"; 
     }
-}
+
+    static function printFooter() {
+        echo "<footer>
+
+            <div class='footer__container'> 
+                <h4> footer </h4>
+            </div>
+        
+        </footer>";
+    }
+
+    public static function printTile($row) {
+        $name = $row['name'];
+        $price = $row['price'];
+        $img = $row['img'];
+        $id = $row['id'];
+
+        echo "
+            <a href='productPage.php?product_id=$id'>
+                <div>
+                    <img src='$img' alt='img' style='height: 250px;' />
+                    <h3 class='product_name'>$name</h3>
+                    <p class='price_product'>$price PLN</p>
+
+                </div>
+            </a>
+        ";
+    }
+
+    public static function getProducts() {
+        $connection = SystemClass::dbConnect();
+        $sql = "SELECT * FROM product";
+        echo "
+            <section class='shop_category'>
+            <ul>
+                <li class='category_ref'>Category 1</li>
+                <li class='category_ref'>Category 2</li>
+                <li class='category_ref'>Category 3</li>
+            </ul>
+            </section>
+            <section class='shop_products'>
+        ";
+            $result = mysqli_query($connection, $sql);
+            while($row = mysqli_fetch_assoc($result)) {
+                LayoutClass::printTile($row);
+            }
+        echo "
+            </section>
+        ";
+    }
+
+    public static function showProduct() {
+        $connection = SystemClass::dbConnect();
+        $product_id = $_REQUEST['product_id'];
+        $sql = "SELECT * FROM product WHERE id=$product_id";
+        $result = mysqli_query($connection, $sql);
+        $row = mysqli_fetch_assoc($result);
+
+        $img = $row['img'];
+        $name = $row['name'];
+        $desc = $row['desc'];
+        $price = $row['price'];
+
+        echo "
+            <section class='product__container'>
+                <img src='$img' alt='img' class='product_img' />
+                <div class='product__content'>
+                    <h2 class='titleproduct'>$name</h2>
+                    <p class='product_desc'>$desc</p>
+                    <p class='product_price'>$price PLN</p>
+                    <button type='button' class='product_btn'> Dodaj do koszyka</button>
+                </div>
+            </section>
+
+        ";
+    }
+
+
+}  

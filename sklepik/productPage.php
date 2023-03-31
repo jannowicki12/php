@@ -17,7 +17,7 @@
         LayoutClass::printHeader();
     ?>
     <?php
-        LayoutClass::printHero("SKLEP INTERNETOWY", "Lorem ipsum sit dolor amet");
+        LayoutClass::showProduct();
     ?>
     </div>
     <?php

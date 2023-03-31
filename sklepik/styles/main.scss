@@ -1,21 +1,28 @@
 @import "variables";
+@import "signin";
 
-*,
-*::before,
-*::after {
+.debug_border {
+  border: 1px solid white;
+}
+
+
+* {
   margin: 0;
   padding: 0;
+  color: $white;
   box-sizing: border-box;
   text-decoration: none;
   list-style-type: none;
-  color: $white;
   overflow-x: hidden;
   font-family: $lato;
+  
 }
 
 body {
   background-color: $darkGrey;
   font-size: 16px;
+  height: 100%;
+  margin: 0;
 }
 
 .inner--default {
@@ -24,7 +31,7 @@ body {
 }
 
 header {
-  position: fixed;
+  
   width: 100vw;
   padding: 2rem 0;
   background-color: $darkGrey;
@@ -50,4 +57,30 @@ header {
       }
     }
   }
+}
+
+.hero {
+  color: white;
+  text-align: center;
+  padding: 20px;
+  padding: 200px 200px;
+  background-color: seagreen;
+  margin-left: 10rem;
+  margin-right: 10rem;
+  border-radius: 8px;
+  height: 100%;
+  font-size: 2rem;
+  
+}
+
+.footer__container {
+  margin-top: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+input {
+  color: black;
 }

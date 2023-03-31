@@ -11,18 +11,14 @@
     ?>
 </head>
 <body>
-<div id="page-container">
-   <div id="content-wrap">
     <?php
         LayoutClass::printHeader();
     ?>
     <?php
-        LayoutClass::printHero("SKLEP INTERNETOWY", "Lorem ipsum sit dolor amet");
+        LayoutClass::getProducts();
     ?>
-    </div>
     <?php
         LayoutClass::printFooter();
-    ?> 
-</div>
+    ?>
 </body>
 </html>
