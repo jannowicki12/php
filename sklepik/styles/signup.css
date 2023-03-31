@@ -83,4 +83,7 @@ a {
 
 a:hover {
   opacity: 0.7;
-} /*# sourceMappingURL=style.css.map *//*# sourceMappingURL=style.css.map */
+}
+.error__container {
+  margin-top: 3rem;
+}
