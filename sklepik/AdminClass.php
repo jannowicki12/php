@@ -25,7 +25,7 @@ class AdminClass{
                             <tr>
                             <th scope = 'col' > email </th >
                             <th scope = 'col' > password </th>
-                            <th scope = 'col' > Usuń konto </th >
+                            <th scope = 'col' > Delete Account </th >
                         </tr>
                         </thead>
                         <tbody>
@@ -35,7 +35,7 @@ class AdminClass{
             <tr>
                 <td>$r[email]</td>
                 <td>$r[password]</td>
-                <td><form action='AdminPanel.php?panel=uzytkownicy' method='post'> <input type='hidden' name='iduser' value='$r[id]'>  <input name='deluser'type='submit' value='usun'> </form></td>
+                <td><form action='AdminPanel.php?panel=uzytkownicy' method='post'> <input type='hidden' name='iduser' value='$r[id]'>  <input name='deluser'type='submit' value='delete'> </form></td>
             </tr>
         ";
             } echo "</tbody> </table> </div>";
@@ -66,12 +66,12 @@ class AdminClass{
             <thead>
                         <tr>
                         <th scope = 'col' > id </th >
-                        <th scope = 'col' > Nazwa </th>
+                        <th scope = 'col' > Name </th>
                         <th scope = 'col' > Image </th>
-                        <th scope = 'col' > Cena </th>
-                        <th scope = 'col' > Opis </th>
-                        <th scope = 'col' > Ilosc </th>
-                        <th scope = 'col' > Usuń konto </th >
+                        <th scope = 'col' > Price </th>
+                        <th scope = 'col' > Description </th>
+                        <th scope = 'col' > Count </th>
+                        <th scope = 'col' > Delete Product </th >
                         </tr>
                     </thead>
                     <tbody>
@@ -86,7 +86,7 @@ class AdminClass{
             <td>$row[price]</td>
             <td>$row[desc]</td>
             <td>$row[count]</td>
-            <td><form action='AdminPanel.php?panel=listaproduktow' method='post'> <input type='hidden' name='idprodukt' value='$row[id]'>  <input name='delprodukt'type='submit' value='usun'> </form></td>
+            <td><form action='AdminPanel.php?panel=listaproduktow' method='post'> <input type='hidden' name='idprodukt' value='$row[id]'>  <input name='delprodukt'type='submit' value='delete'> </form></td>
         </tr>
             ";
         } echo "</tbody> </table> </div>";

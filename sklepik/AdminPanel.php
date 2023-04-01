@@ -14,11 +14,11 @@ if(isset($_POST['dodajprodukt'])){
     $getid = "SELECT id from product ORDER BY id DESC LIMIT 0,1";
     $getidselect = mysqli_query($connection, $getid);
     $getidres = mysqli_fetch_assoc($getidselect);
-    $newmovieid = intval($getidres['id']) + 1;
+    $newidproduct = intval($getidres['id']) + 1;
 
     $imgname = $_FILES['zdj']['name'];
     $extension = pathinfo($imgname, PATHINFO_EXTENSION);
-    $nowanazwa = $newmovieid.'.'.$extension;
+    $nowanazwa = $newidproduct.'.'.$extension;
 
     $filename = $_FILES['zdj']['tmp_name'];
     move_uploaded_file($filename, 'images/'.$nowanazwa);
@@ -27,7 +27,7 @@ if(isset($_POST['dodajprodukt'])){
     $opis = $_POST['opis'];
     $ilosc = $_POST['ilosc'];
     $path = "images/".$nowanazwa;
-    $dodawanieproduktu = "INSERT INTO `product`(`id`, `name`, `img`, `price`, `desc`, `count`) VALUES ('$newmovieid','$nazwa','$path','$cena','$opis','$ilosc')";
+    $dodawanieproduktu = "INSERT INTO `product`(`id`, `name`, `img`, `price`, `desc`, `count`) VALUES ('$newidproduct','$nazwa','$path','$cena','$opis','$ilosc')";
     $connection->query($dodawanieproduktu);
     header("Location: AdminPanel.php?panel=dodajprodukt");
 }
@@ -51,7 +51,7 @@ if(isset($_POST['delprodukt'])){
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/admin.css">
-    <title>Panel administratora</title>
+    <title>Panel admin</title>
 </head>
 <body>
 <div class="nawigacyjny">
@@ -61,10 +61,11 @@ if(isset($_POST['delprodukt'])){
                 <nav>
                     <ul>
                         <li><a href='index.php' style='color:white;'>Home</a></li>
-                        <li><a href='shopPage.php' style='color:white;'>Sklep</a></li>
+                        <li><a href='shopPage.php' style='color:white;'>Shop</a></li>
                         <li><a style='color:white;'>About Us</a></li>
                         <li><a style='color:white;'>Contact</a></li>
-                        <li><a href='logout.php' style='color:white;'>Wyloguj</a></li>
+                        <li><a href='logout.php' style='color:white;'>Logout</a></li>
+                        <li><a href='profil.php' style='color:white;'>Profil</a></li>"
                     </ul>
                 </nav>
             </div>
@@ -73,21 +74,21 @@ if(isset($_POST['delprodukt'])){
 <div class="container">
     <div class="kategorie">
 
-        <a href="AdminPanel.php?panel=uzytkownicy"> <h3 style='color: blue;'> Użytkownicy</h3></a>
-        <a href="AdminPanel.php?panel=dodajprodukt"> <h3 style='color: green;'> dodaj produkt </h3></a>
-        <a href="AdminPanel.php?panel=listaproduktow"> <h3 style='color: red;'> lista produktow </h3></a>
+        <a href="AdminPanel.php?panel=users"> <h3 style='color: blue;'> Users</h3></a>
+        <a href="AdminPanel.php?panel=addproduct"> <h3 style='color: green;'> Add product </h3></a>
+        <a href="AdminPanel.php?panel=listproduct"> <h3 style='color: red;'> List product </h3></a>
     </div>
     <div class="tools">
         <?php
         $admin = new AdminClass($username);
         if(isset($_GET['panel'])){
-            if($_GET['panel'] == "uzytkownicy"){
+            if($_GET['panel'] == "users"){
                 $admin->wyswietluserow();
             }
-            if($_GET['panel'] == "dodajprodukt"){
+            if($_GET['panel'] == "addproduct"){
                 $admin ->dodajprodukt();
             }
-            if($_GET['panel'] == "listaproduktow"){
+            if($_GET['panel'] == "listproduct"){
                 $admin ->listaproduktow();
             }
 

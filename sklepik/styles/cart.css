@@ -10,10 +10,16 @@
     overflow-x: hidden;
     font-family: "Poppins", "sans-serif";
 }
-
+h4 {
+    color: white;
+}
+a {
+    color: white;
+}
 header {
+    color: white;
     width: 100vw;
-    padding: 2rem 0;
+    padding: 2rem;
     background-color: #20211e;
 }
 header .header__container {
@@ -37,10 +43,10 @@ header .header__container ul li:hover {
 table{
     width: 1000px;
     height: auto;
-    border: 1px solid black;
+    border: 2px solid black;
 }
 tr{
-    border: 1px solid black;
+    border: 2px solid black;
 }
 td{
     border: 1px solid black;

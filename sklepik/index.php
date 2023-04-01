@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
     <?php
-        SystemClass::printHead("./styles/main.css", "Sklep Internetowy")
+        SystemClass::printHead("./styles/main.css", "Shop")
     ?>
 </head>
 <body>

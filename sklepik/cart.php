@@ -3,7 +3,7 @@ require_once "LayoutClass.php";
 require_once "SystemClass.php";
 require "dbconnect.php";
 if(!isset($_SESSION['email'])){
-    header('Location: zaloguj.php');
+    header('Location: signIn.php');
 }
 $user = $_SESSION['email'];
 
@@ -33,14 +33,14 @@ if(isset($_POST['update_cart_count'])){
         LayoutClass::printHeader();
 ?>
 <div class="bodykoszyka">
-    <h2> Koszyk dla <?php echo $user; ?> </h2>
+    <h2> Cart for <?php echo $user; ?> </h2>
 <table class="koszyktab">
     <thead>
     <th>name</th>
     <th>price</th>
     <th>count</th>
-    <th>zmien</th>
-    <th>usuń</th>
+    <th>edit</th>
+    <th>delete</th>
     </thead>
     <tbody>
 <?php
@@ -61,9 +61,9 @@ while($r=mysqli_fetch_row($wynik)) {
         <td> $r[2] </td>
         <td> 
         <input style='width: 40px'type='number' min='1' max='99' name='count_in_cart' value='$r[2]'>
-        <input type='submit' value='zmień' name='update_cart_count' class='editbutt'>
+        <input type='submit' value='edit' name='update_cart_count' class='editbutt'>
         </td>
-        <td> <input type='submit' value='usuń' name='delete_cart' class='usunbutt'> </td>
+        <td> <input type='submit' value='delete' name='delete_cart' class='usunbutt'> </td>
     </tr>   
      <input type='hidden' value='$r[0]' name='name'>
      <input type='hidden' value='$r[1]' name='price'>
@@ -74,7 +74,7 @@ while($r=mysqli_fetch_row($wynik)) {
 }
 echo "
 <tr>
-<td colspan='3'> Cena całkowita </td>
+<td colspan='3'> Total Price </td>
 <td> $cena_calkowita PLN</td>
 </tr>
 </tbody>
@@ -83,58 +83,50 @@ echo "
 ?>
 </div>
 <div class="dostawaform" id="formularzID">
-    <h2> Formularz dostawy </h2>
+    <h2> Delivery Form </h2>
     <form action="cart.php" method="post">
         <div class="sposobdostawy">
-            <h3> Sposób dostawy</h3>
+            <h3> Delivery Methods</h3>
             <table>
                 <tr>
-                    <td><input type="radio" name="sposobdostawy" required value="kurier"></td>
-                    <td><span><i class="fi fi-rr-truck-side"></i> Kurier</span></td>
+                   <th><input type="radio" name="sposobdostawy" required value="paczkomat">  </th>
+                   <th><span>Paczkomat</span></th>
                 </tr>
                 <tr>
-                   <th> <input type="radio" name="sposobdostawy" required value="paczkomat">  </th>
-                   <th> <span><i class="fi fi-rr-box-alt"></i> Paczkomat</span> </th>
-                </tr>
-                <tr>
-                    <th><input type="radio" name="sposobdostawy" required value="osobisty"></th>
-                    <th> <span><i class="fi fi-rr-package"></i> Odbiór osobisty</span></th>
+                    <th><input type="radio" name="sposobdostawy" required value="kurier"></th>
+                    <th><span>Kurier</span></th>
                 </tr>
 
             </table>
         </div>
         <div class="sposobdostawy">
-            <h3> Metoda Płatności</h3>
+            <h3> Payments Methods</h3>
             <table>
                 <tr>
-                    <td><input type="radio" name="metodaplatnosc" required value="karta"></td>
-                    <td><span><i class="fi fi-rr-credit-card"></i> Karta Visa/Mastercard</span></td>
-                </tr>
-                <tr>
-                    <th> <input type="radio" name="metodaplatnosc" required value="paypal">  </th>
-                    <th> <span><i class="fa-brands fa-paypal"></i> PayPal</span> </th>
+                    <th><input type="radio" name="metodaplatnosc" required value="karta">  </th>
+                    <th><span>Karta Visa/Mastercard</span></th>
                 </tr>
                 <tr>
                     <th><input type="radio" name="metodaplatnosc" required value="applepay"></th>
-                    <th> <span><i class="fab fa-apple-pay"></i> Apple Pay</span></th>
+                    <th><span>Apple Pay</span></th>
                 </tr>
 
             </table>
         </div>
         <div class="resztadostawy">
-            <span>Imie:</span><input type="text" required name="imie">  <br>
-            <span>Nazwisko:</span><input type="text" required name="nazwisko"> <br>
-            <span>Adres e-mail:</span><input type="text" required name="email" value="<?php echo $user;  ?>" disabled> <br>
-            <span>numer telefonu:</span> <input type="text" required name="telefon"> <br>
+            <span>First Name:</span><input type="text" required name="imie">  <br>
+            <span>Last Name:</span><input type="text" required name="nazwisko"> <br>
+            <span>Email:</span><input type="text" required name="email" value="<?php echo $user;  ?>" disabled> <br>
+            <span>Phone number:</span> <input type="text" required name="telefon"> <br>
         </div>
         <div class="resztadostawy">
-            <span>Ulica:</span><input type="text" required name="ulica">  <br>
-            <span>Numer domu/mieszkanie:</span><input type="text" required name="nrdomu"> <br>
-            <span>Miasto:</span><input type="text" required name="miasto"> <br>
-            <span>Kod pocztowy:</span> <input type="text" required name="kodpocztowy"> <br>
+            <span>Street:</span><input type="text" required name="ulica">  <br>
+            <span>House number:</span><input type="text" required name="nrdomu"> <br>
+            <span>City:</span><input type="text" required name="miasto"> <br>
+            <span>Zip-code:</span> <input type="text" required name="kodpocztowy"> <br>
         </div>
         <input type="hidden" name="calkowitacena" value="<?php echo $cena_calkowita;?>">
-        <input id="formularzdostawy" name="zlozzamowienie" type="submit" value="Złóż zamówienie!">
+        <input id="formularzdostawy" name="zlozzamowienie" type="submit" value="Submit your order">
     </form>
 
 
@@ -148,59 +140,18 @@ if(mysqli_num_rows($wynik) <= 0){
 if(isset($_POST['zlozzamowienie'])){
     include "MakeOrder.php";
     $email = $user;
-    $sposob_dostawy = mysqli_real_escape_string($connection,$_POST['sposobdostawy']);
-    $metoda_platnosci = mysqli_real_escape_string($connection, $_POST['metodaplatnosc']);
-    $danepoprawne = True;
-    if(preg_match('/^[a-z]$/', $_POST['imie'])){
-        $imie = mysqli_real_escape_string($connection, $_POST['imie']);
-        $danepoprawne = True;
-    }else{
-        $danepoprawne = False;
-    }
-    if(preg_match('/^[a-z]$/', $_POST['nazwisko'])){
-        $nazwisko = mysqli_real_escape_string($connection,$_POST['nazwisko']);
-        $danepoprawne = True;
-    }else{
-        $danepoprawne = False;
-    }
-    if(preg_match('/^[0-9]{9}$/', $_POST['telefon'])){
-        $nrtel = mysqli_real_escape_string($connection, $_POST['telefon']);
-        $danepoprawne = True;
-    }else{
-        $danepoprawne = False;
-    }
-    $koszt_zamowienia = mysqli_real_escape_string($connection, $_POST['calkowitacena']);
-    if(preg_match('/^[a-z]$/', $_POST['ulica'])){
-        $danepoprawne = True;
-        $ulica = mysqli_real_escape_string($connection, $_POST['ulica']);
-    }else{
-        $danepoprawne = False;
-    }
-    if(preg_match('/^[0-9]$/', $_POST['nrdomu'])){
-        $danepoprawne = True;
-        $nrdomu = mysqli_real_escape_string($connection, $_POST['nrdomu']);
-    }else{
-        $danepoprawne = False;
-    }
-    if(preg_match('/^[a-z]$/', $_POST['miasto'])){
-        $danepoprawne = True;
-        $miasto = mysqli_real_escape_string($connection, $_POST['miasto']);
-    }else{
-        $danepoprawne = False;
-    }
-    if(preg_match('/^[0-9]{5}$/', $_POST['kodpocztowy'])){
-        $danepoprawne = True;
-        $postcode = mysqli_real_escape_string($connection, $_POST['kodpocztowy']);
-    }else{
-        $danepoprawne = False;
-    }
-
-    if($danepoprawne){
-        $makeorder = new MakeOrder($sposob_dostawy, $metoda_platnosci, $imie, $nazwisko, $email, $nrtel, $koszt_zamowienia,$ulica,$nrdomu,$miasto,$postcode);
-        $makeorder->Zamow();
-    }else if($danepoprawne == False){
-        echo "podaj poprawne dane";
-    }
+    $deliverymethod = mysqli_real_escape_string($connection,$_POST['sposobdostawy']);
+    $paymentmethod = mysqli_real_escape_string($connection, $_POST['metodaplatnosc']);
+    $firstname = mysqli_real_escape_string($connection, $_POST['imie']);
+    $lastname = mysqli_real_escape_string($connection,$_POST['nazwisko']);
+    $phonenumber = mysqli_real_escape_string($connection, $_POST['telefon']);
+    $cost_order = mysqli_real_escape_string($connection, $_POST['calkowitacena']);
+    $street = mysqli_real_escape_string($connection, $_POST['ulica']);
+    $numberstreet = mysqli_real_escape_string($connection, $_POST['nrdomu']);
+    $city = mysqli_real_escape_string($connection, $_POST['miasto']);
+    $zipcode = mysqli_real_escape_string($connection, $_POST['kodpocztowy']);
+    $makeorder = new MakeOrder($deliverymethod, $paymentmethod, $firstname, $lastname, $email, $phonenumber, $cost_order,$street,$numberstreet,$city,$zipcode);
+    $makeorder->Zamow();
 
 
 }

@@ -12,22 +12,23 @@ class LayoutClass {
             $res = mysqli_fetch_assoc($select);
             if($res['isadmin'] == 1){
                 $conditionRender = "
-                    <li><a href='AdminPanel.php'>Panel Admina</a></li>
+                    <li><a href='AdminPanel.php'>Panel Admin</a></li>
                     <li><a href='cart.php'>Cart</a></li>
-                    <li><a href='logout.php'>Wyloguj się</a></li>
-                ";
+                    <li><a href='logout.php'>Logout</a></li>
+                    <li><a href='profil.php'>Profil</a></li>";
 
             }
             else {
                 $conditionRender ="
                 <li><a href='cart.php'>Cart</a></li>
-                <li><a href='logout.php'>Wyloguj się</a></li>";
+                <li><a href='logout.php'>Logout</a></li>
+                <li><a href='profil.php'>Profil</a></li>";
             }
         }
         else {
             $conditionRender = "
-                <li><a href='signInPage.php'>Zaloguj się</a></li>
-                <li><a href='signUpPage.php'>Zarejestruj się</a></li>
+                <li><a href='signInPage.php'>Login</a></li>
+                <li><a href='signUpPage.php'>Sign Up</a></li>
             ";
         }
         echo "
@@ -37,7 +38,7 @@ class LayoutClass {
                 <nav>
                     <ul>
                         <li><a href='index.php'>Home</a></li>
-                        <li><a href='shopPage.php'>Sklep</a></li>
+                        <li><a href='shopPage.php'>Shop</a></li>
                         <li><a>About Us</a></li>
                         <li><a>Contact</a></li>
                         $conditionRender
@@ -79,7 +80,7 @@ class LayoutClass {
                     <h3 class='product_name'>$name</h3>
                     <p class='price_product'>$price PLN</p>
                 <a href='productPage.php?product_id=$id'>
-                    <input type='submit' value='Przejdz do produktu'>
+                    <input type='submit' value='Go to the product'>
                 </a>
             </div>
         ";
@@ -98,7 +99,7 @@ class LayoutClass {
                     <h3 class='product_name'>$name</h3>
                     <p class='price_product'>$price PLN</p>
                 <a href='productPage.php?product_id=$id'>
-                    <input type='submit' value='Przejdz do produktu'>
+                    <input type='submit' value='Go to the product'>
                 </a>
             </div>
         ";
@@ -117,9 +118,9 @@ class LayoutClass {
         </style>
 
         <form action="shopPage.php" method="POST" class="sortowanie_form">
-        <label for="kategorie">Wybierz kategorie:</label>
-        <input name="najdrozszy" type="submit" value="Sortuj od najdrozszych">
-        <input name="najtanszy" type="submit" value="Sortuj od najtanszego">
+        <label for="kategorie">Choose category:</label>
+        <input name="najdrozszy" type="submit" value="Sort by most expensive">
+        <input name="najtanszy" type="submit" value="Sort by cheapest">
     </form>
         ';
         if(isset($_POST['najdrozszy'])) {
@@ -169,9 +170,9 @@ class LayoutClass {
                     <h2 class='titleproduct'>$name</h2>
                     <p class='product_desc'>$desc</p>
                     <p class='product_price'>$price PLN</p>
-                    <p class='product_count'>W magazynie $count sztuk</p>
+                    <p class='product_count'>There are $count pieces in stock</p>
                     <form action='productPage.php?product_id=$product_id' method='POST'>
-                    <input name='dodaj_do_koszyka' type='submit' value='Do koszyka!'>
+                    <input name='dodaj_do_koszyka' type='submit' value='To cart!'>
                 </div>
             </section>
 
@@ -183,16 +184,16 @@ class LayoutClass {
                 $sprilosc = "SELECT count FROM cart WHERE name = '$name' AND user = '$mail'";
                 $spriloscquery = mysqli_query($connection, $sprilosc);
                 if(mysqli_num_rows($spriloscquery) > 0 ){
-                    setcookie("powiadomienie", "PRODUKT JUZ JEST W KOSZYKU!");
+                    setcookie("powiadomienie", "The product is already in the cart!");
                     header("Location: productPage.php?product_id=$product_id");
                 }else{
                     $do_koszyka_sql = "INSERT INTO cart (name, price, user, count) VALUES ('$name', '$price', '$mail','1')";
                     $connection->query($do_koszyka_sql);
-                    setcookie("powiadomienie", "DODANO DO KOSZYKA!");
+                    setcookie("powiadomienie", "Add to cart!");
                     header("Location: productPage.php?product_id=$product_id");
                 }
             }else{
-                setcookie("powiadomienie", "MUSISZ BYC ZALOGOWANY!");
+                setcookie("powiadomienie", "You must be logged!");
                 header("Location: productPage.php?product_id=$product_id");
             }
         }
