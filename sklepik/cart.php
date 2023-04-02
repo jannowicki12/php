@@ -135,12 +135,12 @@ echo "
 
 </div>
 <?php
-
-if(mysqli_num_rows($wynik) <= 0){
-    echo  "<script> ZablokujFormularzDostawy(); </script>";
-}
 if(isset($_POST['zlozzamowienie'])){
-    include "MakeOrder.php";
+    if($cena_calkowita == 0) {
+        echo "<p style='text-align: center; color: red;'>There are no products in the cart</p>";
+    }
+    else {
+        include "MakeOrder.php";
     $email = $user;
     $deliverymethod = mysqli_real_escape_string($connection,$_POST['sposobdostawy']);
     $paymentmethod = mysqli_real_escape_string($connection, $_POST['metodaplatnosc']);
@@ -153,22 +153,17 @@ if(isset($_POST['zlozzamowienie'])){
     $city = mysqli_real_escape_string($connection, $_POST['miasto']);
     $zipcode = mysqli_real_escape_string($connection, $_POST['kodpocztowy']);
     if(strlen($phonenumber) < 9){
-        echo "phone number is too short";
+        echo "<p style='text-align: center; color: red;'>phone number is too short</p>";
     } elseif(strlen($phonenumber) > 9){
-        echo "phone number is too long";
+        echo "<p style='text-align: center; color: red;'>phone number is too long</p>";
     }
     else { 
         $makeorder = new MakeOrder($deliverymethod, $paymentmethod, $firstname, $lastname, $email, $phonenumber, $cost_order,$street,$numberstreet,$city,$zipcode);
         $makeorder->Zamow();
         $usuwaniecart_sql = "DELETE FROM cart WHERE user = '$user'";
         $connection->query($usuwaniecart_sql);
-        header("Location: cart.php?order=success");
+        echo "<p style='text-align: center; color: green;'>placed order</p>";
     }
-
-}
-if(isset($_GET['order'])) {
-    if($_GET['order'] == "success"){
-        $koszyk ->success();
     }
 }
 
