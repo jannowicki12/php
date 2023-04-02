@@ -3,8 +3,6 @@ require_once "LayoutClass.php";
 require_once "SystemClass.php";
 require "dbconnect.php";
 $user = $_SESSION['email'];
-require_once("cartclass.php");
-$koszyk = new KoszykClass($user);
 
 if(!isset($_SESSION['email'])){
     header('Location: signIn.php');
