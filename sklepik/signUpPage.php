@@ -13,15 +13,50 @@
     <body>
         <form action="signup.php" method="post">
             <h2>Register</h2>
-            <?php if (isset($_GET['error'])) { ?>
-                <p class="error"><?php echo $_GET['error']; ?></p>
-            <?php } ?>
             <label>Email:</label>
-            <input type="email" name="email" placeholder="Podaj email"><br>
-            <label>Hasło:</label>
-            <input type="password" name="password" placeholder="Hasło"><br>
-            <label>Powtórz Hasło:</label>
-            <input type="password" name="re-password" placeholder="Powtórz hasło"><br>
-            <button type="submit">register</button>
+            <input type="email" name="email" placeholder="Enter email"><br>
+            <label>Password:</label>
+            <input type="password" name="password" placeholder="Enter Password"><br>
+            <label>Repeat Password:</label>
+            <input type="password" name="re-password" placeholder="Enter Repeat Password"><br>
+            <button type="submit">Register</button>
         </form>
+        <?php
+        if(isset($_SESSION['signUpEmailError'])) {
+            echo "<div class='error__container'>
+                <p style='color : red'>This email is already registered</p>
+            </div>
+            ";
+        } 
+        if(isset($_SESSION['signUpPasswordrequired'])) {
+            echo "<div class='error__container'>
+                <p style='color : red'>Password is required</p>
+            </div>
+            ";
+        } 
+        if(isset($_SESSION['signUpEmailrequired'])) {
+            echo "<div class='error__container'>
+                <p style='color : red'>Email is required</p>
+            </div>
+            ";
+        } 
+        if(isset($_SESSION['signUpPasswordError'])) {
+            echo "<div class='error__container'>
+                <p style='color : red'>The password doesn't match</p>
+            </div>
+            ";
+        } 
+        if(isset($_SESSION['singUpPasswordShort'])) {
+            echo "<div class='error__container'>
+                <p style='color : red'>The password is too short, it should be at least 8 characters long</p>
+            </div>
+            ";
+        } 
+        if(isset($_SESSION['signUpCreateError'])) {
+            echo "<div class='error__container'>
+                <p style='color : red'>Can't register? try again</p>
+            </div>
+            ";
+        } 
+        ?>
     </body>

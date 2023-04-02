@@ -39,8 +39,8 @@ class LayoutClass {
                     <ul>
                         <li><a href='index.php'>Home</a></li>
                         <li><a href='shopPage.php'>Shop</a></li>
-                        <li><a>About Us</a></li>
-                        <li><a>Contact</a></li>
+                        <li><a href='aboutus.php'>About Us</a></li>
+                        <li><a href='contact.php'>Contact</a></li>
                         $conditionRender
                     </ul>
                 </nav>
@@ -106,7 +106,7 @@ class LayoutClass {
     }
 
     public static function getProducts() {
-        $KategorieSet = true;
+        $KategorieSet = false;
         $connection = SystemClass::dbConnect();
         $sql = "SELECT * FROM product";
         $najtanszy = "SELECT * FROM `product` ORDER BY `product`.`price` ASC";
@@ -121,23 +121,31 @@ class LayoutClass {
         <label for="kategorie">Choose category:</label>
         <input name="najdrozszy" type="submit" value="Sort by most expensive">
         <input name="najtanszy" type="submit" value="Sort by cheapest">
+        <input name="reset" type="submit" value="Reset">
     </form>
         ';
         if(isset($_POST['najdrozszy'])) {
-            $KategorieSet = false;
+            $KategorieSet = true;
             $result = mysqli_query($connection, $najdrozszy);
             while($row = mysqli_fetch_assoc($result)) {
                 LayoutClass::printKategoria($row);
             }
         }
         elseif(isset($_POST['najtanszy'])){
-            $KategorieSet = false;
+            $KategorieSet = true;
             $result = mysqli_query($connection, $najtanszy);
             while($row = mysqli_fetch_assoc($result)) {
                 LayoutClass::printKategoria($row);
             }
         }
-        if($KategorieSet) {            
+        elseif(isset($_POST['reset'])){
+            $KategorieSet = true;
+            $result = mysqli_query($connection, $sql);
+            while($row = mysqli_fetch_assoc($result)) {
+                LayoutClass::printKategoria($row);
+            }
+        }
+        if($KategorieSet == false) {            
             $result = mysqli_query($connection, $sql);
             while($row = mysqli_fetch_assoc($result)) {
                 LayoutClass::printTile($row);
@@ -189,7 +197,7 @@ class LayoutClass {
                 }else{
                     $do_koszyka_sql = "INSERT INTO cart (name, price, user, count) VALUES ('$name', '$price', '$mail','1')";
                     $connection->query($do_koszyka_sql);
-                    setcookie("powiadomienie", "Add to cart!");
+                    setcookie("powiadomienie", "Added to cart!");
                     header("Location: productPage.php?product_id=$product_id");
                 }
             }else{

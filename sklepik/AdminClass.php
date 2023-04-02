@@ -17,14 +17,14 @@ class AdminClass{
         $query = "SELECT id, email, password, isadmin FROM users WHERE email != '$this->user'";
         $select = mysqli_query($connection, $query);
         if(mysqli_num_rows($select)<=0){
-            echo "Poza tobą nie ma żadnego innego użytkownika";
+            echo "There is no other user besides you";
         }else{
             echo"<div class='tabela'> 
                 <table>
                 <thead>
                             <tr>
-                            <th scope = 'col' > email </th >
-                            <th scope = 'col' > password </th>
+                            <th scope = 'col' > Email </th >
+                            <th scope = 'col' > Password </th>
                             <th scope = 'col' > Delete Account </th >
                         </tr>
                         </thead>
@@ -35,7 +35,7 @@ class AdminClass{
             <tr>
                 <td>$r[email]</td>
                 <td>$r[password]</td>
-                <td><form action='AdminPanel.php?panel=uzytkownicy' method='post'> <input type='hidden' name='iduser' value='$r[id]'>  <input name='deluser'type='submit' value='delete'> </form></td>
+                <td><form action='AdminPanel.php?panel=users' method='post'> <input type='hidden' name='iduser' value='$r[id]'>  <input name='deluser'type='submit' value='delete'> </form></td>
             </tr>
         ";
             } echo "</tbody> </table> </div>";
@@ -45,12 +45,12 @@ class AdminClass{
         include "dbconnect.php";
         echo "
         <form id='dodajprodukt' action='AdminPanel.php?panel=dodajprodukt' method='post' enctype='multipart/form-data'> 
-        Nazwa produktu: <input type='text' name='nazwa'> <br>
-        Cena: <input type='number' name='cena'> <br>
-        Opis: <textarea maxlength='500' name='opis' rows='5' cols='50' form='dodajprodukt'> </textarea> <br>
-        Ilosc w magazynie: <input type='number' name='ilosc'> <br>
-        Zdjecie: <input type='file' name='zdj' accept='image/png, image/jpeg, image/jpg'>  <br>
-        <input type='submit' name='dodajprodukt' value='Dodaj produkt!'> 
+        Name Product: <input type='text' name='nazwa'> <br>
+        Price: <input type='number' name='cena'> <br>
+        Description: <textarea maxlength='500' name='opis' rows='5' cols='50' form='dodajprodukt'> </textarea> <br>
+        Quantity in stock: <input type='number' name='ilosc'> <br>
+        Image: <input type='file' name='zdj' accept='image/png, image/jpeg, image/jpg'>  <br>
+        <input type='submit' name='dodajprodukt' value='Add Product!'> 
         </form>
         ";
     }
@@ -59,13 +59,13 @@ class AdminClass{
         $query1 = "SELECT * FROM `product`";
         $select1 = mysqli_query($connection, $query1);
         if(mysqli_num_rows($select1)<=0){
-            echo "Poza tobą nie ma żadnego innego użytkownika";
+            echo "There are no products in the store";
         }else{
             echo"<div class='tabela'> 
             <table>
             <thead>
                         <tr>
-                        <th scope = 'col' > id </th >
+                        <th scope = 'col' > Id </th >
                         <th scope = 'col' > Name </th>
                         <th scope = 'col' > Image </th>
                         <th scope = 'col' > Price </th>
@@ -86,7 +86,7 @@ class AdminClass{
             <td>$row[price]</td>
             <td>$row[desc]</td>
             <td>$row[count]</td>
-            <td><form action='AdminPanel.php?panel=listaproduktow' method='post'> <input type='hidden' name='idprodukt' value='$row[id]'>  <input name='delprodukt'type='submit' value='delete'> </form></td>
+            <td><form action='AdminPanel.php?panel=listproduct' method='post'> <input type='hidden' name='idprodukt' value='$row[id]'>  <input name='delprodukt'type='submit' value='delete'> </form></td>
         </tr>
             ";
         } echo "</tbody> </table> </div>";

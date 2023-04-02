@@ -11,29 +11,34 @@
     font-family: "Poppins", "sans-serif";
 }
 
-header {
+.inner--default, header .header__container {
+    max-width: 90rem;
+    margin: 0 auto;
+  }
+  
+  header {
     width: 100vw;
-    padding: 2rem;
+    padding: 2rem 0;
     background-color: #20211e;
-}
-header .header__container {
+  }
+  header .header__container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-header .header__container ul {
+  }
+  header .header__container ul {
     display: flex;
-}
-header .header__container ul li {
+  }
+  header .header__container ul li {
     margin-left: 1rem;
     border-bottom: 0.063rem solid transparent;
     cursor: pointer;
-}
-header .header__container ul li:hover {
+  }
+  header .header__container ul li:hover {
     border-bottom: 0.063rem solid;
     border-image-source: linear-gradient(to right, #ff53a5, #00bfcc);
     border-image-slice: 1;
-}
+  }
 .kategorie{
     text-align: center;
     margin-left: auto;

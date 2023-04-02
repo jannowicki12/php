@@ -9,31 +9,38 @@ $password = htmlentities($_POST['password'], ENT_QUOTES, "UTF-8");
 $repassword = htmlentities($_POST['re-password'], ENT_QUOTES, "UTF-8");
 
 if (empty($email)) {
-    header("Location: signUpPage.php?error=Email jest wymagany");
+    $_SESSION['signUpEmailrequired'] = true;
+    header("Location: signUpPage.php");
     exit();
 }else if(empty($password)){
-    header("Location: signUpPage.php?error=Haslo wymagane");
+    $_SESSION['signUpPasswordrequired'] = true;
+    header("Location: signUpPage.php");
     exit();
 }else if($password !== $repassword){
-    header("Location: signUpPage.php?error=Haslo sie nie zgadza");
+    $_SESSION['signUpPasswordError'] = true;
+    header("Location: signUpPage.php");
     exit();
 }else if(strlen($password) < 8){
-    header("Location: signUpPage.php?error=Haslo jest za krótkie, powinno sie skladac z minimum 8 znaków");
+    $_SESSION['singUpPasswordShort'] = true;
+    header("Location: signUpPage.php");
 }else {
 
     $query = "SELECT id FROM users WHERE email = '$email'";
     $result = mysqli_query($connection, $query);
     if (mysqli_num_rows($result) > 0) {
-        header("Location: signUpPage.php?error=email jest juz zarejestrowany");
+        $_SESSION['signUpEmailError'] = true;
+        header("Location: signUpPage.php");
         exit();
     } else {
 
         $query = "INSERT INTO users (email, password) VALUES ('$email', '$password')";
         
         if (!mysqli_query($connection, $query)){
-            header("Location: signUpPage.php?error=Nie mozesz sie zarejestrowac? sproboj ponownie");
+            $_SESSION['signUpCreateError'] = true;
+            header("Location: signUpPage.php");
             exit();
             } else {
+                unset($_SESSION['signInError']);
                 header("Location: signInPage.php"); 
             } 
         

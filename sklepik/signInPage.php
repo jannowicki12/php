@@ -20,13 +20,13 @@
         <br></br>
         <input class="input" type="password" name="password" id="" placeholder="Password"/>
         <br><br>
-        <input type="submit" value="Zaloguj się">
+        <input type="submit" value="Login">
 
     </form>
     <?php
         if(isset($_SESSION['signInError'])) {
             echo "<div class='error__container'>
-                <p style='color : red'>Niepoprawny login lub hasło</p>
+                <p style='color : red'>Incorrect login or password</p>
             </div>
             ";
         }

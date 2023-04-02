@@ -36,11 +36,11 @@ if(isset($_POST['update_cart_count'])){
     <h2> Cart for <?php echo $user; ?> </h2>
 <table class="koszyktab">
     <thead>
-    <th>name</th>
-    <th>price</th>
-    <th>count</th>
-    <th>edit</th>
-    <th>delete</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Count</th>
+    <th>Edit</th>
+    <th>Delete</th>
     </thead>
     <tbody>
 <?php
@@ -89,12 +89,12 @@ echo "
             <h3> Delivery Methods</h3>
             <table>
                 <tr>
-                   <th><input type="radio" name="sposobdostawy" required value="paczkomat">  </th>
-                   <th><span>Paczkomat</span></th>
+                   <th><input type="radio" name="sposobdostawy" required value="InPostParcelLocker">  </th>
+                   <th><span>InPost Parcel Locker</span></th>
                 </tr>
                 <tr>
-                    <th><input type="radio" name="sposobdostawy" required value="kurier"></th>
-                    <th><span>Kurier</span></th>
+                    <th><input type="radio" name="sposobdostawy" required value="Courier"></th>
+                    <th><span>Courier</span></th>
                 </tr>
 
             </table>
@@ -103,8 +103,8 @@ echo "
             <h3> Payments Methods</h3>
             <table>
                 <tr>
-                    <th><input type="radio" name="metodaplatnosc" required value="karta">  </th>
-                    <th><span>Karta Visa/Mastercard</span></th>
+                    <th><input type="radio" name="metodaplatnosc" required value="paymentcard">  </th>
+                    <th><span>Payment Card Visa/Mastercard</span></th>
                 </tr>
                 <tr>
                     <th><input type="radio" name="metodaplatnosc" required value="applepay"></th>
@@ -117,7 +117,7 @@ echo "
             <span>First Name:</span><input type="text" required name="imie">  <br>
             <span>Last Name:</span><input type="text" required name="nazwisko"> <br>
             <span>Email:</span><input type="text" required name="email" value="<?php echo $user;  ?>" disabled> <br>
-            <span>Phone number:</span> <input type="text" required name="telefon"> <br>
+            <span>Phone number:</span> <input type="number" required name="telefon"> <br>
         </div>
         <div class="resztadostawy">
             <span>Street:</span><input type="text" required name="ulica">  <br>
@@ -150,13 +150,20 @@ if(isset($_POST['zlozzamowienie'])){
     $numberstreet = mysqli_real_escape_string($connection, $_POST['nrdomu']);
     $city = mysqli_real_escape_string($connection, $_POST['miasto']);
     $zipcode = mysqli_real_escape_string($connection, $_POST['kodpocztowy']);
-    $makeorder = new MakeOrder($deliverymethod, $paymentmethod, $firstname, $lastname, $email, $phonenumber, $cost_order,$street,$numberstreet,$city,$zipcode);
-    $makeorder->Zamow();
-
+    if(strlen($phonenumber) < 9){
+        echo "phone number is too short";
+    } elseif(strlen($phonenumber) > 9){
+        echo "phone number is too long";
+    }
+    else { 
+        $makeorder = new MakeOrder($deliverymethod, $paymentmethod, $firstname, $lastname, $email, $phonenumber, $cost_order,$street,$numberstreet,$city,$zipcode);
+        $makeorder->Zamow();
+        echo "<p> order has been placed!";
+        $usuwaniecart_sql = "DELETE FROM cart WHERE user = '$user'";
+        $connection->query($usuwaniecart_sql);
+    }
 
 }
-
-
 
 ?>
 

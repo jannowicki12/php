@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 01 Kwi 2023, 17:01
+-- Czas generowania: 02 Kwi 2023, 15:55
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.1.12
 
@@ -39,9 +39,7 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`name`, `price`, `user`, `count`) VALUES
-('cieka', 5000, 'admin@jasno.pl', 1),
-('cieka', 5000, 'admin@asd.pl', 1),
-('fadfa', 555, 'admin@asd.pl', 1);
+('cieka', 5000, 'admin@jasno.pl', 1);
 
 -- --------------------------------------------------------
 
@@ -114,7 +112,7 @@ INSERT INTO `orders` (`id_orders`, `deliverymethod`, `paymentmethod`, `firstname
 (14, 'kurier', 'karta', 'Jan', 'Nowicki', 'admin@jasno.pl', 537865175, 5000, '2023-04-01', 'Pułaskiego 113', 22, 'Białystok', '15-337'),
 (15, 'kurier', 'applepay', 'Jan', 'Krasucki', 'admin@jasno.pl', 892183231, 5000, '2023-04-01', 'Pułaskiego 113', 21, 'Białystok', '15-337'),
 (16, 'kurier', 'applepay', 'Jan', 'Krasucki', 'admin@jasno.pl', 892183231, 5000, '2023-04-01', 'Pułaskiego 113', 21, 'Białystok', '15-337'),
-(29, 'paczkomat', 'applepay', 'Jan', 'Nowicki', 'admin@asd.pl', 544123423, 5000, '2023-04-01', 'Pułaskiego 113', 54, 'Białystok', '15-337');
+(55, 'paczkomat', 'karta', 'asd', 'asd', 'jan1235@wp.pl', 123123123, 2000, '2023-04-02', 'asd', 0, 'asd', 'asd');
 
 -- --------------------------------------------------------
 
@@ -143,7 +141,12 @@ INSERT INTO `product` (`id`, `name`, `id_category_three`, `img`, `price`, `desc`
 (1, 'szefowska obudowa', NULL, 'images/zdj.jpg', 2000, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 9, 10, 3),
 (2, 'cieka', NULL, 'images/zdj.jpg', 5000, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 9, 10, 3),
 (4, 'asdasd', NULL, 'images/4.jpg', 123, ' asdasdasd', NULL, 12, NULL),
-(5, 'fadfa', NULL, 'images/5.jpg', 555, 'elo elo', NULL, 3, NULL);
+(5, 'fadfa', NULL, 'images/5.jpg', 555, 'elo elo', NULL, 3, NULL),
+(6, 'asd', NULL, 'images/6.jpg', 123, ' asd', NULL, 1, NULL),
+(7, 'asdasd', NULL, 'images/7.jpg', 1234, ' asd', NULL, 1, NULL),
+(8, 'asd', NULL, 'images/8.jpg', 1234, ' 1234', NULL, 1, NULL),
+(9, 'asd', NULL, 'images/9.jpg', 123, ' asd', NULL, 1, NULL),
+(10, 'asd', NULL, 'images/10.jpg', 123, ' asd', NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -163,10 +166,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`email`, `password`, `id`, `isadmin`) VALUES
-('admin@wp.pl', '1234', 18, 0),
-('jan@wp.pl', '1234', 19, 0),
-('jan1235@wp.pl', '1234', 20, 0),
-('admin@asd.pl', '1234', 21, 1);
+('jan@wp.pl', '1234', 23, 0),
+('admin@wp.pl', '1234', 24, 0),
+('jan1235@wp.pl', '1234', 25, 0),
+('jan12@wp.pl', '1234', 26, 0),
+('admin@asd.pl', '1234', 27, 1);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -219,13 +223,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_orders` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_orders` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Ograniczenia dla zrzutów tabel

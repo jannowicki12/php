@@ -10,6 +10,7 @@ while ($res = mysqli_fetch_assoc($select)){
         header("Location: notadmin.html ");
     }
 }
+
 if(isset($_POST['dodajprodukt'])){
     $getid = "SELECT id from product ORDER BY id DESC LIMIT 0,1";
     $getidselect = mysqli_query($connection, $getid);
@@ -29,17 +30,20 @@ if(isset($_POST['dodajprodukt'])){
     $path = "images/".$nowanazwa;
     $dodawanieproduktu = "INSERT INTO `product`(`id`, `name`, `img`, `price`, `desc`, `count`) VALUES ('$newidproduct','$nazwa','$path','$cena','$opis','$ilosc')";
     $connection->query($dodawanieproduktu);
-    header("Location: AdminPanel.php?panel=dodajprodukt");
+    setcookie("powiadomienie", "Added product to store!");
+    header("Location: AdminPanel.php?panel");
 }
 if(isset($_POST['deluser'])){
     $iduser = $_POST['iduser'];
     $connection->query("DELETE FROM users WHERE id = '$iduser'");
-    header("Location:AdminPanel.php?panel=uzytkownicy");
+    setcookie("powiadomienie", "User account deleted successfully!");
+    header("Location:AdminPanel.php?panel");
 }
 if(isset($_POST['delprodukt'])){
     $idproduktu = $_POST['idprodukt'];
     $connection->query("DELETE FROM product WHERE id = '$idproduktu'");
-    header("Location:AdminPanel.php?panel=listaproduktow");
+    setcookie("powiadomienie", "Product deleted successfully!");
+    header("Location:AdminPanel.php?panel");
 }
 
 ?>
@@ -62,8 +66,10 @@ if(isset($_POST['delprodukt'])){
                     <ul>
                         <li><a href='index.php' style='color:white;'>Home</a></li>
                         <li><a href='shopPage.php' style='color:white;'>Shop</a></li>
-                        <li><a style='color:white;'>About Us</a></li>
-                        <li><a style='color:white;'>Contact</a></li>
+                        <li><a href='AboutUs.php'style='color:white;'>About Us</a></li>
+                        <li><a href='Contact.php'style='color:white;'>Contact</a></li>
+                        <li><a href='AdminPanel.php' style='color:white;'>Panel Admin</a></li>
+                        <li><a href='cart.php' style='color:white;'>Cart</a></li>
                         <li><a href='logout.php' style='color:white;'>Logout</a></li>
                         <li><a href='profil.php' style='color:white;'>Profil</a></li>"
                     </ul>
@@ -93,6 +99,12 @@ if(isset($_POST['delprodukt'])){
             }
 
 
+        }
+        
+        if (isset($_COOKIE['powiadomienie'])) {
+            $powiadomienie = $_COOKIE['powiadomienie'];
+            echo "<div class='powiadomienie' id='mess' onclick='this.remove();'> <p style='color: green;'>$powiadomienie</p> </div> ";
+            setcookie("powiadomienie", "", time()-3600);
         }
         ?>
     </div>

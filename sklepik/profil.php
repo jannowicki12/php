@@ -12,8 +12,8 @@ $profil = mysqli_fetch_assoc($wynik);
 
 if(isset($_POST['zmiendane'])){
     $nowymail = $_POST['nowyemail'];
-    $nowehaslo = $_POST['nowehaslo'];
     $obecnymail = $_SESSION['email'];
+    $nowehaslo = $_POST['nowehaslo'];
 
     $zmianasql = " UPDATE users SET email='$nowymail', password='$nowehaslo' WHERE email='$obecnymail'";
     $zmianacart = "UPDATE cart SET user = '$nowymail' WHERE user='$obecnymail'";
@@ -21,12 +21,16 @@ if(isset($_POST['zmiendane'])){
     $connection->query($zmianasql);
     $connection->query($zmianacart);
     $connection->query($zmianaorders);
-    header("Location: signIn.php");
+    header("Location: logout.php");
 
 }
 if(isset($_POST['usunkonto'])){
     $usun_konto_query = "DELETE FROM users WHERE email='$email'";
+    $usun_zamowienia_konta = "DELETE FROM orders WHERE email='$email'";
+    $usun_koszyk_konta = "DELETE FROM cart WHERE user='$email'";
     $connection->query($usun_konto_query);
+    $connection->query($usun_zamowienia_konta);
+    $connection->query($usun_koszyk_konta);
     header("Location: logout.php");
 }
 
@@ -45,14 +49,13 @@ if(isset($_POST['usunkonto'])){
 
 <div class="bodyprofilu">
 <form action="profil.php" method="post" class="formularzzmiany">
-        <label for="nowyemail" class="sr-only">E-mail:</label>
+        <label for="nowyemail" class="sr-only">Email:</label>
     <input type="text" class="form-control" id="nowyemail" name="nowyemail" disabled value="<?php echo $profil['email']?>"> <br>
-    <label for="nowehaslo" class="sr-only">Haslo:</label>
-        <input type="text" class="form-control" id="nowehaslo" name="nowehaslo" disabled value="<?php echo $profil['password']?>"> <br>
-        <button type='button' onclick="Zmiendane()" class="zmiendanebutt"> <i class="fi fi-rr-refresh"></i> Zmień dane</button>
-    <input id="zmiendanebutton" type="submit" name="zmiendane" value="Zaaktualizuj dane!" class="zaaktualizujdanebutt" disabled>
-    <input type="submit" name="usunkonto" onclick="return confirm('Czy napewno chcesz usunąć konto? Tej operacji nie można cofnąć')" class="usunkontobutt" value="USUŃ KONTO">
-
+    <label for="nowehaslo" class="sr-only">Password:</label>
+    <input type="text" class="form-control" id="nowehaslo" name="nowehaslo" disabled value="<?php echo $profil['password']?>"> <br>
+        <button type='button' id="pokazemail" onclick="Zmiendane()" class="zmiendanebutt"> <i class="fi fi-rr-refresh"></i> Change data</button>
+    <input id="zmiendanebutton" type="submit" name="zmiendane" value="Update data!" class="zaaktualizujdanebutt" disabled>
+    <input type="submit" name="usunkonto" onclick="return confirm('Do you really want to delete your account? This operation cannot be changed')" class="usunkontobutt" value="Delete Account">
 </form>
 <?php
 $zapytaniezamowienia = "SELECT id_orders, deliverymethod, paymentmethod, cost_order, date_order FROM orders WHERE email='$email'";
@@ -60,15 +63,15 @@ $zamowienieselect = mysqli_query($connection, $zapytaniezamowienia);
 ?>
 </div>
 <div class="historiazamowien">
-    <h2> Historia zamówień</h2>
+    <h2> Orders History</h2>
     <table class="table">
         <thead>
             <tr>
-            <th scope = "col" > ID ZAMÓWIENIA </th >
-            <th scope = "col" > Metoda Płatności </th >
-            <th scope = "col" > Sposób dostawy </th >
-            <th scope = "col" > koszt zamówienia </th >
-            <th scope = "col" > Data zamówienia </th >
+            <th scope = "col" > ORDER ID </th >
+            <th scope = "col" > Payment Method </th >
+            <th scope = "col" > Delivery Method </th >
+            <th scope = "col" > Order Cost </th >
+            <th scope = "col" > Order Date </th >
         </tr>
         </thead>
         <tbody>
