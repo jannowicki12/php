@@ -3,6 +3,9 @@ include "dbconnect.php";
 include "AdminClass.php";
 session_start();
 $username = $_SESSION['email'];
+if(!isset($_SESSION['email'])){
+    header("Location: notadmin.html ");
+}
 $isadminquery = "SELECT * FROM users WHERE email = '$username'";
 $select = mysqli_query($connection, $isadminquery);
 while ($res = mysqli_fetch_assoc($select)){
