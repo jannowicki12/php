@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Kwi 2023, 15:55
+-- Czas generowania: 02 Kwi 2023, 18:14
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.1.12
 
@@ -112,7 +112,23 @@ INSERT INTO `orders` (`id_orders`, `deliverymethod`, `paymentmethod`, `firstname
 (14, 'kurier', 'karta', 'Jan', 'Nowicki', 'admin@jasno.pl', 537865175, 5000, '2023-04-01', 'Pułaskiego 113', 22, 'Białystok', '15-337'),
 (15, 'kurier', 'applepay', 'Jan', 'Krasucki', 'admin@jasno.pl', 892183231, 5000, '2023-04-01', 'Pułaskiego 113', 21, 'Białystok', '15-337'),
 (16, 'kurier', 'applepay', 'Jan', 'Krasucki', 'admin@jasno.pl', 892183231, 5000, '2023-04-01', 'Pułaskiego 113', 21, 'Białystok', '15-337'),
-(55, 'paczkomat', 'karta', 'asd', 'asd', 'jan1235@wp.pl', 123123123, 2000, '2023-04-02', 'asd', 0, 'asd', 'asd');
+(55, 'paczkomat', 'karta', 'asd', 'asd', 'jan1235@wp.pl', 123123123, 2000, '2023-04-02', 'asd', 0, 'asd', 'asd'),
+(58, 'Courier', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 5000, '2023-04-02', 'Ciepla 40', 2, 'Białystok', '15-333'),
+(59, 'Courier', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 5000, '2023-04-02', 'Ciepla 40', 2, 'Białystok', '15-333'),
+(60, 'Courier', 'paymentcard', 'Michal', 'Reczulski', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'Koluszki dlugie', 15, 'Koluszki', '15-333'),
+(61, 'Courier', 'paymentcard', 'Michal', 'Reczulski', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'Koluszki dlugie', 15, 'Koluszki', '15-333'),
+(62, 'Courier', 'applepay', 'asd', 'asd', 'admin@asd.pl', 123123123, 0, '2023-04-02', 'asd', 1, 'Białystok', '123123'),
+(63, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 5000, '2023-04-02', 'asd', 1, 'Białystok', '123123'),
+(64, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 5000, '2023-04-02', 'asd', 1, 'Białystok', '123123'),
+(65, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 555, '2023-04-02', 'asd', 0, 'asd', 'asd'),
+(66, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 555, '2023-04-02', 'asd', 0, 'asd', 'asd'),
+(67, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 2000, '2023-04-02', 'asd', 0, 'asd', 'asd'),
+(68, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 2000, '2023-04-02', 'asd', 0, 'asd', 'asd'),
+(69, 'Courier', 'paymentcard', 'asdasd', 'asd', 'admin@asd.pl', 123123123, 0, '2023-04-02', 'asd', 0, 'asd', 'asd'),
+(70, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd'),
+(71, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd'),
+(72, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd'),
+(73, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd');
 
 -- --------------------------------------------------------
 
@@ -223,7 +239,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_orders` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id_orders` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`

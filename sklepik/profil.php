@@ -58,7 +58,7 @@ if(isset($_POST['usunkonto'])){
     <input type="submit" name="usunkonto" onclick="return confirm('Do you really want to delete your account? This operation cannot be changed')" class="usunkontobutt" value="Delete Account">
 </form>
 <?php
-$zapytaniezamowienia = "SELECT id_orders, deliverymethod, paymentmethod, cost_order, date_order FROM orders WHERE email='$email'";
+$zapytaniezamowienia = "SELECT id_orders, deliverymethod, paymentmethod, firstname, lastname, phonenumber,  cost_order, date_order, street, numberstreet, city FROM orders WHERE email='$email'";
 $zamowienieselect = mysqli_query($connection, $zapytaniezamowienia);
 ?>
 </div>
@@ -70,8 +70,14 @@ $zamowienieselect = mysqli_query($connection, $zapytaniezamowienia);
             <th scope = "col" > ORDER ID </th >
             <th scope = "col" > Payment Method </th >
             <th scope = "col" > Delivery Method </th >
+            <th scope = "col" > First Name </th >
+            <th scope = "col" > Last Name </th >
+            <th scope = "col" > Phone Number </th>
             <th scope = "col" > Order Cost </th >
             <th scope = "col" > Order Date </th >
+            <th scope = "col" > Street </th>
+            <th scope = "col" > House Number </th>
+            <th scope = "col" > City </th>
         </tr>
         </thead>
         <tbody>
@@ -83,8 +89,14 @@ $zamowienieselect = mysqli_query($connection, $zapytaniezamowienia);
             <th scope = 'row' >$zamowienie[id_orders] </th >
             <td > $zamowienie[deliverymethod]</td >
             <td > $zamowienie[paymentmethod]</td >
+            <td > $zamowienie[firstname]</td >
+            <td > $zamowienie[lastname]</td >
+            <td > $zamowienie[phonenumber]</td >
             <td > $zamowienie[cost_order] PLN</td >
             <td > $zamowienie[date_order]</td >
+            <td > $zamowienie[street]</td >
+            <td > $zamowienie[numberstreet]</td >
+            <td > $zamowienie[city]</td >
         </tr >
         ";
                 }

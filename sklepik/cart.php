@@ -2,11 +2,13 @@
 require_once "LayoutClass.php";
 require_once "SystemClass.php";
 require "dbconnect.php";
+$user = $_SESSION['email'];
+require_once("cartclass.php");
+$koszyk = new KoszykClass($user);
+
 if(!isset($_SESSION['email'])){
     header('Location: signIn.php');
 }
-$user = $_SESSION['email'];
-
 if (isset($_POST['delete_cart'])){
     $name = $_POST['name'];
     $price = $_POST['price'];
@@ -158,11 +160,16 @@ if(isset($_POST['zlozzamowienie'])){
     else { 
         $makeorder = new MakeOrder($deliverymethod, $paymentmethod, $firstname, $lastname, $email, $phonenumber, $cost_order,$street,$numberstreet,$city,$zipcode);
         $makeorder->Zamow();
-        echo "<p> order has been placed!";
         $usuwaniecart_sql = "DELETE FROM cart WHERE user = '$user'";
         $connection->query($usuwaniecart_sql);
+        header("Location: cart.php?order=success");
     }
 
+}
+if(isset($_GET['order'])) {
+    if($_GET['order'] == "success"){
+        $koszyk ->success();
+    }
 }
 
 ?>
