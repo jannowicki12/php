@@ -42,6 +42,20 @@ if(isset($_POST['deluser'])){
     setcookie("powiadomienie", "User account deleted successfully!");
     header("Location:AdminPanel.php?panel");
 }
+if(isset($_POST['editusers'])){
+    $iduser = $_POST['iduser'];
+    $editmail = $_POST['editmail'];
+    $starymail = $r['email'];
+    $edithaslo = $_POST['edithaslo'];
+    $editadmin = $_POST['editadmin'];
+    $zmianasql = " UPDATE users SET email='$editmail', password='$edithaslo', isadmin='$editadmin' WHERE id='$iduser'";
+    $zmianacart = "UPDATE cart SET user = '$editmail' WHERE user='$starymail'";
+    $zmianaorders = "UPDATE orders SET email = '$editmail' WHERE email = '$starymail'";
+    $connection->query($zmianasql);
+    $connection->query($zmianacart);
+    $connection->query($zmianaorders);
+    header("Location:AdminPanel.php?panel=users");
+}
 if(isset($_POST['delprodukt'])){
     $idproduktu = $_POST['idprodukt'];
     $connection->query("DELETE FROM product WHERE id = '$idproduktu'");
@@ -58,6 +72,7 @@ if(isset($_POST['delprodukt'])){
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/admin.css">
+    <script type="text/javascript" src="js/functions.js"></script>
     <title>Panel admin</title>
 </head>
 <body>

@@ -9,3 +9,12 @@ function Zmiendane(){
     document.getElementById("pokazemail").parentNode.removeChild(document.getElementById("pokazemail"));
     document.getElementById("zmiendanebutton").disabled =false;
 }
+
+function edituser() {
+    document.getElementById("editmail").disabled=false;
+    document.getElementById("edithaslo").disabled=false;
+    document.getElementById("editadmin").disabled=false;
+    document.getElementById("pokazedit").parentNode.removeChild(document.getElementById("pokazedit"));
+    document.getElementById("zmieneditbutton").disabled=false;
+
+}

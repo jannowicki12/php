@@ -14,7 +14,7 @@ class AdminClass{
     }
     public function wyswietluserow():void{
         include "dbconnect.php";
-        $query = "SELECT id, email, password, isadmin FROM users WHERE email != '$this->user'";
+        $query = "SELECT * FROM `users` WHERE 1";
         $select = mysqli_query($connection, $query);
         if(mysqli_num_rows($select)<=0){
             echo "There is no other user besides you";
@@ -25,6 +25,8 @@ class AdminClass{
                             <tr>
                             <th scope = 'col' > Email </th >
                             <th scope = 'col' > Password </th>
+                            <th scope = 'col' > Admin </th>
+                            <th scope = 'col' > Edit </th>
                             <th scope = 'col' > Delete Account </th >
                         </tr>
                         </thead>
@@ -33,8 +35,11 @@ class AdminClass{
             while ($r=mysqli_fetch_assoc($select)){
                 echo "
             <tr>
-                <td>$r[email]</td>
-                <td>$r[password]</td>
+            <form id='editusers' action='AdminPanel.php?panel=users' method='post' enctype='multipart/form-data'> 
+                <td><input type='text' class='form-control' id='editmail' name='editmail' disabled value='$r[email]'></td>
+                <td><input type='text' class='form-control' id='edithaslo' name='edithaslo' disabled value='$r[password]'></td>
+                <td><input type='text' class='form-control' id='editadmin' name='editadmin' disabled value='$r[isadmin]'></td>
+                <td><form action='AdminPanel.php?panel=users' method='post'> <input type='hidden' name='iduser' value='$r[id]'><button type='button' id='pokazedit' onclick='edituser()' class='zmieneditbutt'> Edit</button><input id='zmieneditbutton' type='submit' name='editusers' value='Accept!' class='zaaktualizujdanebutt' disabled></form></td>
                 <td><form action='AdminPanel.php?panel=users' method='post'> <input type='hidden' name='iduser' value='$r[id]'>  <input name='deluser'type='submit' value='delete'> </form></td>
             </tr>
         ";
