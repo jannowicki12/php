@@ -14,11 +14,12 @@
         <form action="signup.php" method="post">
             <h2>Register</h2>
             <label>Email:</label>
-            <input type="email" name="email" placeholder="Enter email"><br>
+            <input class="input" type="email" name="email" placeholder="Enter email"><br>
             <label>Password:</label>
-            <input type="password" name="password" placeholder="Enter Password"><br>
+            <input class="input" type="password" name="password" placeholder="Enter Password"><br>
             <label>Repeat Password:</label>
-            <input type="password" name="re-password" placeholder="Enter Repeat Password"><br>
+            <input class="input" type="password" name="re-password" placeholder="Enter Repeat Password">
+            <a class="check" href="terms.php"><input class="checkbox" type="checkbox" id="checkbox" name="checkbox">Terms and Conditions</a>
             <button type="submit">Register</button>
         </form>
         <?php
@@ -46,9 +47,15 @@
             </div>
             ";
         } 
-        if(isset($_SESSION['singUpPasswordShort'])) {
+        if(isset($_SESSION['signUpPasswordShort'])) {
             echo "<div class='error__container'>
                 <p style='color : red'>The password is too short, it should be at least 8 characters long</p>
+            </div>
+            ";
+        } 
+        if(isset($_SESSION['signUpChechbox'])) {
+            echo "<div class='error__container'>
+                <p style='color : red'>Checkbox not checked</p>
             </div>
             ";
         } 
