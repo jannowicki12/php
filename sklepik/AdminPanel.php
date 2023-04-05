@@ -43,7 +43,7 @@ if(isset($_POST['deluser'])){
     header("Location:AdminPanel.php?panel");
 }
 if(isset($_POST['editusers'])){
-    $iduser = $_POST['iduser'];
+    $iduser = $_POST['idusers'];
     $editmail = $_POST['editmail'];
     $starymail = $r['email'];
     $edithaslo = $_POST['edithaslo'];
@@ -55,6 +55,16 @@ if(isset($_POST['editusers'])){
     $connection->query($zmianacart);
     $connection->query($zmianaorders);
     header("Location:AdminPanel.php?panel=users");
+}
+if(isset($_POST['editprodukt'])){
+    $idproduktu = $_POST['idprodukt'];
+    $editname = $_POST['editname'];
+    $editprice = $_POST['editprice'];
+    $editdesc = $_POST['editdesc'];
+    $editcount = $_POST['editcount'];
+    $zmianasql = " UPDATE product SET name='$editname', price='$editprice', desc='$editdesc', count='$editcount' WHERE id='$idproduktu'";
+    $connection->query($zmianasql);
+    header("Location:AdminPanel.php?panel=listproduct");
 }
 if(isset($_POST['delprodukt'])){
     $idproduktu = $_POST['idprodukt'];

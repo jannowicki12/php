@@ -36,10 +36,10 @@ class AdminClass{
                 echo "
             <tr>
             <form id='editusers' action='AdminPanel.php?panel=users' method='post' enctype='multipart/form-data'> 
-                <td><input type='text' class='form-control' id='editmail' name='editmail' disabled value='$r[email]'></td>
-                <td><input type='text' class='form-control' id='edithaslo' name='edithaslo' disabled value='$r[password]'></td>
-                <td><input type='text' class='form-control' id='editadmin' name='editadmin' disabled value='$r[isadmin]'></td>
-                <td><form action='AdminPanel.php?panel=users' method='post'> <input type='hidden' name='iduser' value='$r[id]'><button type='button' id='pokazedit' onclick='edituser()' class='zmieneditbutt'> Edit</button><input id='zmieneditbutton' type='submit' name='editusers' value='Accept!' class='zaaktualizujdanebutt' disabled></form></td>
+                <td><input type='text' class='form-control' id='editmail' name='editmail' value='$r[email]'></td>
+                <td><input type='text' class='form-control' id='edithaslo' name='edithaslo' value='$r[password]'></td>
+                <td><input type='text' class='form-control' id='editadmin' name='editadmin' value='$r[isadmin]'></td>
+                <td><form action='AdminPanel.php?panel=users' method='post'> <input type='hidden' name='idusers' value='$r[id]'><input id='zmieneditbutton' type='submit' name='editusers' value='Edit!' class='zaaktualizujdanebutt'></form></td>
                 <td><form action='AdminPanel.php?panel=users' method='post'> <input type='hidden' name='iduser' value='$r[id]'>  <input name='deluser'type='submit' value='delete'> </form></td>
             </tr>
         ";
@@ -76,21 +76,23 @@ class AdminClass{
                         <th scope = 'col' > Price </th>
                         <th scope = 'col' > Description </th>
                         <th scope = 'col' > Count </th>
+                        <th scope = 'col' > Edit </th>
                         <th scope = 'col' > Delete Product </th >
                         </tr>
                     </thead>
                     <tbody>
             ";
         while ($row=mysqli_fetch_assoc($select1)){
-            $product_id = $row['id'];
             echo "
         <tr>
+        <form id='editproducts' action='AdminPanel.php?panel=listproduct' method='post' enctype='multipart/form-data'> 
             <td>$row[id]</td>
-            <td>$row[name]</td>
+            <td><input type='text' class='form-control' id='editname' name='editname' value='$row[name]'></td>
             <td>$row[img]</td>
-            <td>$row[price]</td>
-            <td>$row[desc]</td>
-            <td>$row[count]</td>
+            <td><input type='text' class='form-control' id='editprice' name='editprice' value='$row[price]'></td>
+            <td><input type='text' class='form-control' id='editdesc' name='editdesc' value='$row[desc]'></td>
+            <td><input type='text' class='form-control' id='editcount' name='editcount' value='$row[count]'></td>
+            <td><form action='AdminPanel.php?panel=listproduct' method='post'> <input type='hidden' name='idprodukt' value='$row[id]'><input type='submit' name='editprodukt' value='Edit!'></form></td>
             <td><form action='AdminPanel.php?panel=listproduct' method='post'> <input type='hidden' name='idprodukt' value='$row[id]'>  <input name='delprodukt'type='submit' value='delete'> </form></td>
         </tr>
             ";
