@@ -28,42 +28,49 @@
                 <p style='color : red'>This email is already registered</p>
             </div>
             ";
+            session_unset();
         } 
         if(isset($_SESSION['signUpPasswordrequired'])) {
             echo "<div class='error__container'>
                 <p style='color : red'>Password is required</p>
             </div>
             ";
+            session_unset();
         } 
         if(isset($_SESSION['signUpEmailrequired'])) {
             echo "<div class='error__container'>
                 <p style='color : red'>Email is required</p>
             </div>
             ";
+            session_unset();
         } 
         if(isset($_SESSION['signUpPasswordError'])) {
             echo "<div class='error__container'>
                 <p style='color : red'>The password doesn't match</p>
             </div>
             ";
+            session_unset();
         } 
         if(isset($_SESSION['signUpPasswordShort'])) {
             echo "<div class='error__container'>
                 <p style='color : red'>The password is too short, it should be at least 8 characters long</p>
             </div>
             ";
+            session_unset();
         } 
         if(isset($_SESSION['signUpChechbox'])) {
             echo "<div class='error__container'>
                 <p style='color : red'>Checkbox not checked</p>
             </div>
             ";
+            session_unset();
         } 
         if(isset($_SESSION['signUpCreateError'])) {
             echo "<div class='error__container'>
                 <p style='color : red'>Can't register? try again</p>
             </div>
             ";
+            session_unset();
         } 
         ?>
     </body>

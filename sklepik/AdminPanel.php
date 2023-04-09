@@ -63,9 +63,8 @@ if(isset($_POST['editprodukt'])){
     $editdesc = $_POST['editdesc'];
     $editcount = $_POST['editcount'];
     $zmianasql = " UPDATE product SET name='$editname', price='$editprice', `desc`='$editdesc', count='$editcount' WHERE id='$idprodukt'";
-    // $zmianadesc = " UPDATE product SET `desc`='$editdesc' WHERE id='$idprodukt'";
     $connection->query($zmianasql);
-    // $connection->query($zmianadesc);
+    header("Location:AdminPanel.php?panel=listproduct");
 }
 if(isset($_POST['delprodukt'])){
     $idproduktu = $_POST['idprodukt'];
