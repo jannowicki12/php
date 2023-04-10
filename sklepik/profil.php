@@ -39,7 +39,7 @@ if(isset($_POST['usunkonto'])){
 <html lang="pl">
 <head>
     <?php
-        SystemClass::printHead("./styles/cart.css", "Profil")
+        SystemClass::printHead("./styles/profil.css", "Profil")
     ?>
 </head>
 <body>
@@ -58,13 +58,13 @@ if(isset($_POST['usunkonto'])){
     <input type="submit" name="usunkonto" onclick="return confirm('Do you really want to delete your account? This operation cannot be changed')" class="usunkontobutt" value="Delete Account">
 </form>
 <?php
-$zapytaniezamowienia = "SELECT id_orders, deliverymethod, paymentmethod, firstname, lastname, phonenumber,  cost_order, date_order, street, numberstreet, city FROM orders WHERE email='$email'";
+$zapytaniezamowienia = "SELECT id_orders, deliverymethod, paymentmethod, firstname, lastname, phonenumber,  cost_order, date_order, street, numberstreet, city, Status FROM orders WHERE email='$email'";
 $zamowienieselect = mysqli_query($connection, $zapytaniezamowienia);
 ?>
 </div>
 <div class="historiazamowien">
     <h2> Orders History</h2>
-    <table class="table">
+    <table class="tabela">
         <thead>
             <tr>
             <th scope = "col" > ORDER ID </th >
@@ -78,6 +78,7 @@ $zamowienieselect = mysqli_query($connection, $zapytaniezamowienia);
             <th scope = "col" > Street </th>
             <th scope = "col" > House Number </th>
             <th scope = "col" > City </th>
+            <th scope = "col" > Status </th>
         </tr>
         </thead>
         <tbody>
@@ -97,6 +98,7 @@ $zamowienieselect = mysqli_query($connection, $zapytaniezamowienia);
             <td > $zamowienie[street]</td >
             <td > $zamowienie[numberstreet]</td >
             <td > $zamowienie[city]</td >
+            <td > $zamowienie[Status]</td >
         </tr >
         ";
                 }

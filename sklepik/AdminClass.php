@@ -148,8 +148,8 @@ class AdminClass{
             <td><input type='text' class='form-control' id='edithousenumber' name='edithousenumber' value='$rows[numberstreet]'></td>
             <td><input type='text' class='form-control' id='editcity' name='editcity' value='$rows[city]'></td>
             <td><input type='text' class='form-control' id='editpostalcode' name='editpostalcode' value='$rows[zipcode]'></td>
-            <td><select><option value='zlozono'>$rows[Status]</option><option value='wyslane'>wyslane</option><option value='dostarczono'>dostarczono</option></td>
-            <td><form action='AdminPanel.php?panel=listorders' method='post'><input type='hidden' name='idusers' value='$rows[id_orders]'><input id='editbutton' type='submit' name='editorders' value='Edit!' class='zaaktualizujdanebutt'></form></td>
+            <td><select name='editstatus' id='editstatus'><option value='zlozono'>$rows[Status]</option><option value='Potwierdzono zamowienie'>Potwierdzono zamowienie</option><option value='W trakcie pakowania'>W trakcie pakowania</option><option value='Wyslane'>Wyslane</option><option value='Dostarczono'>Dostarczono</option></td>
+            <td><form action='AdminPanel.php?panel=listorders' method='post'><input type='hidden' name='idorders' value='$rows[id_orders]'><input id='editbutton' type='submit' name='editorders' value='Edit!' class='zaaktualizujdanebutt'></form></td>
         </tr>
             ";
             // <td><input type='text' class='form-control' id='editstatus' name='editstatus' value='$r[status]'></td>

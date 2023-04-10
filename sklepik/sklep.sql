@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 10 Kwi 2023, 13:52
+-- Czas generowania: 10 Kwi 2023, 18:39
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.1.12
 
@@ -107,38 +107,13 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id_orders`, `deliverymethod`, `paymentmethod`, `firstname`, `lastname`, `email`, `phonenumber`, `cost_order`, `date_order`, `street`, `numberstreet`, `city`, `zipcode`, `Status`) VALUES
-(11, 'osobisty', 'karta', 'Jan', 'Nowicki', 'admin@jasno.pl', 537865175, 5000, '2023-04-01', 'Pułaskiego 113', 54, 'Białystok', '15-337', 'ZŁOZONO ZAMOWIENIE'),
-(12, 'paczkomat', 'karta', 'Jan', 'Nowicki', 'admin@jasno.pl', 537865175, 5000, '2023-04-01', 'Pułaskiego 113', 113, 'Białystok', '15-337', 'ZŁOZONO ZAMOWIENIE'),
-(13, 'paczkomat', 'applepay', 'Jan', 'Nowicki', 'admin@jasno.pl', 537865175, 5000, '2023-04-01', 'Pułaskiego 113', 33, 'Białystok', '15-337', 'ZŁOZONO ZAMOWIENIE'),
-(14, 'kurier', 'karta', 'Jan', 'Nowicki', 'admin@jasno.pl', 537865175, 5000, '2023-04-01', 'Pułaskiego 113', 22, 'Białystok', '15-337', 'ZŁOZONO ZAMOWIENIE'),
-(15, 'kurier', 'applepay', 'Jan', 'Krasucki', 'admin@jasno.pl', 892183231, 5000, '2023-04-01', 'Pułaskiego 113', 21, 'Białystok', '15-337', 'ZŁOZONO ZAMOWIENIE'),
-(16, 'kurier', 'applepay', 'Jan', 'Krasucki', 'admin@jasno.pl', 892183231, 5000, '2023-04-01', 'Pułaskiego 113', 21, 'Białystok', '15-337', 'ZŁOZONO ZAMOWIENIE'),
-(55, 'paczkomat', 'karta', 'asd', 'asd', 'jan1235@wp.pl', 123123123, 2000, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(58, 'Courier', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 5000, '2023-04-02', 'Ciepla 40', 2, 'Białystok', '15-333', 'ZŁOZONO ZAMOWIENIE'),
-(59, 'Courier', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 5000, '2023-04-02', 'Ciepla 40', 2, 'Białystok', '15-333', 'ZŁOZONO ZAMOWIENIE'),
-(60, 'Courier', 'paymentcard', 'Michal', 'Reczulski', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'Koluszki dlugie', 15, 'Koluszki', '15-333', 'ZŁOZONO ZAMOWIENIE'),
-(61, 'Courier', 'paymentcard', 'Michal', 'Reczulski', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'Koluszki dlugie', 15, 'Koluszki', '15-333', 'ZŁOZONO ZAMOWIENIE'),
-(62, 'Courier', 'applepay', 'asd', 'asd', 'admin@asd.pl', 123123123, 0, '2023-04-02', 'asd', 1, 'Białystok', '123123', 'ZŁOZONO ZAMOWIENIE'),
-(63, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 5000, '2023-04-02', 'asd', 1, 'Białystok', '123123', 'ZŁOZONO ZAMOWIENIE'),
-(64, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 5000, '2023-04-02', 'asd', 1, 'Białystok', '123123', 'ZŁOZONO ZAMOWIENIE'),
-(65, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 555, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(66, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 555, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(67, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 2000, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(68, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 2000, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(69, 'Courier', 'paymentcard', 'asdasd', 'asd', 'admin@asd.pl', 123123123, 0, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(70, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(71, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(72, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(73, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(74, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 2000, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(75, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 0, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
 (76, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
 (77, 'InPostParcelLocker', 'applepay', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
 (78, 'InPostParcelLocker', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
 (79, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
 (80, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
 (81, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 555, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(82, 'Courier', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 555, '2023-04-10', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE');
+(82, 'Courier', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 555, '2023-04-10', 'asd', 0, 'asd', 'asd', 'Potwierdzono zamowienie');
 
 -- --------------------------------------------------------
 
@@ -163,7 +138,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `id_category_three`, `img`, `price`, `desc`, `sellout`, `count`, `activ`) VALUES
-(0, 'intelsdd', NULL, 'images/zdj.jpg', 2900, 'asdasd      ', 9, 1, 3),
+(0, 'intelsddd', NULL, 'images/zdj.jpg', 2900, 'asdasd       ', 9, 1, 3),
 (1, 'szefowska obudowa', NULL, 'images/zdj.jpg', 2000, 'asdasd', 9, 10, 3),
 (2, 'cieka', NULL, 'images/zdj.jpg', 5000, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 9, 10, 3),
 (4, 'asdasd', NULL, 'images/4.jpg', 123, ' asdasdasd', NULL, 12, NULL),

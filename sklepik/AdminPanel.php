@@ -72,7 +72,20 @@ if(isset($_POST['delprodukt'])){
     setcookie("powiadomienie", "Product deleted successfully!");
     header("Location:AdminPanel.php?panel");
 }
-
+if(isset($_POST['editorders'])){
+    $idorders = $_POST['idorders'];
+    $editfirstname = $_POST['editfirstname'];
+    $editlastname = $_POST['editlastname'];
+    $editphonenumber = $_POST['editphonenumber'];
+    $editstreet = $_POST['editstreet'];
+    $edithousenumber = $_POST['edithousenumber'];
+    $editcity = $_POST['editcity'];
+    $editpostalcode = $_POST['editpostalcode'];
+    $editstatus = $_POST['editstatus'];
+    $editordersql = " UPDATE orders SET firstname='$editfirstname', lastname='$editlastname', phonenumber='$editphonenumber', street='$editstreet', numberstreet='$edithousenumber', city='$editcity', zipcode='$editpostalcode', Status='$editstatus' WHERE id_orders='$idorders'";
+    $connection->query($editordersql);
+    header("Location:AdminPanel.php?panel=listorders");
+}
 ?>
 <!doctype html>
 <html lang="pl">
