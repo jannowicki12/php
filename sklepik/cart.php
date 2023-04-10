@@ -114,16 +114,17 @@ echo "
             </table>
         </div>
         <div class="resztadostawy">
-            <span>First Name:</span><input type="text" required name="imie">  <br>
-            <span>Last Name:</span><input type="text" required name="nazwisko"> <br>
+            <span>First Name:</span><input type="text" required name="imie" placeholder="First Name">  <br>
+            <span>Last Name:</span><input type="text" required name="nazwisko" placeholder="Last Name"> <br>
             <span>Email:</span><input type="text" required name="email" value="<?php echo $user;  ?>" disabled> <br>
-            <span>Phone number:</span> <input type="number" required name="telefon"> <br>
+            <span>Phone number:</span> <input type="number" required name="telefon" placeholder="Phone Number"> <br>
         </div>
         <div class="resztadostawy">
-            <span>Street:</span><input type="text" required name="ulica">  <br>
-            <span>House number:</span><input type="text" required name="nrdomu"> <br>
-            <span>City:</span><input type="text" required name="miasto"> <br>
-            <span>Zip-code:</span> <input type="text" required name="kodpocztowy"> <br>
+            <span>Street:</span><input type="text" required name="ulica" placeholder="Street">  <br>
+            <span>House number:</span><input type="text" required name="nrdomu" placeholder="House Number"> <br>
+            <span>City:</span><input type="text" required name="miasto" placeholder="City"> <br>
+            <span>Country:</span><input type="text" required name="kraj" placeholder="Country"> <br>
+            <span>Zip-code:</span> <input type="text" required name="kodpocztowy" placeholder="XX-XXX"> <br>
         </div>
         <input type="hidden" name="calkowitacena" value="<?php echo $cena_calkowita;?>">
         <input id="formularzdostawy" name="zlozzamowienie" type="submit" value="Submit your order">
@@ -149,6 +150,7 @@ if(isset($_POST['zlozzamowienie'])){
     $street = mysqli_real_escape_string($connection, $_POST['ulica']);
     $numberstreet = mysqli_real_escape_string($connection, $_POST['nrdomu']);
     $city = mysqli_real_escape_string($connection, $_POST['miasto']);
+    $country = mysqli_real_escape_string($connection, $_POST['kraj']);
     $zipcode = mysqli_real_escape_string($connection, $_POST['kodpocztowy']);
     if(strlen($phonenumber) < 9){
         echo "<p style='text-align: center; color: red;'>phone number is too short</p>";
@@ -156,7 +158,7 @@ if(isset($_POST['zlozzamowienie'])){
         echo "<p style='text-align: center; color: red;'>phone number is too long</p>";
     }
     else { 
-        $makeorder = new MakeOrder($deliverymethod, $paymentmethod, $firstname, $lastname, $email, $phonenumber, $cost_order,$street,$numberstreet,$city,$zipcode);
+        $makeorder = new MakeOrder($deliverymethod, $paymentmethod, $firstname, $lastname, $email, $phonenumber, $cost_order, $street, $numberstreet, $city, $country, $zipcode);
         $makeorder->Zamow();
         $usuwaniecart_sql = "DELETE FROM cart WHERE user = '$user'";
         $connection->query($usuwaniecart_sql);

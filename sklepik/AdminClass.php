@@ -124,6 +124,7 @@ class AdminClass{
                         <th scope = 'col' > Street </th>
                         <th scope = 'col' > House Number </th>
                         <th scope = 'col' > City </th>
+                        <th scope = 'col' > Country </th>
                         <th scope = 'col' > Postal Code </th>
                         <th scope = 'col' > Status </th>
                         <th scope = 'col' > Edit </th>
@@ -147,6 +148,7 @@ class AdminClass{
             <td><input type='text' class='form-control' id='editstreet' name='editstreet' value='$rows[street]'></td>
             <td><input type='text' class='form-control' id='edithousenumber' name='edithousenumber' value='$rows[numberstreet]'></td>
             <td><input type='text' class='form-control' id='editcity' name='editcity' value='$rows[city]'></td>
+            <td><input type='text' class='form-control' id='editcountry' name='editcountry' value='$rows[Country]'></td>
             <td><input type='text' class='form-control' id='editpostalcode' name='editpostalcode' value='$rows[zipcode]'></td>
             <td><select name='editstatus' id='editstatus'><option value='zlozono'>$rows[Status]</option><option value='Potwierdzono zamowienie'>Potwierdzono zamowienie</option><option value='W trakcie pakowania'>W trakcie pakowania</option><option value='Wyslane'>Wyslane</option><option value='Dostarczono'>Dostarczono</option></td>
             <td><form action='AdminPanel.php?panel=listorders' method='post'><input type='hidden' name='idorders' value='$rows[id_orders]'><input id='editbutton' type='submit' name='editorders' value='Edit!' class='zaaktualizujdanebutt'></form></td>

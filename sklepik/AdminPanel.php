@@ -80,9 +80,10 @@ if(isset($_POST['editorders'])){
     $editstreet = $_POST['editstreet'];
     $edithousenumber = $_POST['edithousenumber'];
     $editcity = $_POST['editcity'];
+    $editcountry = $_POST['editcountry'];
     $editpostalcode = $_POST['editpostalcode'];
     $editstatus = $_POST['editstatus'];
-    $editordersql = " UPDATE orders SET firstname='$editfirstname', lastname='$editlastname', phonenumber='$editphonenumber', street='$editstreet', numberstreet='$edithousenumber', city='$editcity', zipcode='$editpostalcode', Status='$editstatus' WHERE id_orders='$idorders'";
+    $editordersql = " UPDATE orders SET firstname='$editfirstname', lastname='$editlastname', phonenumber='$editphonenumber', street='$editstreet', numberstreet='$edithousenumber', city='$editcity', country='$editcountry', zipcode='$editpostalcode', Status='$editstatus' WHERE id_orders='$idorders'";
     $connection->query($editordersql);
     header("Location:AdminPanel.php?panel=listorders");
 }

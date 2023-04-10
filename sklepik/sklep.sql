@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 10 Kwi 2023, 18:39
+-- Czas generowania: 10 Kwi 2023, 19:45
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.1.12
 
@@ -96,8 +96,9 @@ CREATE TABLE `orders` (
   `cost_order` int(11) DEFAULT NULL,
   `date_order` date DEFAULT NULL,
   `street` varchar(50) DEFAULT NULL,
-  `numberstreet` int(11) DEFAULT NULL,
+  `numberstreet` varchar(11) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
+  `Country` varchar(255) NOT NULL,
   `zipcode` varchar(10) DEFAULT NULL,
   `Status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -106,14 +107,19 @@ CREATE TABLE `orders` (
 -- Zrzut danych tabeli `orders`
 --
 
-INSERT INTO `orders` (`id_orders`, `deliverymethod`, `paymentmethod`, `firstname`, `lastname`, `email`, `phonenumber`, `cost_order`, `date_order`, `street`, `numberstreet`, `city`, `zipcode`, `Status`) VALUES
-(76, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(77, 'InPostParcelLocker', 'applepay', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(78, 'InPostParcelLocker', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(79, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(80, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(81, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 555, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
-(82, 'Courier', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 555, '2023-04-10', 'asd', 0, 'asd', 'asd', 'Potwierdzono zamowienie');
+INSERT INTO `orders` (`id_orders`, `deliverymethod`, `paymentmethod`, `firstname`, `lastname`, `email`, `phonenumber`, `cost_order`, `date_order`, `street`, `numberstreet`, `city`, `Country`, `zipcode`, `Status`) VALUES
+(76, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', '0', 'asd', '', 'asd', 'W trakcie pakowania'),
+(77, 'InPostParcelLocker', 'applepay', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', '0', 'asd', '', 'asd', 'Wyslane'),
+(78, 'InPostParcelLocker', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', '0', 'asd', '', 'asd', 'W trakcie pakowania'),
+(79, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', '0', 'asd', '', 'asd', 'Wyslane'),
+(80, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', '0', 'asd', '', 'asd', 'Potwierdzono zamowienie'),
+(81, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 555, '2023-04-02', 'asd', '0', 'asd', '', 'asd', 'Dostarczono'),
+(82, 'Courier', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 555, '2023-04-10', 'asd', '0', 'asd', '', 'asd', 'Potwierdzono zamowienie'),
+(83, 'InPostParcelLocker', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 123, '2023-04-10', 'Koluszki dlugie', '1', 'Koluszki', '15-337', '', 'ZŁOZONO ZAMOWIENIE'),
+(84, 'InPostParcelLocker', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 2000, '2023-04-10', 'Koluszki dlugie', '1', 'Koluszki', '12-132', 'Polska', 'ZŁOZONO ZAMOWIENIE'),
+(85, 'Courier', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 5000, '2023-04-10', 'Koluszki dlugie', '1de', 'Koluszki', '12-132', 'Polska', 'ZŁOZONO ZAMOWIENIE'),
+(86, 'InPostParcelLocker', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 5000, '2023-04-10', 'asd', 'asd', 'Białystok', '12-132', 'Polska', 'ZŁOZONO ZAMOWIENIE'),
+(87, 'InPostParcelLocker', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 2900, '2023-04-10', 'asd', 'asd', 'asd', 'Poland', '12-132', 'Dostarczono');
 
 -- --------------------------------------------------------
 
@@ -219,7 +225,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_orders` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id_orders` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
