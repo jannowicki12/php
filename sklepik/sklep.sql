@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 02 Kwi 2023, 18:14
+-- Czas generowania: 10 Kwi 2023, 13:52
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.1.12
 
@@ -98,37 +98,47 @@ CREATE TABLE `orders` (
   `street` varchar(50) DEFAULT NULL,
   `numberstreet` int(11) DEFAULT NULL,
   `city` varchar(50) DEFAULT NULL,
-  `zipcode` varchar(10) DEFAULT NULL
+  `zipcode` varchar(10) DEFAULT NULL,
+  `Status` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Zrzut danych tabeli `orders`
 --
 
-INSERT INTO `orders` (`id_orders`, `deliverymethod`, `paymentmethod`, `firstname`, `lastname`, `email`, `phonenumber`, `cost_order`, `date_order`, `street`, `numberstreet`, `city`, `zipcode`) VALUES
-(11, 'osobisty', 'karta', 'Jan', 'Nowicki', 'admin@jasno.pl', 537865175, 5000, '2023-04-01', 'Pułaskiego 113', 54, 'Białystok', '15-337'),
-(12, 'paczkomat', 'karta', 'Jan', 'Nowicki', 'admin@jasno.pl', 537865175, 5000, '2023-04-01', 'Pułaskiego 113', 113, 'Białystok', '15-337'),
-(13, 'paczkomat', 'applepay', 'Jan', 'Nowicki', 'admin@jasno.pl', 537865175, 5000, '2023-04-01', 'Pułaskiego 113', 33, 'Białystok', '15-337'),
-(14, 'kurier', 'karta', 'Jan', 'Nowicki', 'admin@jasno.pl', 537865175, 5000, '2023-04-01', 'Pułaskiego 113', 22, 'Białystok', '15-337'),
-(15, 'kurier', 'applepay', 'Jan', 'Krasucki', 'admin@jasno.pl', 892183231, 5000, '2023-04-01', 'Pułaskiego 113', 21, 'Białystok', '15-337'),
-(16, 'kurier', 'applepay', 'Jan', 'Krasucki', 'admin@jasno.pl', 892183231, 5000, '2023-04-01', 'Pułaskiego 113', 21, 'Białystok', '15-337'),
-(55, 'paczkomat', 'karta', 'asd', 'asd', 'jan1235@wp.pl', 123123123, 2000, '2023-04-02', 'asd', 0, 'asd', 'asd'),
-(58, 'Courier', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 5000, '2023-04-02', 'Ciepla 40', 2, 'Białystok', '15-333'),
-(59, 'Courier', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 5000, '2023-04-02', 'Ciepla 40', 2, 'Białystok', '15-333'),
-(60, 'Courier', 'paymentcard', 'Michal', 'Reczulski', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'Koluszki dlugie', 15, 'Koluszki', '15-333'),
-(61, 'Courier', 'paymentcard', 'Michal', 'Reczulski', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'Koluszki dlugie', 15, 'Koluszki', '15-333'),
-(62, 'Courier', 'applepay', 'asd', 'asd', 'admin@asd.pl', 123123123, 0, '2023-04-02', 'asd', 1, 'Białystok', '123123'),
-(63, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 5000, '2023-04-02', 'asd', 1, 'Białystok', '123123'),
-(64, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 5000, '2023-04-02', 'asd', 1, 'Białystok', '123123'),
-(65, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 555, '2023-04-02', 'asd', 0, 'asd', 'asd'),
-(66, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 555, '2023-04-02', 'asd', 0, 'asd', 'asd'),
-(67, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 2000, '2023-04-02', 'asd', 0, 'asd', 'asd'),
-(68, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 2000, '2023-04-02', 'asd', 0, 'asd', 'asd'),
-(69, 'Courier', 'paymentcard', 'asdasd', 'asd', 'admin@asd.pl', 123123123, 0, '2023-04-02', 'asd', 0, 'asd', 'asd'),
-(70, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd'),
-(71, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd'),
-(72, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd'),
-(73, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd');
+INSERT INTO `orders` (`id_orders`, `deliverymethod`, `paymentmethod`, `firstname`, `lastname`, `email`, `phonenumber`, `cost_order`, `date_order`, `street`, `numberstreet`, `city`, `zipcode`, `Status`) VALUES
+(11, 'osobisty', 'karta', 'Jan', 'Nowicki', 'admin@jasno.pl', 537865175, 5000, '2023-04-01', 'Pułaskiego 113', 54, 'Białystok', '15-337', 'ZŁOZONO ZAMOWIENIE'),
+(12, 'paczkomat', 'karta', 'Jan', 'Nowicki', 'admin@jasno.pl', 537865175, 5000, '2023-04-01', 'Pułaskiego 113', 113, 'Białystok', '15-337', 'ZŁOZONO ZAMOWIENIE'),
+(13, 'paczkomat', 'applepay', 'Jan', 'Nowicki', 'admin@jasno.pl', 537865175, 5000, '2023-04-01', 'Pułaskiego 113', 33, 'Białystok', '15-337', 'ZŁOZONO ZAMOWIENIE'),
+(14, 'kurier', 'karta', 'Jan', 'Nowicki', 'admin@jasno.pl', 537865175, 5000, '2023-04-01', 'Pułaskiego 113', 22, 'Białystok', '15-337', 'ZŁOZONO ZAMOWIENIE'),
+(15, 'kurier', 'applepay', 'Jan', 'Krasucki', 'admin@jasno.pl', 892183231, 5000, '2023-04-01', 'Pułaskiego 113', 21, 'Białystok', '15-337', 'ZŁOZONO ZAMOWIENIE'),
+(16, 'kurier', 'applepay', 'Jan', 'Krasucki', 'admin@jasno.pl', 892183231, 5000, '2023-04-01', 'Pułaskiego 113', 21, 'Białystok', '15-337', 'ZŁOZONO ZAMOWIENIE'),
+(55, 'paczkomat', 'karta', 'asd', 'asd', 'jan1235@wp.pl', 123123123, 2000, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(58, 'Courier', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 5000, '2023-04-02', 'Ciepla 40', 2, 'Białystok', '15-333', 'ZŁOZONO ZAMOWIENIE'),
+(59, 'Courier', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 5000, '2023-04-02', 'Ciepla 40', 2, 'Białystok', '15-333', 'ZŁOZONO ZAMOWIENIE'),
+(60, 'Courier', 'paymentcard', 'Michal', 'Reczulski', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'Koluszki dlugie', 15, 'Koluszki', '15-333', 'ZŁOZONO ZAMOWIENIE'),
+(61, 'Courier', 'paymentcard', 'Michal', 'Reczulski', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'Koluszki dlugie', 15, 'Koluszki', '15-333', 'ZŁOZONO ZAMOWIENIE'),
+(62, 'Courier', 'applepay', 'asd', 'asd', 'admin@asd.pl', 123123123, 0, '2023-04-02', 'asd', 1, 'Białystok', '123123', 'ZŁOZONO ZAMOWIENIE'),
+(63, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 5000, '2023-04-02', 'asd', 1, 'Białystok', '123123', 'ZŁOZONO ZAMOWIENIE'),
+(64, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 5000, '2023-04-02', 'asd', 1, 'Białystok', '123123', 'ZŁOZONO ZAMOWIENIE'),
+(65, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 555, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(66, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 555, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(67, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 2000, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(68, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 2000, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(69, 'Courier', 'paymentcard', 'asdasd', 'asd', 'admin@asd.pl', 123123123, 0, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(70, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(71, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(72, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(73, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(74, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 2000, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(75, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 0, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(76, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(77, 'InPostParcelLocker', 'applepay', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(78, 'InPostParcelLocker', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(79, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(80, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(81, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 555, '2023-04-02', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE'),
+(82, 'Courier', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 555, '2023-04-10', 'asd', 0, 'asd', 'asd', 'ZŁOZONO ZAMOWIENIE');
 
 -- --------------------------------------------------------
 
@@ -142,7 +152,7 @@ CREATE TABLE `product` (
   `id_category_three` int(11) DEFAULT NULL,
   `img` varchar(255) DEFAULT NULL,
   `price` float DEFAULT NULL,
-  `desc` text DEFAULT NULL,
+  `desc` varchar(1000) DEFAULT NULL,
   `sellout` tinyint(1) DEFAULT NULL,
   `count` int(11) DEFAULT NULL,
   `activ` tinyint(1) DEFAULT NULL
@@ -153,16 +163,11 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `id_category_three`, `img`, `price`, `desc`, `sellout`, `count`, `activ`) VALUES
-(0, 'intel', NULL, 'images/zdj.jpg', 6000, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 9, 10, 3),
-(1, 'szefowska obudowa', NULL, 'images/zdj.jpg', 2000, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 9, 10, 3),
+(0, 'intelsdd', NULL, 'images/zdj.jpg', 2900, 'asdasd      ', 9, 1, 3),
+(1, 'szefowska obudowa', NULL, 'images/zdj.jpg', 2000, 'asdasd', 9, 10, 3),
 (2, 'cieka', NULL, 'images/zdj.jpg', 5000, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 9, 10, 3),
 (4, 'asdasd', NULL, 'images/4.jpg', 123, ' asdasdasd', NULL, 12, NULL),
-(5, 'fadfa', NULL, 'images/5.jpg', 555, 'elo elo', NULL, 3, NULL),
-(6, 'asd', NULL, 'images/6.jpg', 123, ' asd', NULL, 1, NULL),
-(7, 'asdasd', NULL, 'images/7.jpg', 1234, ' asd', NULL, 1, NULL),
-(8, 'asd', NULL, 'images/8.jpg', 1234, ' 1234', NULL, 1, NULL),
-(9, 'asd', NULL, 'images/9.jpg', 123, ' asd', NULL, 1, NULL),
-(10, 'asd', NULL, 'images/10.jpg', 123, ' asd', NULL, 1, NULL);
+(5, 'fadfa', NULL, 'images/5.jpg', 555, 'elo elo', NULL, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -182,11 +187,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`email`, `password`, `id`, `isadmin`) VALUES
-('jan@wp.pl', '1234', 23, 0),
-('admin@wp.pl', '1234', 24, 0),
-('jan1235@wp.pl', '1234', 25, 0),
-('jan12@wp.pl', '1234', 26, 0),
-('admin@asd.pl', '1234', 27, 1);
+('jan1234@wp.pl', '1234', 26, 0),
+('admin@asd.pl', '1234', 27, 1),
+('admin@jasno.pl', '1234', 28, 0),
+('jan1235@wp.pl', '1234', 29, 0),
+('admin@admin.pl', '1234', 30, 1);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -239,13 +244,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_orders` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id_orders` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Ograniczenia dla zrzutów tabel

@@ -98,8 +98,8 @@ if(isset($_POST['delprodukt'])){
                         <li><a href='Contact.php'style='color:white;'>Contact</a></li>
                         <li><a href='AdminPanel.php' style='color:white;'>Panel Admin</a></li>
                         <li><a href='cart.php' style='color:white;'>Cart</a></li>
+                        <li><a href='profil.php' style='color:white;'>Profil</a></li>
                         <li><a href='logout.php' style='color:white;'>Logout</a></li>
-                        <li><a href='profil.php' style='color:white;'>Profil</a></li>"
                     </ul>
                 </nav>
             </div>
@@ -111,6 +111,7 @@ if(isset($_POST['delprodukt'])){
         <a href="AdminPanel.php?panel=users"> <h3 style='color: blue;'> Users</h3></a>
         <a href="AdminPanel.php?panel=addproduct"> <h3 style='color: green;'> Add product </h3></a>
         <a href="AdminPanel.php?panel=listproduct"> <h3 style='color: red;'> List product </h3></a>
+        <a href="AdminPanel.php?panel=listorders"> <h3 style='color: lightgreen;'> List orders </h3></a>
     </div>
     <div class="tools">
         <?php
@@ -124,7 +125,11 @@ if(isset($_POST['delprodukt'])){
             }
             if($_GET['panel'] == "listproduct"){
                 $admin ->listaproduktow();
+            }            
+            if($_GET['panel'] == "listorders"){
+                $admin ->listazamowien();
             }
+            
 
 
         }

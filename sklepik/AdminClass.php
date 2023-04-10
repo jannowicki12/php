@@ -101,4 +101,59 @@ class AdminClass{
 
         }
     }
+    public function listazamowien():void{
+        include "dbconnect.php";
+        $query2 = "SELECT * FROM `orders`";
+        $select2 = mysqli_query($connection, $query2);
+        if(mysqli_num_rows($select2)<=0){
+            echo "There are no orders";
+        }else{
+            echo"<div class='tabelka'> 
+            <table>
+            <thead>
+                        <tr>
+                        <th scope = 'col' > ORDER ID </th >
+                        <th scope = 'col' > Payment Method </th >
+                        <th scope = 'col' > Delivery Method </th >
+                        <th scope = 'col' > First Name </th >
+                        <th scope = 'col' > Last Name </th >
+                        <th scope = 'col' > Email </th >
+                        <th scope = 'col' > Phone Number </th>
+                        <th scope = 'col' > Order Cost </th >
+                        <th scope = 'col' > Order Date </th >
+                        <th scope = 'col' > Street </th>
+                        <th scope = 'col' > House Number </th>
+                        <th scope = 'col' > City </th>
+                        <th scope = 'col' > Postal Code </th>
+                        <th scope = 'col' > Status </th>
+                        <th scope = 'col' > Edit </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            ";
+        while ($rows=mysqli_fetch_assoc($select2)){
+            echo "
+        <tr>
+        <form id='editorders' action='AdminPanel.php?panel=listorders' method='post' enctype='multipart/form-data'> 
+            <td>$rows[id_orders]</td>
+            <td>$rows[paymentmethod]</td>
+            <td>$rows[deliverymethod]</td>
+            <td><input type='text' class='form-control' id='editfirstname' name='editfirstname' value='$rows[firstname]'></td>
+            <td><input type='text' class='form-control' id='editlastname' name='editlastname' value='$rows[lastname]'></td>
+            <td>$rows[email]</td>
+            <td><input type='text' class='form-control' id='editphonenumber' name='editphonenumber' value='$rows[phonenumber]'></td>
+            <td>$rows[cost_order]</td>
+            <td>$rows[date_order]</td>
+            <td><input type='text' class='form-control' id='editstreet' name='editstreet' value='$rows[street]'></td>
+            <td><input type='text' class='form-control' id='edithousenumber' name='edithousenumber' value='$rows[numberstreet]'></td>
+            <td><input type='text' class='form-control' id='editcity' name='editcity' value='$rows[city]'></td>
+            <td><input type='text' class='form-control' id='editpostalcode' name='editpostalcode' value='$rows[zipcode]'></td>
+            <td><select><option value='zlozono'>$rows[Status]</option><option value='wyslane'>wyslane</option><option value='dostarczono'>dostarczono</option></td>
+            <td><form action='AdminPanel.php?panel=listorders' method='post'><input type='hidden' name='idusers' value='$rows[id_orders]'><input id='editbutton' type='submit' name='editorders' value='Edit!' class='zaaktualizujdanebutt'></form></td>
+        </tr>
+            ";
+            // <td><input type='text' class='form-control' id='editstatus' name='editstatus' value='$r[status]'></td>
+        } echo "</tbody> </table> </div>";
+        }
+    }   
 }

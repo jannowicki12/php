@@ -14,15 +14,15 @@ class LayoutClass {
                 $conditionRender = "
                     <li><a href='AdminPanel.php'>Panel Admin</a></li>
                     <li><a href='cart.php'>Cart</a></li>
-                    <li><a href='logout.php'>Logout</a></li>
-                    <li><a href='profil.php'>Profil</a></li>";
+                    <li><a href='profil.php'>Profil</a></li>
+                    <li><a href='logout.php'>Logout</a></li>";
 
             }
             else {
                 $conditionRender ="
                 <li><a href='cart.php'>Cart</a></li>
-                <li><a href='logout.php'>Logout</a></li>
-                <li><a href='profil.php'>Profil</a></li>";
+                <li><a href='profil.php'>Profil</a></li>
+                <li><a href='logout.php'>Logout</a></li>";
             }
         }
         else {
