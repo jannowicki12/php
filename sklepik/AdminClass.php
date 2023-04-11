@@ -89,7 +89,7 @@ class AdminClass{
             <td>$row[id]</td>
             <td><input type='text' class='form-control' id='editname' name='editname' value='$row[name]'></td>
             <td>$row[img]</td>
-            <td><input type='number' class='form-control' id='editprice' name='editprice' value='$row[price]' ></td>
+            <td><input type='number' class='form-control' id='editprice' name='editprice' value='$row[price]' > PLN</td>
             <td><form action='AdminPanel.php?panel=listproduct' method='post'> <textarea maxlength='1000' id='editdesc' name='editdesc' rows='3' cols='50'>$row[desc] </textarea></td>
             <td><input type='number' class='form-control' id='editcount' name='editcount' value='$row[count]' ></td>
             <td><form action='AdminPanel.php?panel=listproduct' method='post'><input type='hidden' name='idprodukt' value='$row[id]'><input id='zmieneditproduktubutton' type='submit' name='editprodukt' value='Edit!' class='zaaktualizujdaneproduktubutt'></form></td>
@@ -143,7 +143,7 @@ class AdminClass{
             <td><input type='text' class='form-control' id='editlastname' name='editlastname' value='$rows[lastname]'></td>
             <td>$rows[email]</td>
             <td><input type='text' class='form-control' id='editphonenumber' name='editphonenumber' value='$rows[phonenumber]'></td>
-            <td>$rows[cost_order]</td>
+            <td>$rows[cost_order] PLN</td>
             <td>$rows[date_order]</td>
             <td><input type='text' class='form-control' id='editstreet' name='editstreet' value='$rows[street]'></td>
             <td><input type='text' class='form-control' id='edithousenumber' name='edithousenumber' value='$rows[numberstreet]'></td>
