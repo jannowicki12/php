@@ -57,7 +57,7 @@ if(isset($_POST['editusers'])){
     header("Location:AdminPanel.php?panel=users");
 }
 if(isset($_POST['editprodukt'])){
-    $idprodukt = $_POST['idproduktu'];
+    $idprodukt = $_POST['idprodukt'];
     $editname = $_POST['editname'];
     $editprice = $_POST['editprice'];
     $editdesc = $_POST['editdesc'];

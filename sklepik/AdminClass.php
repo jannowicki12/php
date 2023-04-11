@@ -87,12 +87,12 @@ class AdminClass{
         <tr>
         <form id='editproducts' action='AdminPanel.php?panel=listproduct' method='post' enctype='multipart/form-data'> 
             <td>$row[id]</td>
-            <td><input type='text' class='form-control' id='editname' name='editname' value='$row[name]'disabled></td>
+            <td><input type='text' class='form-control' id='editname' name='editname' value='$row[name]'></td>
             <td>$row[img]</td>
-            <td><input type='number' class='form-control' id='editprice' name='editprice' value='$row[price]' disabled></td>
-            <td><form action='AdminPanel.php?panel=listproduct' method='post'> <textarea maxlength='1000' id='editdesc' name='editdesc' rows='3' cols='50' disabled>$row[desc] </textarea></td>
-            <td><input type='number' class='form-control' id='editcount' name='editcount' value='$row[count]' disabled></td>
-            <td><form action='AdminPanel.php?panel=listproduct' method='post'><input type='hidden' name='idprodukt' value='$row[id]'><button type='button' id='pokazeditproduktu' onclick='editproduktu()' class='zmieneditproduktubutt'> Edit</button><input id='zmieneditproduktubutton' type='submit' name='editprodukt' value='Accept!' class='zaaktualizujdaneproduktubutt' disabled></form></td>
+            <td><input type='number' class='form-control' id='editprice' name='editprice' value='$row[price]' ></td>
+            <td><form action='AdminPanel.php?panel=listproduct' method='post'> <textarea maxlength='1000' id='editdesc' name='editdesc' rows='3' cols='50'>$row[desc] </textarea></td>
+            <td><input type='number' class='form-control' id='editcount' name='editcount' value='$row[count]' ></td>
+            <td><form action='AdminPanel.php?panel=listproduct' method='post'><input type='hidden' name='idprodukt' value='$row[id]'><input id='zmieneditproduktubutton' type='submit' name='editprodukt' value='Edit!' class='zaaktualizujdaneproduktubutt'></form></td>
             <td><form action='AdminPanel.php?panel=listproduct' method='post'><input type='hidden' name='idprodukt' value='$row[id]'><input name='delprodukt'type='submit' value='delete'></form></td>
         </tr>
             ";
@@ -157,5 +157,5 @@ class AdminClass{
             // <td><input type='text' class='form-control' id='editstatus' name='editstatus' value='$r[status]'></td>
         } echo "</tbody> </table> </div>";
         }
-    }   
+    } 
 }
