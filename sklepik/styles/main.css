@@ -34,6 +34,7 @@
   text-decoration: none;
   list-style-type: none;
   overflow-x: hidden;
+  overflow-y: auto;
   font-family: "Poppins", "sans-serif";
 }
 
@@ -48,7 +49,17 @@ body {
   max-width: 90rem;
   margin: 0 auto;
 }
+.sortowanie_form {
+  float: left;
+  width: 160px;
+  border: 1px solid white;
+  border-radius: 1px;
+}
+.sekcjakategorii {
+  float: left;
+  height: 130vh;
 
+}
 header {
   width: 100vw;
   padding: 2rem 0;
@@ -105,7 +116,7 @@ input {
   color: black;
 }
 .shop_products {
-  border:1px solid #000; 
+  border:1px solid white; 
   padding:10px; 
   float:left;
   margin:10px;
@@ -119,7 +130,7 @@ input {
   margin:10px;
 }
 .category_ref {
-  border: 2px solid #000;
+  border: 2px solid white;
 }
 .product_img {
   float: left;

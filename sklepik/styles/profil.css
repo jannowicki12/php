@@ -73,3 +73,24 @@ table{
 .tabela td{
     border:1px solid black;
 }
+button {
+  background: #555;
+  padding: 5px 5px;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+}
+.dane {
+  background: #555;
+  padding: 5px 5px;
+  color: #fff;
+  border-radius: 5px;
+  border: none;
+}
+
+.dane:hover {
+  opacity: 0.8;
+}
+button:hover {
+  opacity: 0.8;
+}

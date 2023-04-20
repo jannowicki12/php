@@ -41,7 +41,7 @@ Class MakeOrder{
 
     public function Zamow(): void{
         require "dbconnect.php";
-        $status = "ZŁOZONO ZAMOWIENIE";
+        $status = "Złożono zamówienie";
         $zapytanie = "INSERT INTO orders (deliverymethod, paymentmethod, firstname, lastname, email, phonenumber, cost_order, date_order, street, numberstreet, city, Country, zipcode, Status) VALUES ('$this->deliverymethod', '$this->paymentmethod', '$this->firstname', '$this->lastname','$this->email','$this->phonenumber','$this->cost_order',CURDATE(),'$this->street','$this->numberstreet','$this->city','$this->country','$this->zipcode','$status')";
         $connection->query($zapytanie);
     }

@@ -38,7 +38,7 @@ class LayoutClass {
                 <nav>
                     <ul>
                         <li><a href='index.php'>Home</a></li>
-                        <li><a href='shopPage.php'>Shop</a></li>
+                        <li><a href='shopPage.php?page=1'>Shop</a></li>
                         <li><a href='aboutus.php'>About Us</a></li>
                         <li><a href='contact.php'>Contact</a></li>
                         $conditionRender
@@ -65,15 +65,23 @@ class LayoutClass {
         
         </footer>";
     }
-
+    public static function printPages() {
+        echo "
+            <div style='border:1px solid white; height:auto; width:auto; padding:4px; margin:10px; text-align:center;'>
+                <a href='shopPage.php?page=1' style='text-decoration:underline;'>1</a>
+                <a href='shopPage.php?page=2' style='text-decoration:underline;'>2</a>
+                <a href='shopPage.php?page=3' style='text-deceration:underline;'>3</a>
+                <a href='shopPage.php?page=4' style='text-deceration:underline;'>4</a>
+            </div>
+        ";
+    }
     public static function printTile($row) {
         $name = $row['name'];
         $price = $row['price'];
         $img = $row['img'];
         $id = $row['id'];
-
         echo "
-            <div style='border:1px solid #000; height:360px; width:260px; padding:4px; float:left; margin:10px; text-align:center;'>
+            <div style='border:1px solid white; height:360px; width:260px; padding:4px; float:left; margin:10px; text-align:center;'>
                 <a href='productPage.php?product_id=$id'>
                     <img src='$img' alt='img' style='height: 250px;' />
                 </a>
@@ -90,9 +98,8 @@ class LayoutClass {
         $price = $row['price'];
         $img = $row['img'];
         $id = $row['id'];
-
         echo "
-            <div style='border:1px solid #000; height:360px; width:260px; padding:4px; float:left; margin:10px; text-align:center;'>
+            <div style='border:1px solid white; height:360px; width:260px; padding:4px; float:left; margin:10px; text-align:center;'>
                 <a href='productPage.php?product_id=$id'>
                     <img src='$img' alt='img' style='height: 250px;' />
                 </a>
@@ -108,21 +115,28 @@ class LayoutClass {
     public static function getProducts() {
         $KategorieSet = false;
         $connection = SystemClass::dbConnect();
-        $sql = "SELECT * FROM product";
+        $sql1 = "SELECT * FROM `product` LIMIT 5, 5";
+        $sql2 = "SELECT * FROM `product` LIMIT 10, 5";
+        $sql3 = "SELECT * FROM `product` LIMIT 15, 5";    
+        $sql = "SELECT * FROM `product` LIMIT 0, 5";
         $najtanszy = "SELECT * FROM `product` ORDER BY `product`.`price` ASC";
         $najdrozszy = "SELECT * FROM `product` ORDER BY `product`.`price` DESC";
         
         echo '
         <style>
-        color: #000;
+        color: white;
+        float: right;
+        border: 1px solid white solid;
+        border-radius: 1px;
         </style>
-
+        <section class="sekcjakategorii">
         <form action="shopPage.php" method="POST" class="sortowanie_form">
         <label for="kategorie">Choose category:</label>
         <input name="najdrozszy" type="submit" value="Sort by most expensive">
         <input name="najtanszy" type="submit" value="Sort by cheapest">
         <input name="reset" type="submit" value="Reset">
-    </form>
+        </form>
+        </section>
         ';
         if(isset($_POST['najdrozszy'])) {
             $KategorieSet = true;
@@ -145,10 +159,30 @@ class LayoutClass {
                 LayoutClass::printKategoria($row);
             }
         }
-        if($KategorieSet == false) {            
-            $result = mysqli_query($connection, $sql);
-            while($row = mysqli_fetch_assoc($result)) {
-                LayoutClass::printTile($row);
+        if($KategorieSet == false) { 
+            if($_GET['page'] == 1) {
+                $result = mysqli_query($connection, $sql);
+                while($row = mysqli_fetch_assoc($result)) {
+                    LayoutClass::printTile($row);
+                }
+            }
+            elseif($_GET['page'] == 2) {
+                $result = mysqli_query($connection, $sql1);
+                while($row = mysqli_fetch_assoc($result)) {
+                    LayoutClass::printTile($row);
+                }
+            }
+            elseif($_GET['page'] == 3) {
+                $result = mysqli_query($connection, $sql2);
+                while($row = mysqli_fetch_assoc($result)) {
+                    LayoutClass::printTile($row);
+                }
+            }
+            elseif($_GET['page'] == 4) {
+                $result = mysqli_query($connection, $sql3);
+                while($row = mysqli_fetch_assoc($result)) {
+                    LayoutClass::printTile($row);
+                }
             }
         }
         echo "
@@ -192,16 +226,16 @@ class LayoutClass {
                 $sprilosc = "SELECT count FROM cart WHERE name = '$name' AND user = '$mail'";
                 $spriloscquery = mysqli_query($connection, $sprilosc);
                 if(mysqli_num_rows($spriloscquery) > 0 ){
-                    setcookie("powiadomienie", "The product is already in the cart!");
+                    setcookie("powiadomienie", "<p style='color: red; text-align:center;'>The product is already in the cart!</p>");
                     header("Location: productPage.php?product_id=$product_id");
                 }else{
                     $do_koszyka_sql = "INSERT INTO cart (name, price, user, count) VALUES ('$name', '$price', '$mail','1')";
                     $connection->query($do_koszyka_sql);
-                    setcookie("powiadomienie", "Added to cart!");
+                    setcookie("powiadomienie", "<p style='color: lightgreen; text-align:center;'>Added to cart!</p>");
                     header("Location: productPage.php?product_id=$product_id");
                 }
             }else{
-                setcookie("powiadomienie", "You must be logged!");
+                setcookie("powiadomienie", "<p style='color: red; text-align:center;'>You must be logged!</p>");
                 header("Location: productPage.php?product_id=$product_id");
             }
         }

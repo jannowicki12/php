@@ -15,6 +15,9 @@
         LayoutClass::printHeader();
     ?>
     <?php
+        LayoutClass::printPages();
+    ?>
+    <?php
         LayoutClass::getProducts();
     ?>
     <?php

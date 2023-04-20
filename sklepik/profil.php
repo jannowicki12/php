@@ -14,15 +14,12 @@ if(isset($_POST['zmiendane'])){
     $nowymail = $_POST['nowyemail'];
     $obecnymail = $_SESSION['email'];
     $nowehaslo = $_POST['nowehaslo'];
-
     $zmianasql = " UPDATE users SET email='$nowymail', password='$nowehaslo' WHERE email='$obecnymail'";
     $zmianacart = "UPDATE cart SET user = '$nowymail' WHERE user='$obecnymail'";
     $zmianaorders = "UPDATE orders SET email = '$nowymail' WHERE email = '$obecnymail'";
     $connection->query($zmianasql);
     $connection->query($zmianacart);
     $connection->query($zmianaorders);
-    header("Location: logout.php");
-
 }
 if(isset($_POST['usunkonto'])){
     $usun_konto_query = "DELETE FROM users WHERE email='$email'";
@@ -33,7 +30,6 @@ if(isset($_POST['usunkonto'])){
     $connection->query($usun_koszyk_konta);
     header("Location: logout.php");
 }
-
 ?>
 
 <html lang="pl">
@@ -54,8 +50,8 @@ if(isset($_POST['usunkonto'])){
     <label for="nowehaslo" class="sr-only">Password:</label>
     <input type="text" class="form-control" id="nowehaslo" name="nowehaslo" disabled value="<?php echo $profil['password']?>"> <br>
         <button type='button' id="pokazemail" onclick="Zmiendane()" class="zmiendanebutt"> <i class="fi fi-rr-refresh"></i> Change data</button>
-    <input id="zmiendanebutton" type="submit" name="zmiendane" value="Update data!" class="zaaktualizujdanebutt" disabled>
-    <input type="submit" name="usunkonto" onclick="return confirm('Do you really want to delete your account? This operation cannot be changed')" class="usunkontobutt" value="Delete Account">
+    <input id="zmiendanebutton" type="submit" name="zmiendane" value="Update data!" class="dane" disabled>
+    <input class="dane" type="submit" name="usunkonto" onclick="return confirm('Do you really want to delete your account? This operation cannot be changed')" class="usunkontobutt" value="Delete Account">
 </form>
 <?php
 $zapytaniezamowienia = "SELECT id_orders, deliverymethod, paymentmethod, firstname, lastname, phonenumber,  cost_order, date_order, street, numberstreet, city, country, zipcode, Status FROM orders WHERE email='$email'";

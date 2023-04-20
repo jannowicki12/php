@@ -154,7 +154,6 @@ class AdminClass{
             <td><form action='AdminPanel.php?panel=listorders' method='post'><input type='hidden' name='idorders' value='$rows[id_orders]'><input id='editbutton' type='submit' name='editorders' value='Edit!' class='zaaktualizujdanebutt'></form></td>
         </tr>
             ";
-            // <td><input type='text' class='form-control' id='editstatus' name='editstatus' value='$r[status]'></td>
         } echo "</tbody> </table> </div>";
         }
     } 

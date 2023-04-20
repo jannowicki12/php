@@ -107,7 +107,7 @@ if(isset($_POST['editorders'])){
                 <nav>
                     <ul>
                         <li><a href='index.php' style='color:white;'>Home</a></li>
-                        <li><a href='shopPage.php' style='color:white;'>Shop</a></li>
+                        <li><a href='shopPage.php?page=1' style='color:white;'>Shop</a></li>
                         <li><a href='AboutUs.php'style='color:white;'>About Us</a></li>
                         <li><a href='Contact.php'style='color:white;'>Contact</a></li>
                         <li><a href='AdminPanel.php' style='color:white;'>Panel Admin</a></li>
