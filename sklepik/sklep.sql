@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 20 Kwi 2023, 11:42
--- Wersja serwera: 10.4.24-MariaDB
--- Wersja PHP: 8.0.19
+-- Czas generowania: 10 Kwi 2023, 19:45
+-- Wersja serwera: 10.4.27-MariaDB
+-- Wersja PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ CREATE TABLE `cart` (
   `price` int(11) DEFAULT NULL,
   `user` varchar(50) DEFAULT NULL,
   `count` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Zrzut danych tabeli `cart`
@@ -51,7 +51,7 @@ CREATE TABLE `category_one` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `activ` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -64,7 +64,7 @@ CREATE TABLE `category_three` (
   `name` varchar(255) DEFAULT NULL,
   `activ` tinyint(1) DEFAULT NULL,
   `id_category_two` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -77,7 +77,7 @@ CREATE TABLE `category_two` (
   `name` varchar(255) DEFAULT NULL,
   `activ` tinyint(1) DEFAULT NULL,
   `id_category_one` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -101,19 +101,25 @@ CREATE TABLE `orders` (
   `Country` varchar(255) NOT NULL,
   `zipcode` varchar(10) DEFAULT NULL,
   `Status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Zrzut danych tabeli `orders`
 --
 
 INSERT INTO `orders` (`id_orders`, `deliverymethod`, `paymentmethod`, `firstname`, `lastname`, `email`, `phonenumber`, `cost_order`, `date_order`, `street`, `numberstreet`, `city`, `Country`, `zipcode`, `Status`) VALUES
-(88, 'Courier', 'paymentcard', 'Asdasd', 'Aasdasd', 'admin@asd.pl', 123123123, 7900, '2023-04-12', 'Ciepla 40', 'b', 'Bialystok', 'Poland', '15-220', 'Dostarczono'),
-(89, 'InPostParcelLocker', 'applepay', 'asda', 'asdas', 'admin@asd.pl', 123123123, 555, '2023-04-12', 'asd', '2d', 'Bialystok', 'Poland', '121231', 'Potwierdzono zamowienie'),
-(90, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 16047, '2023-04-13', 'asd', 'asd', 'asd', 'asd', '12-123', 'ZŁOZONO ZAMOWIENIE'),
-(91, 'InPostParcelLocker', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 5000, '2023-04-14', 'asd', 'asd', 'asd', 'asd', '12-123', 'Wyslane'),
-(92, 'Courier', 'applepay', 'asdasd', 'asdasd', 'admin@asd.pl', 123123123, 45000, '2023-04-20', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'asdasd', 'Złożono zamówienie'),
-(93, 'InPostParcelLocker', 'paymentcard', 'asdasd', 'asdasd', 'admin@asd.pl', 123123123, 1353, '2023-04-20', 'asdsda', 'asdasd', 'asdasd', 'asdasd', 'asdads', 'Złożono zamówienie');
+(76, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', '0', 'asd', '', 'asd', 'W trakcie pakowania'),
+(77, 'InPostParcelLocker', 'applepay', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', '0', 'asd', '', 'asd', 'Wyslane'),
+(78, 'InPostParcelLocker', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', '0', 'asd', '', 'asd', 'W trakcie pakowania'),
+(79, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', '0', 'asd', '', 'asd', 'Wyslane'),
+(80, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 123, '2023-04-02', 'asd', '0', 'asd', '', 'asd', 'Potwierdzono zamowienie'),
+(81, 'Courier', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 555, '2023-04-02', 'asd', '0', 'asd', '', 'asd', 'Dostarczono'),
+(82, 'Courier', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 555, '2023-04-10', 'asd', '0', 'asd', '', 'asd', 'Potwierdzono zamowienie'),
+(83, 'InPostParcelLocker', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 123, '2023-04-10', 'Koluszki dlugie', '1', 'Koluszki', '15-337', '', 'ZŁOZONO ZAMOWIENIE'),
+(84, 'InPostParcelLocker', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 2000, '2023-04-10', 'Koluszki dlugie', '1', 'Koluszki', '12-132', 'Polska', 'ZŁOZONO ZAMOWIENIE'),
+(85, 'Courier', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 5000, '2023-04-10', 'Koluszki dlugie', '1de', 'Koluszki', '12-132', 'Polska', 'ZŁOZONO ZAMOWIENIE'),
+(86, 'InPostParcelLocker', 'paymentcard', 'Jan', 'Nowicki', 'admin@asd.pl', 123123123, 5000, '2023-04-10', 'asd', 'asd', 'Białystok', '12-132', 'Polska', 'ZŁOZONO ZAMOWIENIE'),
+(87, 'InPostParcelLocker', 'paymentcard', 'asd', 'asd', 'admin@asd.pl', 123123123, 2900, '2023-04-10', 'asd', 'asd', 'asd', 'Poland', '12-132', 'Dostarczono');
 
 -- --------------------------------------------------------
 
@@ -131,33 +137,18 @@ CREATE TABLE `product` (
   `sellout` tinyint(1) DEFAULT NULL,
   `count` int(11) DEFAULT NULL,
   `activ` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Zrzut danych tabeli `product`
 --
 
 INSERT INTO `product` (`id`, `name`, `id_category_three`, `img`, `price`, `desc`, `sellout`, `count`, `activ`) VALUES
-(0, 'inteldd', NULL, 'images/zdj.jpg', 2900, 'asddsddddd  ', 9, 1, 3),
-(1, 'ddddddddddd', NULL, 'images/zdj.jpg', 2000, 'asdasd  ', 9, 10, 3),
-(2, 'adasdaaaaa', NULL, 'images/zdj.jpg', 5000, 'lflflflfl ddd ', 9, 10, 3),
-(4, 'asdasdxx', NULL, 'images/4.jpg', 123, ' asdasdasd ', NULL, 12, NULL),
-(5, 'fadfaasd', NULL, 'images/5.jpg', 555, 'elo elo ', NULL, 3, NULL),
-(6, 'ddzxczx', NULL, 'images/zdj.jpg', 2900, 'asddsddddd   ', 9, 1, 3),
-(7, 'ddddddddddd', NULL, 'images/zdj.jpg', 2000, 'asdasd  ', 9, 10, 3),
-(8, 'adasdaaaaa', NULL, 'images/zdj.jpg', 5000, 'lflflflfl ddd ', 9, 10, 3),
-(9, 'asdasdxx', NULL, 'images/4.jpg', 123, ' asdasdasd ', NULL, 12, NULL),
-(10, 'fadfaasd', NULL, 'images/5.jpg', 555, 'elo elo ', NULL, 3, NULL),
-(11, 'dddd', NULL, 'images/zdj.jpg', 4000, 'asddsddddd    ', 9, 1, 3),
-(12, 'ddddddddddd', NULL, 'images/zdj.jpg', 2000, 'asdasd  ', 9, 10, 3),
-(13, 'adasdaaaaa', NULL, 'images/zdj.jpg', 5000, 'lflflflfl ddd ', 9, 10, 3),
-(14, 'asdasdxx', NULL, 'images/4.jpg', 123, ' asdasdasd ', NULL, 12, NULL),
-(15, 'fadfaasd', NULL, 'images/5.jpg', 555, 'elo elo ', NULL, 3, NULL),
-(16, 'asddsad', NULL, 'images/zdj.jpg', 1231, 'asddsddddd    ', 9, 1, 3),
-(17, 'ddddddddddd', NULL, 'images/zdj.jpg', 2000, 'asdasd  ', 9, 10, 3),
-(18, 'adasdaaaaa', NULL, 'images/zdj.jpg', 5000, 'lflflflfl ddd ', 9, 10, 3),
-(19, 'asdasdxx', NULL, 'images/4.jpg', 123, ' asdasdasd ', NULL, 12, NULL),
-(20, 'fadfaasd', NULL, 'images/5.jpg', 555, 'elo elo ', NULL, 3, NULL);
+(0, 'intelsddd', NULL, 'images/zdj.jpg', 2900, 'asdasd       ', 9, 1, 3),
+(1, 'szefowska obudowa', NULL, 'images/zdj.jpg', 2000, 'asdasd', 9, 10, 3),
+(2, 'cieka', NULL, 'images/zdj.jpg', 5000, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.', 9, 10, 3),
+(4, 'asdasd', NULL, 'images/4.jpg', 123, ' asdasdasd', NULL, 12, NULL),
+(5, 'fadfa', NULL, 'images/5.jpg', 555, 'elo elo', NULL, 3, NULL);
 
 -- --------------------------------------------------------
 
@@ -170,7 +161,7 @@ CREATE TABLE `users` (
   `password` varchar(75) NOT NULL,
   `id` int(11) NOT NULL,
   `isadmin` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Zrzut danych tabeli `users`
@@ -234,7 +225,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id_orders` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `id_orders` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`

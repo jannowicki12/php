@@ -97,6 +97,7 @@ if(isset($_POST['editorders'])){
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="styles/admin.css">
     <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <title>Panel admin</title>
 </head>
 <body>
