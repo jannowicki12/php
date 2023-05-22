@@ -1,3 +1,6 @@
+<?php
+ob_start();
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -34,21 +37,16 @@
         </li>
       </ul>
       <ul class="navbar-nav  mb-2 mb-lg-0">
-      <?php
-      if(!isset($_SESSION['username']))
-        {
-            echo '      <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="login.php">Login</a>
-       </li>
-       <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="register.php">Register</a>
-       </li>';
+      <!-- if(isset($_SESSION["signedIn"]) && $_SESSION["signedIn"] === true ){
+          echo "zalogowany";
+
         }
         else {
-            echo '      <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Panel</a>
-       </li>';
-        }
+          echo "nie";
+        } -->
+      <?php
+        require_once "LayoutClass.php";
+        LayoutClass::PrintHeader();
       ?>
 </ul>
     </div>

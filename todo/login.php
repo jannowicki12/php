@@ -19,9 +19,9 @@ if (isset($_POST["username"]) & isset($_POST["password"])) {
         $check_user_exists = "SELECT * FROM users WHERE username='$username' AND password = '$password' LIMIT 1";
         $result = $connect->query($check_user_exists);
         if ($result->num_rows == 1) {
-            $row = $result->fetch_assoc();
-            $_SESSION["username"] = $row["username"];
-            $_SESSION["logged_in"] = TRUE;
+            $data = $result->fetch_assoc();
+            $_SESSION["username"] = $data["username"];
+            $_SESSION["logged_in"] = true;
             header("Location: index.php");
             
         } else {
