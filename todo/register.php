@@ -1,0 +1,95 @@
+<?php
+session_start();
+require 'dbconnect.php';
+$db = new db();
+$connect = $db -> connectcor();
+// if ($_SESSION["logged_in"] == TRUE){
+    // echo '<h1>Already logged in</h1>';
+if (isset($_POST["username"]) & isset($_POST["email"]) & isset($_POST["password_1"]) & isset($_POST["password_2"])){
+    $username = $_POST["username"];
+    $email = $_POST["email"];
+    $password_1 = $_POST["password_1"];
+    $password_2 = $_POST["password_2"];
+
+    $errors = array();
+    // if (strlen($username) < 5 || strlen($username) > 20) {
+    //     array_push($errors, "Username must be between 5 and 20 characters");
+    // }
+    // if (strlen($email) < 5 || strlen($email) > 64) {
+    //     array_push($errors, "Email must be between 5 and 64 characters");
+    // }
+    // if (strlen($password_1) < 8 || strlen($password_1) > 64) {
+    //     array_push($errors, "Password must be between 8 and 64 characters");
+    // }
+    // if ($password_1 != $password_2) {
+    //     array_push($errors, "Passwords do not match");
+    // }
+    if(count($errors) == 0){
+
+        $check_user_exists = "SELECT * FROM users WHERE username = '$username' OR email = '$email' LIMIT 1";
+        $result = $connect->query($check_user_exists);
+        if ($result->num_rows == 0) {
+            $create_new_user = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password_1')";
+            $result = $connect->query($create_new_user);
+            $_SESSION["username"] = $username;
+            $_SESSION["logged_in"] = true;
+            $is_created = TRUE;
+        } else {
+            array_push($errors, "User already exists");
+        }
+        $connect->close();
+    }
+} 
+?>
+<div class="container">
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="card">
+            <div class="card-body">
+                <form method="POST">
+                    <ul>
+                        <?php
+                        if (isset($errors)) {
+                            foreach ($errors as $error) {
+                                echo "<li>$error</li>";
+                            }
+                        }
+                        ?>
+                    </ul>  
+                    <?php
+                        if (isset($is_created)) {
+                            echo '<div class="alert alert-success" role="alert">
+                                    User created
+                            </div>';
+                        }
+                    ?>  
+                    <div class="mb-3">
+                        <label class="form-label">Email address</label>
+                        <input type="email" class="form-control" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control" name="username" required>
+                    <div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password_1" required>
+                    <div>
+                    <div class="mb-3">
+                        <label class="form-label">Retype password</label>
+                        <input type="password" class="form-control" name="password_2" required>
+                    <div>
+                    <div class="mb-3 text-center">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
+                        <label class="form-check-label" for="flexCheckDefault">
+                            <a href="/terms.php">Terms and conditions<a>
+                        </label>
+                    </div>
+                    <div class="mt-3 d-grid">
+                        <button class="btn btn-primary" type="submit">Register</button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
