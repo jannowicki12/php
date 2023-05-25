@@ -5,12 +5,10 @@ class LayoutClass {
     static function printHeader() {
         $conditionRender = "";
         if(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] === true ){
-            require 'dbconnect.php';
-            $db = new db();
-            $connect = $db -> connectcor();
+            include 'db.php';
             $username = $_SESSION['username'];
             $isadminquery = "SELECT * FROM users WHERE username = '$username'";
-            $select = mysqli_query($connect, $isadminquery);
+            $select = mysqli_query($connection, $isadminquery);
             $res = mysqli_fetch_assoc($select);
             if($res['rank'] == 1 or $res['rank'] == 2){
                 $conditionRender = '

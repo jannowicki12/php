@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 22 Maj 2023, 21:20
+-- Czas generowania: 25 Maj 2023, 10:05
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.1.12
 
@@ -24,6 +24,33 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `todolist`
+--
+
+CREATE TABLE `todolist` (
+  `id` int(11) NOT NULL,
+  `user` varchar(50) DEFAULT NULL,
+  `tytul` varchar(50) DEFAULT NULL,
+  `opis` text DEFAULT NULL,
+  `date` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Zrzut danych tabeli `todolist`
+--
+
+INSERT INTO `todolist` (`id`, `user`, `tytul`, `opis`, `date`) VALUES
+(24, 'xpajsh', 'asddasd', 'fffff', 0),
+(25, 'xpajsh', 'asd', 'asd', 0),
+(26, 'xpajsh', 'asd', 'asd', 0),
+(27, 'xpajsh', 'asd', 'asdddd', 20230525),
+(28, 'xpajsh', 'asd', 'asddsadas', 20230525),
+(29, 'xpajsh', 'asd', 'asdasdas', 1684999601),
+(31, 'janek', 'Rozpoczecie kursu', 'asd', 20230525);
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `users`
 --
 
@@ -40,12 +67,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `email`, `password`, `id`, `rank`) VALUES
-('admin', 'admin@wp.pl', '1234', 1, 3),
-('xpajsh', 'jan@wp.pl', '12341234', 2, 1);
+('xpajsh', 'jan@wp.pl', '1234', 2, 2),
+('janek', 'jasnow41@gmail.com', '1234', 4, 1);
 
 --
 -- Indeksy dla zrzutów tabel
 --
+
+--
+-- Indeksy dla tabeli `todolist`
+--
+ALTER TABLE `todolist`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeksy dla tabeli `users`
@@ -58,10 +91,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT dla tabeli `todolist`
+--
+ALTER TABLE `todolist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

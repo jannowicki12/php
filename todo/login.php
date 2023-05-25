@@ -9,18 +9,13 @@ if (isset($_POST["username"]) & isset($_POST["password"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
     $errors = array();
-    if (strlen($username) < 5 || strlen($username) > 20) {
-        array_push($errors, "Username must be between 5 and 20 characters");
-    }
-    if (strlen($password) < 8 || strlen($password) > 64) {
-        array_push($errors, "Password must be between 8 and 64 characters");
-    }
     if (count($errors) == 0){
         $check_user_exists = "SELECT * FROM users WHERE username='$username' AND password = '$password' LIMIT 1";
         $result = $connect->query($check_user_exists);
         if ($result->num_rows == 1) {
             $data = $result->fetch_assoc();
             $_SESSION["username"] = $data["username"];
+            $_SESSION["email"] = $data["email"];
             $_SESSION["logged_in"] = true;
             header("Location: index.php");
             
