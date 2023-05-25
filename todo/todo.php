@@ -12,6 +12,8 @@ if (isset($_POST['addBtn']))
 	$day2 = strtotime($_POST["dodata"]);
 	$status = "ToDo";
 	$errors = array();
+	echo $day1;
+	echo $day2;
 	if (empty($titleAdd) || empty($detailAdd))
 	{
 		$errors[] = 'Sprawdz wszystkie pola';
