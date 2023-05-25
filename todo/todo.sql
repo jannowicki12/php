@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 25 Maj 2023, 11:05
+-- Czas generowania: 25 Maj 2023, 16:57
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.1.12
 
@@ -41,13 +41,13 @@ CREATE TABLE `todolist` (
 --
 
 INSERT INTO `todolist` (`id`, `user`, `tytul`, `opis`, `status`, `date`) VALUES
-(24, 'xpajsh', 'asddasd', 'fffff', NULL, 0),
-(25, 'xpajsh', 'asd', 'asd', NULL, 0),
-(26, 'xpajsh', 'asd', 'asd', NULL, 0),
-(27, 'xpajsh', 'asd', 'asdddd', NULL, 20230525),
-(28, 'xpajsh', 'asd', 'asddsadas', NULL, 20230525),
-(29, 'xpajsh', 'asd', 'asdasdas', NULL, 1684999601),
-(31, 'janek', 'Rozpoczecie kursu', 'asd', NULL, 20230525);
+(24, 'xpajsh', 'asddasd', 'fffff       ', 'InProgress', 0),
+(35, 'xpajsh', 'asddsa', 'asdasd   ', 'ToDo', 1685022477),
+(36, 'xpajsh', 'Stworzyc wlasna strone ToDo', 'Rozbudowana strona ToDo', 'Done', 1685023820),
+(37, 'xpaszka', 'Rozpoczecie kursu', 'asdas', 'InProgress', 1685024474),
+(38, 'xpaszka', 'asddsa', 'asddsa ', 'Done', 1685024954),
+(39, 'xpaszka', 'asddas', 'asdasd ', 'ToDo', 1685025009),
+(40, 'xpaszka', 'asddsa', 'adsasd', 'ToDo', 1685025066);
 
 -- --------------------------------------------------------
 
@@ -69,7 +69,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`username`, `email`, `password`, `id`, `rank`) VALUES
 ('xpajsh', 'jan@wp.pl', '1234', 2, 2),
-('janek', 'jasnow41@gmail.com', '1234', 4, 1);
+('janek', 'jasnow41@gmail.com', '1234', 4, 1),
+('user123', 'jan1235@wp.pl', '1234', 5, 0),
+('xpaszka', 'admin12@asd.pl', '1234', 6, 2);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -95,13 +97,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `todolist`
 --
 ALTER TABLE `todolist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

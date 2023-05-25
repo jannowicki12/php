@@ -8,6 +8,7 @@ if (isset($_POST['addBtn']))
 {
 	$titleAdd = $_POST['titleAdd'];
 	$detailAdd = $_POST['detailAdd'];
+	$status = "ToDo";
 	$errors = array();
 	if (empty($titleAdd) || empty($detailAdd))
 	{
@@ -15,7 +16,7 @@ if (isset($_POST['addBtn']))
 	}
 	if (empty($errors))
 	{
-		$SQLinsert = ("INSERT INTO `todolist`(`id`, `user`, `tytul`, `opis`, `date`) VALUES ('NULL', '$user', '$titleAdd', '$detailAdd', CURDATE())");
+		$SQLinsert = ("INSERT INTO `todolist`(`id`, `user`, `tytul`, `opis`, `status`, `date`) VALUES ('NULL', '$user', '$titleAdd', '$detailAdd', '$status', UNIX_TIMESTAMP())");
 		$connect->query($SQLinsert);
 		header("Location: todo.php");
 		echo '<div class="nNote nSuccess hideit"><p><strong>SUCCESS: </strong>Wpis wrzucony!</p></div>';
@@ -34,7 +35,20 @@ if (isset($_POST['addBtn']))
 if (isset($_POST['powrot'])) {
 	header('Location: index.php');
 }
-
+if(isset($_POST['deltodo'])) {
+	$idtodo = $_POST['idlist'];
+    $connect->query("DELETE FROM todolist WHERE id = '$idtodo'");
+    setcookie("powiadomienie", "User todo deleted successfully!");
+    header("Location:todo.php");
+}
+if(isset($_POST['edittodo'])) {
+	include "db.php";
+    $idlist = $_POST['idlist'];
+    $editstatus = $_POST['editstatus'];
+    $zmianasql = " UPDATE todolist SET status='$editstatus' WHERE id='$idlist'";
+    $connection->query($zmianasql);
+    header("Location:todo.php");
+}
 ?>
 
 
@@ -45,53 +59,27 @@ if (isset($_POST['powrot'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+	<style>
+		.ToDo {
+			background-color: rgb(146, 30, 32);
+		}
+		.InProgress {
+			background-color: rgb(219, 141, 32);
+		}
+		.Done {
+			background-color: rgb(0, 95, 255);
+		}
+	</style>
 	</head>
 	<body>
-	<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">ToDo</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="navbar-nav  mb-2 mb-lg-0">
-      <!-- if(isset($_SESSION["signedIn"]) && $_SESSION["signedIn"] === true ){
-          echo "zalogowany";
-
-        }
-        else {
-          echo "nie";
-        } -->
-      <?php
+	<?php
+        require_once "LayoutClass.php";
         LayoutClass::PrintHeader();
       ?>
-</ul>
-    </div>
-  </div>
-</nav>
 		<div class="titleArea">
         <div class="wrapper">
             <div class="pageTitle">
-                <h3 class="h3">Wpis</h3>
+                <h3 class="h3">Lista ToDo</h3>
             </div>
         </div>
     </div> 
@@ -112,7 +100,7 @@ if (isset($_POST['powrot'])) {
 						</div>
 						<br>
 						<div class="formRow">
-							<button class="btn btn-primary" type="submit" value="Add" name="addBtn" class="add">Dodaj wpis</button>
+							<button class="btn btn-primary" type="submit" value="Add" name="addBtn" class="add">Dodaj do listy ToDo</button>
 							<button class="btn btn-secondary" type="submit" value="powrot" name="powrot" class="powrot">Strona głowna</button>
 
 							<div class="clear"></div>
@@ -123,14 +111,16 @@ if (isset($_POST['powrot'])) {
 		</div>
 		<form action="" class = "form" method="POST">
 		<div class="widget">
-			<h6>Wpisy</h6>
-			
+			<h6>Lista ToDo</h6>
 				<table class="table table-bordered border-primary">
 				  <thead>
 					  <tr>
 						  <td class="table-title">Tytul</td>
 						  <td class="table-description">Opis</td>
 						  <td class="table-date">Data</td>
+						  <td class="table-status">Status</td>
+						  <td class="table-editstatus">Edit</td>
+						  <td class="table-delete">Delete</td>
 					  </tr>
 				  </thead>
 				  <tbody>
@@ -141,19 +131,17 @@ if (isset($_POST['powrot'])) {
 						$titleShow = $row['tytul'];
 						$detailShow = $row['opis'];
 						$dateShow = $row['date'];
+						$progressShow = $row['status'];
 						$rowID = $row['id'];
-						echo '<tr><td class="titletytul">'.htmlentities($titleShow).'</td><td class="detailopis">'.htmlentities($detailShow).'</td><td class="detailopis">'.htmlentities($dateShow).'</td></tr>';
+						echo '<tr class='.$progressShow.'>
+						<td class="titletytul">'.htmlentities($titleShow).'</td>
+						<td class="detailopis">'.htmlentities($detailShow).'</td>
+						<td class="detailopis">'.date("d-m-Y",$dateShow).'</td>
+						<td><form action="todo.php" method="post"><select name="editstatus" id="editstatus"><option value="ToDo">'.$progressShow.'</option><option value="InProgress">In Progress</option><option value="Done">Done</option></form></td>
+						<td class="detailstatus"><form action="todo.php" method="post"><input type="hidden" name="idlist" value="'.$rowID.'"><input id="zmienedittodobutton" type="submit" name="edittodo" value="Edit!" class="zaaktualizujdanetodobutt"></form></td>
+						<td class="detaildelete"><form action="todo.php" method="post"><input type="hidden" name="idlist" value="'.$rowID.'"><input name="deltodo" type="submit" value="Delete"></form></td>
+						</tr>';
 					}
-
-				//   $SQLSelect = "SELECT * FROM `todolist` ORDER BY `date` DESC WHERE `user` = '$user'";
-                //   $select2 = mysqli_query($connect, $SQLSelect);
-				//   while ($show = $SQLSelect -> fetch_assoc($select2))
-				//   {
-				// 	$titleShow = $show['tytul'];
-				// 	$detailShow = $show['opis'];
-				// 	$rowID = $show['id'];
-				// 	echo '<tr><td class="titletytul">'.htmlentities($titleShow).'</td><td class="detailopis">'.htmlentities($detailShow).'</td></tr>';
-				//   }
 				  ?>
 
 				  </tbody>
