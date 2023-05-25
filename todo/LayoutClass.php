@@ -10,7 +10,7 @@ class LayoutClass {
             $isadminquery = "SELECT * FROM users WHERE username = '$username'";
             $select = mysqli_query($connection, $isadminquery);
             $res = mysqli_fetch_assoc($select);
-            if($res['rank'] == 1 or $res['rank'] == 2){
+            if($res['rank'] == 2){
                 $conditionRender = '
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="AdminPanel.php">Admin Panel</a></li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="todo.php">panel</a></li>

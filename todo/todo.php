@@ -11,29 +11,62 @@ if (isset($_POST['addBtn']))
 	$day1 = strtotime($_POST["oddata"]);
 	$day2 = strtotime($_POST["dodata"]);
 	$status = "ToDo";
+	$username = $_SESSION['username'];
 	$errors = array();
-	echo $day1;
-	echo $day2;
-	if (empty($titleAdd) || empty($detailAdd))
-	{
-		$errors[] = 'Sprawdz wszystkie pola';
-	}
-	if (empty($errors))
-	{
-		$SQLinsert = ("INSERT INTO `todolist`(`id`, `user`, `tytul`, `opis`, `status`, `date`, OdDaty, DoDaty) VALUES ('NULL', '$user', '$titleAdd', '$detailAdd', '$status', UNIX_TIMESTAMP(), '$day1', '$day2')");
-		$connect->query($SQLinsert);
-		header("Location: todo.php");
-		echo '<div class="nNote nSuccess hideit"><p><strong>SUCCESS: </strong>Wpis wrzucony!</p></div>';
-
-	}
-	else
-	{
-		echo '<div class="nNote nFailure hideit"><p><strong>ERROR:</strong><br />';
-		foreach($errors as $error)
+	$isadminquery = "SELECT * FROM users WHERE username = '$username'";
+	$select = mysqli_query($connect, $isadminquery);
+	while ($res = mysqli_fetch_assoc($select)){
+		if (empty($titleAdd) || empty($detailAdd || empty($day1) || empty($day2)))
 		{
-			echo '- '.$error.'<br />';
+			$errors[] = 'Sprawdz wszystkie pola';
 		}
-		echo '</div>';
+
+
+		if (empty($errors))
+		{
+			if ($res['rank'] == 2) {
+
+				$SQLinsert = ("INSERT INTO `todolist`(`id`, `user`, `tytul`, `opis`, `status`, `date`, OdDaty, DoDaty) VALUES ('NULL', '$user', '$titleAdd', '$detailAdd', '$status', UNIX_TIMESTAMP(), '$day1', '$day2')");
+				$connect->query($SQLinsert);
+				header("Location: todo.php");
+				echo '<div class="nNote nSuccess hideit"><p><strong>SUCCESS: </strong>Wpis wrzucony!</p></div>';
+
+			}
+			if ($res['rank'] == 1) {
+				$check_user_exists = "SELECT * FROM todolist WHERE user = '$username' LIMIT 10";
+				$result = $connect->query($check_user_exists);
+				if ($result->num_rows >= 10) {
+					echo "masz limit 10 todo, usun jezeli chcesz miec slota";
+				}
+				else {
+					$SQLinsert = ("INSERT INTO `todolist`(`id`, `user`, `tytul`, `opis`, `status`, `date`, OdDaty, DoDaty) VALUES ('NULL', '$user', '$titleAdd', '$detailAdd', '$status', UNIX_TIMESTAMP(), '$day1', '$day2')");
+					$connect->query($SQLinsert);
+					header("Location: todo.php");
+					echo '<div class="nNote nSuccess hideit"><p><strong>SUCCESS: </strong>Wpis wrzucony!</p></div>';
+				}
+			}
+			else {
+				$check_user_exists = "SELECT * FROM todolist WHERE user = '$username' LIMIT 5";
+				$result1 = $connect->query($check_user_exists);
+				if ($result1->num_rows >=5) {
+					echo "masz limit 5 todo, usun jezeli chcesz miec slota";
+				}
+				else {
+					$SQLinsert = ("INSERT INTO `todolist`(`id`, `user`, `tytul`, `opis`, `status`, `date`, OdDaty, DoDaty) VALUES ('NULL', '$user', '$titleAdd', '$detailAdd', '$status', UNIX_TIMESTAMP(), '$day1', '$day2')");
+					$connect->query($SQLinsert);
+					header("Location: todo.php");
+					echo '<div class="nNote nSuccess hideit"><p><strong>SUCCESS: </strong>Wpis wrzucony!</p></div>';
+				}
+			}
+		}
+		{
+			echo '<div class="nNote nFailure hideit"><p><strong>ERROR:</strong><br />';
+			foreach($errors as $error)
+			{
+				echo '- '.$error.'<br />';
+			}
+			echo '</div>';
+		}
 	}
 }
 if (isset($_POST['powrot'])) {
