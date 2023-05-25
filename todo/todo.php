@@ -8,6 +8,8 @@ if (isset($_POST['addBtn']))
 {
 	$titleAdd = $_POST['titleAdd'];
 	$detailAdd = $_POST['detailAdd'];
+	$day1 = strtotime($_POST["oddata"]);
+	$day2 = strtotime($_POST["dodata"]);
 	$status = "ToDo";
 	$errors = array();
 	if (empty($titleAdd) || empty($detailAdd))
@@ -16,7 +18,7 @@ if (isset($_POST['addBtn']))
 	}
 	if (empty($errors))
 	{
-		$SQLinsert = ("INSERT INTO `todolist`(`id`, `user`, `tytul`, `opis`, `status`, `date`) VALUES ('NULL', '$user', '$titleAdd', '$detailAdd', '$status', UNIX_TIMESTAMP())");
+		$SQLinsert = ("INSERT INTO `todolist`(`id`, `user`, `tytul`, `opis`, `status`, `date`, OdDaty, DoDaty) VALUES ('NULL', '$user', '$titleAdd', '$detailAdd', '$status', UNIX_TIMESTAMP(), '$day1', '$day2')");
 		$connect->query($SQLinsert);
 		header("Location: todo.php");
 		echo '<div class="nNote nSuccess hideit"><p><strong>SUCCESS: </strong>Wpis wrzucony!</p></div>';
@@ -97,6 +99,12 @@ if(isset($_POST['edittodo'])) {
 							<label>Opis</label>
 							<div class="formRight"><textarea style="resize:none;" rows="4" cols="" name="detailAdd" class="form-control form-control-sm"></textarea></div>
 							<div class="clear"></div>
+						
+						</div>
+						<div class="mb-3">
+							<label>Od - Do</label>
+							<div class="formRight"><input type="date" name="oddata" id="oddata"><input type="date" name="dodata" id="dodata"></div></div>
+							<div class="clear"></div>
 						</div>
 						<br>
 						<div class="formRow">
@@ -117,7 +125,9 @@ if(isset($_POST['edittodo'])) {
 					  <tr>
 						  <td class="table-title">Tytul</td>
 						  <td class="table-description">Opis</td>
-						  <td class="table-date">Data</td>
+						  <td class="table-date">Utworzono</td>
+						  <td class="table-oddaty"> Od </td>
+						  <td class="table-dodaty"> Do </td>
 						  <td class="table-status">Status</td>
 						  <td class="table-editstatus">Edit</td>
 						  <td class="table-delete">Delete</td>
@@ -131,12 +141,16 @@ if(isset($_POST['edittodo'])) {
 						$titleShow = $row['tytul'];
 						$detailShow = $row['opis'];
 						$dateShow = $row['date'];
+						$dodaty = $row['DoDaty'];
+						$oddaty = $row['OdDaty'];
 						$progressShow = $row['status'];
 						$rowID = $row['id'];
 						echo '<tr class='.$progressShow.'>
 						<td class="titletytul">'.htmlentities($titleShow).'</td>
 						<td class="detailopis">'.htmlentities($detailShow).'</td>
 						<td class="detailopis">'.date("d-m-Y",$dateShow).'</td>
+						<td>'.date('d-m-Y',$oddaty).'</td>
+						<td>'.date('d-m-Y',$dodaty).'</td>
 						<td><form action="todo.php" method="post"><select name="editstatus" id="editstatus"><option value="ToDo">'.$progressShow.'</option><option value="InProgress">In Progress</option><option value="Done">Done</option></form></td>
 						<td class="detailstatus"><form action="todo.php" method="post"><input type="hidden" name="idlist" value="'.$rowID.'"><input id="zmienedittodobutton" type="submit" name="edittodo" value="Edit!" class="zaaktualizujdanetodobutt"></form></td>
 						<td class="detaildelete"><form action="todo.php" method="post"><input type="hidden" name="idlist" value="'.$rowID.'"><input name="deltodo" type="submit" value="Delete"></form></td>

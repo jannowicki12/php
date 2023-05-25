@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 25 Maj 2023, 16:57
+-- Czas generowania: 25 Maj 2023, 19:05
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.1.12
 
@@ -33,21 +33,32 @@ CREATE TABLE `todolist` (
   `tytul` varchar(50) DEFAULT NULL,
   `opis` text DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
-  `date` int(11) DEFAULT NULL
+  `date` int(11) DEFAULT NULL,
+  `OdDaty` int(50) NOT NULL,
+  `DoDaty` int(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Zrzut danych tabeli `todolist`
 --
 
-INSERT INTO `todolist` (`id`, `user`, `tytul`, `opis`, `status`, `date`) VALUES
-(24, 'xpajsh', 'asddasd', 'fffff       ', 'InProgress', 0),
-(35, 'xpajsh', 'asddsa', 'asdasd   ', 'ToDo', 1685022477),
-(36, 'xpajsh', 'Stworzyc wlasna strone ToDo', 'Rozbudowana strona ToDo', 'Done', 1685023820),
-(37, 'xpaszka', 'Rozpoczecie kursu', 'asdas', 'InProgress', 1685024474),
-(38, 'xpaszka', 'asddsa', 'asddsa ', 'Done', 1685024954),
-(39, 'xpaszka', 'asddas', 'asdasd ', 'ToDo', 1685025009),
-(40, 'xpaszka', 'asddsa', 'adsasd', 'ToDo', 1685025066);
+INSERT INTO `todolist` (`id`, `user`, `tytul`, `opis`, `status`, `date`, `OdDaty`, `DoDaty`) VALUES
+(24, 'xpajsh', 'asddasd', 'fffff       ', 'InProgress', 0, 1321052400, 1685033167),
+(35, 'xpajsh', 'asddsa', 'asdasd   ', 'ToDo', 1685022477, 1321052400, 1685033167),
+(36, 'xpajsh', 'Stworzyc wlasna strone ToDo', 'Rozbudowana strona ToDo', 'Done', 1685023820, 1321052400, 1685033167),
+(37, 'xpaszka', 'Rozpoczecie kursu', 'asdas', 'ToDo', 1685024474, 1321052400, 1685033167),
+(38, 'xpaszka', 'asddsa', 'asddsa ', 'Done', 1685024954, 1321052400, 1685033167),
+(39, 'xpaszka', 'asddas', 'asdasd ', 'InProgress', 1685025009, 1321052400, 1685033167),
+(40, 'xpaszka', 'asddsa', 'adsasd', 'ToDo', 1685025066, 1321052400, 1685033167),
+(41, 'xpaszka', 'asddsa', 'asdsad', 'ToDo', 1685032454, 1321052400, 1685033167),
+(42, 'xpaszka', 'ZAHAFHAH', 'asdasdsa', 'ToDo', 1685033167, 1321052400, 1685033167),
+(43, 'xpaszka', 'asd', ' asdsad ', 'InProgress', 1685033234, 1321052400, 1685033167),
+(44, 'xpaszka', 'dadas', ' daasd ', 'ToDo', 1685033392, 1321052400, 1685033167),
+(45, 'xpaszka', 'ccccccc', 'asddsa', 'ToDo', 1685034088, -2147483648, -2147483648),
+(46, 'xpaszka', 'Rozpoczecie kursu', 'aaaaaaaa', 'ToDo', 1685034123, 2147483647, 2147483647),
+(47, 'xpaszka', 'fffffff', 'fffffffffffffffff', 'ToDo', 1685034220, 1321052400, 1334181600),
+(48, 'xpaszka', 'fffffffff', 'ffddddddddddddd', 'ToDo', 1685034244, 1676674800, 1682373600),
+(49, 'xpaszka', 'fffffffff', 'ffddddddddddddd', 'ToDo', 1685034256, 1676674800, 1682373600);
 
 -- --------------------------------------------------------
 
@@ -70,7 +81,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`username`, `email`, `password`, `id`, `rank`) VALUES
 ('xpajsh', 'jan@wp.pl', '1234', 2, 2),
 ('janek', 'jasnow41@gmail.com', '1234', 4, 1),
-('user123', 'jan1235@wp.pl', '1234', 5, 0),
+('chujek123', 'jan1235@wp.pl', '1234', 5, 0),
 ('xpaszka', 'admin12@asd.pl', '1234', 6, 2);
 
 --
@@ -97,7 +108,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `todolist`
 --
 ALTER TABLE `todolist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`

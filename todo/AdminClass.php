@@ -78,7 +78,7 @@ class AdminClass{
                 <td>$r[user]</td>
                 <td><input type='text' class='form-control' id='edittytul' name='edittytul' value='$r[tytul]'></td>
                 <td><form action='AdminPanel.php?panel=listtodo' method='post'> <textarea maxlength='1000' id='editopis' name='editopis' rows='3' cols='50'>$r[opis] </textarea></td>
-                <td><select name='editstatus' id='editstatus'><option value='ToDo'>$r[status]</option><option value='InProgress'>In Progress</option><option value='Done'>Done</option></td>
+                <td><form action='AdminPanel.php?panel=listtodo' method='post'><select name='editstatus' id='editstatus'><option value='ToDo'>$r[status]</option><option value='InProgress'>In Progress</option><option value='Done'>Done</option></form></td>
                 <td>".date("d-m-Y",$r['date'])."</td>
                 <td><form action='AdminPanel.php?panel=listtodo' method='post'><input type='hidden' name='idlist' value='$r[id]'><input id='zmienedittodobutton' type='submit' name='edittodo' value='Edit!' class='zaaktualizujdanetodobutt'></form></td>
                 <td><form action='AdminPanel.php?panel=listtodo' method='post'><input type='hidden' name='idlist' value='$r[id]'><input name='deltodo'type='submit' value='delete'></form></td>

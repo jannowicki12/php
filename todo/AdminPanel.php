@@ -43,7 +43,7 @@ if(isset($_POST['edittodo'])) {
     $edittytul = $_POST['edittytul'];
     $editopis = $_POST['editopis'];
     $editstatus = $_POST['editstatus'];
-    $zmianasql = " UPDATE todolist SET tytul='$edittytul', `opis`='$editopis', status='$editstatus' WHERE id='$idlist'";
+    $zmianasql = " UPDATE todolist SET tytul='$edittytul', `opis`='$editopis', status='$editstatus', OdDaty='$day1', DoDaty='$day2' WHERE id='$idlist'";
     $connection->query($zmianasql);
     header("Location:AdminPanel.php?panel=listtodo");
 }
