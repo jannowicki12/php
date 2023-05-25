@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 25 Maj 2023, 10:05
+-- Czas generowania: 25 Maj 2023, 11:05
 -- Wersja serwera: 10.4.27-MariaDB
 -- Wersja PHP: 8.1.12
 
@@ -32,6 +32,7 @@ CREATE TABLE `todolist` (
   `user` varchar(50) DEFAULT NULL,
   `tytul` varchar(50) DEFAULT NULL,
   `opis` text DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
   `date` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -39,14 +40,14 @@ CREATE TABLE `todolist` (
 -- Zrzut danych tabeli `todolist`
 --
 
-INSERT INTO `todolist` (`id`, `user`, `tytul`, `opis`, `date`) VALUES
-(24, 'xpajsh', 'asddasd', 'fffff', 0),
-(25, 'xpajsh', 'asd', 'asd', 0),
-(26, 'xpajsh', 'asd', 'asd', 0),
-(27, 'xpajsh', 'asd', 'asdddd', 20230525),
-(28, 'xpajsh', 'asd', 'asddsadas', 20230525),
-(29, 'xpajsh', 'asd', 'asdasdas', 1684999601),
-(31, 'janek', 'Rozpoczecie kursu', 'asd', 20230525);
+INSERT INTO `todolist` (`id`, `user`, `tytul`, `opis`, `status`, `date`) VALUES
+(24, 'xpajsh', 'asddasd', 'fffff', NULL, 0),
+(25, 'xpajsh', 'asd', 'asd', NULL, 0),
+(26, 'xpajsh', 'asd', 'asd', NULL, 0),
+(27, 'xpajsh', 'asd', 'asdddd', NULL, 20230525),
+(28, 'xpajsh', 'asd', 'asddsadas', NULL, 20230525),
+(29, 'xpajsh', 'asd', 'asdasdas', NULL, 1684999601),
+(31, 'janek', 'Rozpoczecie kursu', 'asd', NULL, 20230525);
 
 -- --------------------------------------------------------
 
