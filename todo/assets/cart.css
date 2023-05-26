@@ -1,0 +1,231 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    color: black;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+    overflow-x: hidden;
+    font-family: "Poppins", "sans-serif";
+}
+h4 {
+    color: white;
+}
+a {
+    color: white;
+}
+.inner--default, header .header__container {
+    max-width: 90rem;
+    margin: 0 auto;
+  }
+  
+  header {
+    width: 100vw;
+    padding: 2rem 0;
+    background-color: #20211e;
+  }
+  header .header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header .header__container ul {
+    display: flex;
+  }
+  header .header__container ul li {
+    margin-left: 1rem;
+    border-bottom: 0.063rem solid transparent;
+    cursor: pointer;
+  }
+  header .header__container ul li:hover {
+    border-bottom: 0.063rem solid;
+    border-image-source: linear-gradient(to right, #ff53a5, #00bfcc);
+    border-image-slice: 1;
+  }
+table{
+    width: 1000px;
+    height: auto;
+    border: 2px solid black;
+}
+tr{
+    border: 2px solid black;
+}
+td{
+    border: 1px solid black;
+    width:150px;
+    text-align:center;
+    padding:5px
+}
+th{
+    border: 1px solid black;
+    width:150px;
+    text-align:center;
+    padding:5px;
+    background-color: slategray;
+    color: white;
+}
+.koszyktab{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: aqua;
+}
+.usunbutt{
+    background-color: gray;
+    border:none;
+    padding: 7px 12px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 11px;
+    color:white;
+    font-weight: bold;
+}
+.usunbutt:hover{
+    background-color: red;
+    border:none;
+    padding: 7px 12px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 11px;
+    color:white;
+    font-weight: bold;
+}
+.editbutt{
+    background-color: dodgerblue;
+    border:none;
+    padding: 7px 12px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 11px;
+    color:white;
+    font-weight: bold;
+}
+.editbutt:hover{
+    background-color: darkblue;
+    border:none;
+    padding: 7px 12px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 11px;
+    color:white;
+    font-weight: bold;
+}
+.nawigacyjny{
+    height: 35px;
+    width: 100%;
+    top:0;
+    position: fixed;
+    overflow: hidden;
+    background-color: black;
+}
+.nawigacyjny a{
+    float:right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    background-color: black;
+
+}
+.nawigacyjny a:hover{
+    float:right;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 10px 10px;
+    color:black;
+    background-color: green;
+
+}
+.nawigacyjny p{
+    float:left;
+    margin-right: 30px;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    background-color: black;
+
+}
+.nawigacyjny p:hover{
+    float:left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    background-color: white;
+
+}
+body{
+    margin:0;
+    background-color: lightcyan;
+}
+p{
+    margin:0.05em;
+}
+.bodykoszyka{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top:50px;
+
+}
+.dostawaform{
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px solid black;
+    width: 1500px;
+    min-height: 500px;
+}
+.dostawaform form{
+    text-align: center;
+
+}
+.dostawaform h2{
+    text-align: center;
+}
+.dostawaform input{
+    margin-bottom: 10px;
+}
+.sposobdostawy{
+    border: 1px solid black;
+    margin-bottom: 15px;
+    width: 400px ;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sposobdostawy table{
+    margin-top: -10px;
+    color:black;
+    border: none;
+    width: 300px;
+}
+.sposobdostawy tr{
+    color: black;
+    border: none;
+    width: 200px;
+}
+.sposobdostawy th{
+    color: black;
+    border: none;
+    width: 200px;
+    background: none;
+}
+.sposobdostawy td{
+    color: black;
+    border: none;
+    width: 200px;
+}
+.resztadostawy{
+    justify-content: center;
+    display: flex;
+}
+.resztadostawy input{
+    margin-right: 10px;
+}

@@ -87,11 +87,41 @@ class AdminClass{
             } echo "</tbody> </table> </div>";
         }
     }
-}
-//     <td>$r[id]</td>
-//     <td>$r[user]</td>
-//     <td>$r[tytul]</td>
-//     <td>$r[opis]</td>
-//     <td>$r[date]</td>
-//     <td><form action='AdminPanel.php?panel=listtodo' method='post'> <input type='hidden' name='idlist' value='$r[id]'>  <input name='deltodo'type='submit' value='delete'> </form></td>
-// }       
+    public function listazamowien():void{
+        include "db.php";
+        $query2 = "SELECT * FROM `orders`";
+        $select2 = mysqli_query($connection, $query2);
+        if(mysqli_num_rows($select2)<=0){
+            echo "There are no orders";
+        }else{
+            echo"<div class='table'> 
+            <table table-bordered border-primary>
+            <thead>
+                        <tr>
+                        <th scope = 'col' > ORDER ID </th >
+                        <th scope = 'col' > USERNAME </th >
+                        <th scope = 'col' > EMAIL </th >
+                        <th scope = 'col' > PAYMENT METHOD </th >
+                        <th scope = 'col' > Order Cost </th >
+                        <th scope = 'col' > Order Date </th >
+                        </tr>
+                    </thead>
+                    <tbody>
+            ";
+        while ($rows=mysqli_fetch_assoc($select2)){
+            echo "
+        <tr>
+        <form id='editorders' action='AdminPanel.php?panel=listorders' method='post' enctype='multipart/form-data'> 
+            <td>$rows[id]</td>
+            <td>$rows[username]</td>
+            <td>$rows[email]</td>
+            <td>$rows[paymentmethod]</td>
+            <td>$rows[cost_order] PLN</td>
+            <td>$rows[date_order]</td>
+        </tr>
+            ";
+            // <td><input type='text' class='form-control' id='editstatus' name='editstatus' value='$r[status]'></td>
+        } echo "</tbody> </table> </div>";
+        }
+    } 
+}      

@@ -37,7 +37,7 @@ if(isset($_POST['dodaj_do_koszyka'])){
             <p class="card-text">Zakup premium:</p>
             <form method="post" action=''>
                 <p class="card-text">20pln</p>
-            <input name='dodaj_do_koszyka' type='submit' value='To cart!'>
+            <input name='dodaj_do_koszyka' type='submit' value='Do Koszyka!'>
             </form>
 </form>
         </div>

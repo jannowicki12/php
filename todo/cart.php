@@ -19,7 +19,7 @@ if (isset($_POST['delete_cart'])){
 <head>
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ToDo</title>
+    <title>Koszyk</title>
     <link rel="stylesheet" href="assets/cart.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
@@ -28,12 +28,13 @@ if (isset($_POST['delete_cart'])){
         LayoutClass::printHeader();
 ?>
 <div class="bodykoszyka">
-    <h2> Cart for <?php echo $user; ?> </h2>
+    <h2> Koszyk dla <?php echo $user; ?> </h2>
 <table class="koszyktab">
     <thead>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Delete</th>
+    <th>Nazwa</th>
+    <th>Cena</th>
+    <th>Usun</th>
+    <th> </th>
     </thead>
     <tbody>
 <?php
@@ -50,8 +51,8 @@ while($r=mysqli_fetch_row($wynik)) {
     <form action='cart.php' method='post'>
     <tr>
         <td> $r[0] </td>
-        <td> $r[1] </td>
-        <td> <input type='submit' value='delete' name='delete_cart' class='usunbutt'> </td>
+        <td> $r[1] PLN</td>
+        <td> <input type='submit' value='Usun' name='delete_cart' class='usunbutt'> </td>
     </tr>   
      <input type='hidden' value='$r[0]' name='name'>
      <input type='hidden' value='$r[1]' name='price'>
@@ -61,7 +62,7 @@ while($r=mysqli_fetch_row($wynik)) {
 }
 echo "
 <tr>
-<td colspan='3'> Total Price </td>
+<td colspan='3'> Kwota calkowita </td>
 <td> $cena_calkowita PLN</td>
 </tr>
 </tbody>
@@ -70,14 +71,14 @@ echo "
 ?>
 </div>
 <div class="dostawaform" id="formularzID">
-    <h2> Delivery Form </h2>
+    <h2> Panel zamowienia </h2>
     <form action="cart.php" method="post">
         <div class="sposobdostawy">
-            <h3> Payments Methods</h3>
+            <h3> Metody Platnosci</h3>
             <table>
                 <tr>
                     <th><input type="radio" name="metodaplatnosc" required value="paymentcard">  </th>
-                    <th><span>Payment Card Visa/Mastercard</span></th>
+                    <th><span>Karta</span></th>
                 </tr>
                 <tr>
                     <th><input type="radio" name="metodaplatnosc" required value="applepay"></th>
@@ -87,11 +88,11 @@ echo "
             </table>
         </div>
         <div class="resztadostawy">
-            <span>Username:</span><input type="text" required name="username" value="<?php echo $user;  ?>" disabled> <br>
-            <span>Email:</span><input type="text" required name="email" value="<?php echo $users;  ?>" disabled> <br>
+            <span>Username:</span><input type="text" name="username" required name="username" value="<?php echo $users;  ?>" disabled> <br>
+            <span>Email:</span><input type="text" name="email" required name="email" value="<?php echo $user;  ?>" disabled> <br>
         </div>
         <input type="hidden" name="calkowitacena" value="<?php echo $cena_calkowita;?>">
-        <input id="formularzdostawy" name="zlozzamowienie" type="submit" value="Submit your order">
+        <input id="formularzdostawy" name="zlozzamowienie" type="submit" value="Zloz zamowienie">
     </form>
 
 
@@ -103,16 +104,24 @@ if(isset($_POST['zlozzamowienie'])){
         echo "<p style='text-align: center; color: red;'>There are no products in the cart</p>";
     }
     else {
-        include "MakeOrder.php";
-        $email = $_SESSION['email'];
         $username = $_SESSION['username'];
-        $paymentmethod = mysqli_real_escape_string($connection, $_POST['metodaplatnosc']);
-        $cost_order = mysqli_real_escape_string($connection, $_POST['calkowitacena']);
-        $makeorder = new MakeOrder($paymentmethod, $username, $email, $cost_order);
-        $makeorder->Zamow();
-        $usuwaniecart_sql = "DELETE FROM cart WHERE user = '$username'";
-        $connection->query($usuwaniecart_sql);
-        echo "<p style='text-align: center; color: green;'>placed order</p>";
+        $check_user_exists = "SELECT * FROM orders WHERE username='$username'  LIMIT 1";
+        $result = $connection->query($check_user_exists);
+        if ($result->num_rows == 1) {
+            echo "posiadasz juz konto premium";
+        }
+        else {
+            include "MakeOrder.php";
+            $paymentmethod = mysqli_real_escape_string($connection, $_POST['metodaplatnosc']);
+            $cost_order = mysqli_real_escape_string($connection, $_POST['calkowitacena']);
+            $email = $_SESSION['email'];
+            $username = $_SESSION['username'];
+            $makeorder = new MakeOrder($paymentmethod, $username, $email, $cost_order);
+            $makeorder->Zamow();
+            $usuwaniecart_sql = "DELETE FROM cart WHERE user = '$username'";
+            $connection->query($usuwaniecart_sql);
+            echo "<p style='text-align: center; color: green;'>zaplacono oraz nadano premium</p>";
+        }
     }
 }
 

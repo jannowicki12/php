@@ -43,8 +43,8 @@ CREATE TABLE `cart` (
 
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
-  `username` int(11) NOT NULL,
-  `email` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `paymentmethod` varchar(255) NOT NULL,
   `cost_order` int(11) NOT NULL,
   `date_order` int(11) NOT NULL

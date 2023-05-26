@@ -45,7 +45,7 @@ if (isset($_POST["username"]) & isset($_POST["password"])) {
                         <input type="text" class="form-control" name="username">
                     <div>
                     <div class="mb-3">
-                        <label class="form-label">Password</label>
+                        <label class="form-label">Haslo</label>
                         <input type="password" class="form-control" name="password">
                     <div>
                     <div class="mt-3 d-grid">

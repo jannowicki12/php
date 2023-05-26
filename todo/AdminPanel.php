@@ -69,8 +69,9 @@ while ($res = mysqli_fetch_assoc($select)){
         <div class="container">
         <div class="kategorie">
     
-            <a href="AdminPanel.php?panel=users"> <h3 style="color: blue;"> Users</h3></a>
-            <a href="AdminPanel.php?panel=listtodo"> <h3 style="color: red;""> List todo </h3></a>
+            <a href="AdminPanel.php?panel=users"> <h3 style="color: blue;"> Users </h3></a>
+            <a href="AdminPanel.php?panel=listtodo"> <h3 style="color: red;"> List todo </h3></a>
+            <a href="AdminPanel.php?panel=listorders"> <h3 style="color: green;"> List Orders </h3></a>
         </div>
         <div class="tools">
         ';
@@ -82,11 +83,15 @@ while ($res = mysqli_fetch_assoc($select)){
             if($_GET['panel'] == "listtodo"){
                 $admin ->listatodo();
             }
+            if($_GET['panel'] == "listorders"){
+                $admin ->listazamowien();
+            }
 
 
         }
         echo '
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
         </body>';
     }
     if($res['rank'] > 2) {
