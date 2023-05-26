@@ -25,12 +25,10 @@ if (isset($_POST['addBtn']))
 		if (empty($errors))
 		{
 			if ($res['rank'] == 2) {
-
 				$SQLinsert = ("INSERT INTO `todolist`(`id`, `user`, `tytul`, `opis`, `status`, `date`, OdDaty, DoDaty) VALUES ('NULL', '$user', '$titleAdd', '$detailAdd', '$status', UNIX_TIMESTAMP(), '$day1', '$day2')");
 				$connect->query($SQLinsert);
 				header("Location: todo.php");
 				echo '<div class="nNote nSuccess hideit"><p><strong>SUCCESS: </strong>Wpis wrzucony!</p></div>';
-
 			}
 			if ($res['rank'] == 1) {
 				$check_user_exists = "SELECT * FROM todolist WHERE user = '$username' LIMIT 10";
@@ -94,7 +92,7 @@ if(isset($_POST['edittodo'])) {
 	<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Panel ToDo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 	<style>
 		.ToDo {

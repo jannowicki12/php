@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 25 Maj 2023, 22:07
--- Wersja serwera: 10.4.27-MariaDB
--- Wersja PHP: 8.1.12
+-- Czas generowania: 26 Maj 2023, 09:37
+-- Wersja serwera: 10.4.24-MariaDB
+-- Wersja PHP: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,6 +24,46 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `user` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` int(11) NOT NULL,
+  `date` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `username` int(11) NOT NULL,
+  `email` int(11) NOT NULL,
+  `paymentmethod` varchar(255) NOT NULL,
+  `cost_order` int(11) NOT NULL,
+  `date_order` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `orders`
+--
+
+INSERT INTO `orders` (`id`, `username`, `email`, `paymentmethod`, `cost_order`, `date_order`) VALUES
+(2, 0, 0, 'paymentcard', 20, 20230526),
+(3, 0, 0, 'paymentcard', 20, 20230526),
+(4, 0, 0, 'applepay', 20, 20230526),
+(5, 0, 0, 'applepay', 20, 20230526),
+(6, 0, 0, 'applepay', 20, 20230526);
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `todolist`
 --
 
@@ -36,7 +76,7 @@ CREATE TABLE `todolist` (
   `date` int(11) DEFAULT NULL,
   `OdDaty` int(50) NOT NULL,
   `DoDaty` int(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `todolist`
@@ -52,7 +92,9 @@ INSERT INTO `todolist` (`id`, `user`, `tytul`, `opis`, `status`, `date`, `OdDaty
 (7, 'xpaszka', 'asddsa', 'adsdsa', 'ToDo', 1685044951, 0, 0),
 (8, 'xpaszka', 'asddsad', 'sadasdsadas', 'ToDo', 1685045026, 0, 0),
 (9, 'xpaszka', 'saddsadsa', 'dassaddsa', 'ToDo', 1685045028, 0, 0),
-(10, 'xpaszka', 'dassdadsa', 'dsadsa', 'ToDo', 1685045036, 0, 0);
+(10, 'xpaszka', 'dassdadsa', 'dsadsa', 'ToDo', 1685045036, 0, 0),
+(12, 'xpajsh', 'asdaadda', 'adaadsdsa', 'ToDo', 1685082232, 1107298800, 1675292400),
+(13, 'xpajsh', 'asdaadda', 'adaadsdsa', 'ToDo', 1685082232, 1107298800, 1675292400);
 
 -- --------------------------------------------------------
 
@@ -66,7 +108,7 @@ CREATE TABLE `users` (
   `password` varchar(75) NOT NULL,
   `id` int(11) NOT NULL,
   `rank` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `users`
@@ -76,11 +118,23 @@ INSERT INTO `users` (`username`, `email`, `password`, `id`, `rank`) VALUES
 ('xpajsh', 'jan@wp.pl', '1234', 2, 2),
 ('janek', 'jasnow41@gmail.com', '1234', 4, 1),
 ('kuba', 'jan1235@wp.pl', '1234', 5, 0),
-('xpaszka', 'admin12@asd.pl', '1234', 6, 1);
+('szefiek', 'asdasd@wp.pl', '1234', 7, 0);
 
 --
 -- Indeksy dla zrzutów tabel
 --
+
+--
+-- Indeksy dla tabeli `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksy dla tabeli `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeksy dla tabeli `todolist`
@@ -99,16 +153,28 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT dla tabeli `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT dla tabeli `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT dla tabeli `todolist`
 --
 ALTER TABLE `todolist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
