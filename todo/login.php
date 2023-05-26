@@ -36,7 +36,7 @@ if (isset($_POST["username"]) & isset($_POST["password"])) {
   </head>
   <body>
   <div class="container">
-<div class="h-100 d-flex align-items-center justify-content-center">
+<div class="position-absolute top-50 start-50 translate-middle">
         <div class="card">
             <div class="card-body">
                 <form method="POST">
@@ -52,7 +52,7 @@ if (isset($_POST["username"]) & isset($_POST["password"])) {
                         <button class="btn btn-primary" type="submit">Login</button>
                     </div>
                     <div class="mb-3">
-                        <a href="index.php">index</a>
+                        <a href="index.php" class="btn btn-link d-grid">Powrót</a>
                     <div>
                 </form>
             </div>

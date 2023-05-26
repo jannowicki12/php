@@ -4,6 +4,10 @@ $user = $_SESSION['username'];
 include "dbconnect.php";
 $db = new db();
 $connect = $db -> connectcor();
+
+if(!isset($_SESSION['email'])){
+    header('Location: login.php');
+}
 if (isset($_POST['addBtn']))
 {
 	$titleAdd = $_POST['titleAdd'];
@@ -111,7 +115,7 @@ if(isset($_POST['edittodo'])) {
         require_once "LayoutClass.php";
         LayoutClass::PrintHeader();
       ?>
-		<div class="titleArea">
+	<div class="titleArea">
         <div class="wrapper">
             <div class="pageTitle">
                 <h3 class="h3">Lista ToDo</h3>
@@ -119,8 +123,8 @@ if(isset($_POST['edittodo'])) {
         </div>
     </div> 
     <div class="line"></div>
-    <div style="width:500px;">
-		<form action="" class="form" method="POST">
+    <div style="width:600px;">
+		<form action="" class="form-control" method="POST">
 				<fieldset>
 					<div class="widget">
 						<div class="mb-3">
@@ -151,7 +155,7 @@ if(isset($_POST['edittodo'])) {
 			</form>
 		</div>
 		<form action="" class = "form" method="POST">
-		<div class="widget">
+		<div class="widget container mt-5 my-5">
 			<h6>Lista ToDo</h6>
 				<table class="table table-bordered border-primary">
 				  <thead>
@@ -184,9 +188,9 @@ if(isset($_POST['edittodo'])) {
 						<td class="detailopis">'.date("d-m-Y",$dateShow).'</td>
 						<td>'.date('d-m-Y',$oddaty).'</td>
 						<td>'.date('d-m-Y',$dodaty).'</td>
-						<td><form action="todo.php" method="post"><select name="editstatus" id="editstatus"><option value="ToDo">'.$progressShow.'</option><option value="InProgress">In Progress</option><option value="Done">Done</option></form></td>
-						<td class="detailstatus"><form action="todo.php" method="post"><input type="hidden" name="idlist" value="'.$rowID.'"><input id="zmienedittodobutton" type="submit" name="edittodo" value="Edit!" class="zaaktualizujdanetodobutt"></form></td>
-						<td class="detaildelete"><form action="todo.php" method="post"><input type="hidden" name="idlist" value="'.$rowID.'"><input name="deltodo" type="submit" value="Delete"></form></td>
+						<td><form action="todo.php" method="post"><select name="editstatus" id="editstatus" class="form-select"><option selected>'.$progressShow.'</option><option value="ToDo">To Do</option><option value="InProgress">In Progress</option><option value="Done">Done</option></form></td>
+						<td class="detailstatus"><form action="todo.php" method="post"><input type="hidden" name="idlist" value="'.$rowID.'"><input id="zmienedittodobutton" type="submit" name="edittodo" value="Edit!" class="btn btn-warning"></form></td>
+						<td class="detaildelete"><form action="todo.php" method="post"><input type="hidden" name="idlist" value="'.$rowID.'"><input name="deltodo" type="submit" value="Delete" class="btn btn-danger"></form></td>
 						</tr>';
 					}
 				  ?>

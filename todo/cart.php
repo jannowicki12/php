@@ -5,7 +5,7 @@ $user = $_SESSION['email'];
 $users = $_SESSION['username'];
 
 if(!isset($_SESSION['email'])){
-    header('Location: signIn.php');
+    header('Location: login.php');
 }
 if (isset($_POST['delete_cart'])){
     $name = $_POST['name'];
@@ -101,14 +101,14 @@ echo "
 <?php
 if(isset($_POST['zlozzamowienie'])){
     if($cena_calkowita == 0) {
-        echo "<p style='text-align: center; color: red;'>There are no products in the cart</p>";
+        echo "<div class='alert alert-danger' role='alert'>Brak rzeczy w koszyku</div>";
     }
     else {
         $username = $_SESSION['username'];
         $check_user_exists = "SELECT * FROM orders WHERE username='$username'  LIMIT 1";
         $result = $connection->query($check_user_exists);
         if ($result->num_rows == 1) {
-            echo "posiadasz juz konto premium";
+            echo "<div class='alert alert-danger' role='alert'>posiadasz juz konto premium</div>";
         }
         else {
             include "MakeOrder.php";
@@ -120,7 +120,7 @@ if(isset($_POST['zlozzamowienie'])){
             $makeorder->Zamow();
             $usuwaniecart_sql = "DELETE FROM cart WHERE user = '$username'";
             $connection->query($usuwaniecart_sql);
-            echo "<p style='text-align: center; color: green;'>zaplacono oraz nadano premium</p>";
+            echo "<div class='alert alert-success' role='alert'>zaplacono oraz nadano premium!</div>";
         }
     }
 }

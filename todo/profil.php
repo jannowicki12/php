@@ -42,15 +42,15 @@ if(isset($_POST['usunkonto'])){
         LayoutClass::printHeader();
 ?>
 
-<div class="bodyprofilu">
-<form action="profil.php" method="post" class="formularzzmiany">
+<div class="bodyprofilu" style="width:600px;">
+<form action="profil.php" method="post" class="form-control">
         <label for="nowyemail" class="sr-only">Email:</label>
     <input type="text" class="form-control" id="nowyemail" name="nowyemail" disabled value="<?php echo $profil['email']?>"> <br>
     <label for="nowehaslo" class="sr-only">Haslo:</label>
     <input type="text" class="form-control" id="nowehaslo" name="nowehaslo" disabled value="<?php echo $profil['password']?>"> <br>
-        <button type='button' id="pokazemail" onclick="Zmiendane()" class="zmiendanebutt"> <i class="fi fi-rr-refresh"></i> Zmien dane</button>
-    <input id="zmiendanebutton" type="submit" name="zmiendane" value="Zaktualizuj dane!" class="zaaktualizujdanebutt" disabled>
-    <input type="submit" name="usunkonto" onclick="return confirm('Do you really want to delete your account? This operation cannot be changed')" class="usunkontobutt" value="Usun Konto">
+        <button type='button' id="pokazemail" onclick="Zmiendane()" class="btn btn-primary"> <i class="fi fi-rr-refresh"></i> Zmien dane</button>
+    <input id="zmiendanebutton" type="submit" name="zmiendane" value="Zaktualizuj dane!" class="btn btn-info" disabled>
+    <input type="submit" name="usunkonto" onclick="return confirm('Do you really want to delete your account? This operation cannot be changed')" class="btn btn-danger" value="Usun Konto">
 </form>
 </div>
 <div class="bodyprofilu">
@@ -60,19 +60,58 @@ $isadminquery = "SELECT * FROM users WHERE username = '$username'";
 $select = mysqli_query($connection, $isadminquery);
 while ($res = mysqli_fetch_assoc($select)){
     if ($res['rank'] == 1) {
-        echo "<p>Posiadasz plan premium</p>";
+        echo "<h2>Posiadasz plan premium</h2>";
     }
     if ($res['rank'] == 2) {
-        echo "<p>Jestes Administratorem</p>";
+        echo "<h2>Jestes Administratorem</h2>";
     }
     if ($res['rank'] == 0) {
-        echo "<p>Nie posiadasz planu premium</p>";
+        echo "<h2>Nie posiadasz planu premium</h2>";
     }
 
 }
 ?>
 </div>
+<?php 
+$zapytaniezamowienia = "SELECT id, username, email, paymentmethod, cost_order, date_order FROM orders WHERE username='$user'";
+$zamowienieselect = mysqli_query($connection, $zapytaniezamowienia);
 
+?>
+<div class="widget container mt-5 my-5">
+    <h2> Historia zakupu</h2>
+    <table class="table table-bordered border-primary">
+        <thead>
+            <tr>
+            <th scope = "col" > Id zamowienia </th >
+            <th scope = "col" > Metoda Platnosci </th >
+            <th scope = "col" > Nick </th >
+            <th scope = "col" > Email </th >
+            <th scope = "col" > Kwota </th >
+            <th scope = "col" > Data </th >
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+
+        if(mysqli_num_rows($zamowienieselect)>0){
+            while($zamowienie = mysqli_fetch_assoc($zamowienieselect)) {
+                echo"
+                <tr>
+            <th scope = 'row' >$zamowienie[id]</th >
+            <td > $zamowienie[paymentmethod]</td >
+            <td > $zamowienie[username]</td >
+            <td > $zamowienie[email]</td >
+            <td > $zamowienie[cost_order] PLN</td >
+            <td >".date("d-m-Y",$zamowienie['date_order'])."</td >
+        </tr >
+        ";
+                }
+}
+?>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
 
 </html>

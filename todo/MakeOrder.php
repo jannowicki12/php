@@ -23,7 +23,7 @@ Class MakeOrder{
     public function Zamow(): void{
         include "db.php";
         $rank = "1";
-        $zapytanie = "INSERT INTO orders (paymentmethod, username, email, cost_order, date_order) VALUES ('$this->paymentmethod', '$this->username','$this->email', '$this->cost_order',CURDATE())";
+        $zapytanie = "INSERT INTO orders (paymentmethod, username, email, cost_order, date_order) VALUES ('$this->paymentmethod', '$this->username','$this->email', '$this->cost_order',UNIX_TIMESTAMP())";
         $connection->query($zapytanie);
         $nadanierangi = "UPDATE `users` SET `rank`='$rank' WHERE username = '$this->username'";
         $connection->query($nadanierangi);

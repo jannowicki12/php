@@ -2,18 +2,27 @@
 <?php
 ob_start();
 require_once "LayoutClass.php";
+include "db.php";
+$juzwkoszyku = false;
+$niemaszkonta = false;
 if(isset($_POST['dodaj_do_koszyka'])){
     if(isset($_SESSION['username']) && $_SESSION['username']==true) {
-        include "db.php";
-        $username = $_SESSION['username'];
+      $username = $_SESSION['username'];
+      $check_user_exists = "SELECT * FROM cart WHERE user='$username' LIMIT 1";
+      $result = $connection->query($check_user_exists);
+      if ($result->num_rows == 0) {
         $name = "Konto premium";
         $price = "20";
         $do_koszyka_sql = "INSERT INTO cart (user, name, price, date) VALUES ('$username', '$name', '$price', CURDATE())";
         $connection->query($do_koszyka_sql);
         header('Location: cart.php');
+      }
+      else {
+        $juzwkoszyku = true;
+      }
     }
     else {
-        echo "musisz sie zalogowac";
+        $niemaszkonta = true;
     }
 }
 
@@ -31,13 +40,27 @@ if(isset($_POST['dodaj_do_koszyka'])){
         LayoutClass::PrintHeader();
       ?>
     <div class="position-absolute top-50 start-50 translate-middle">
+    <?php
+      if($juzwkoszyku)
+      {
+          echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+          <strong>Error!</strong> Masz juz to w koszyku.
+        </div>";
+      }
+      if($niemaszkonta)
+      {
+          echo "<div class='alert alert-danger alert-dismissible fade show' role='alert'>
+          <strong>Error!</strong> Nie jestes zalogowany.
+        </div>";
+      }
+    ?>
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Premium 30d</h5>
             <p class="card-text">Zakup premium:</p>
             <form method="post" action=''>
                 <p class="card-text">20pln</p>
-            <input name='dodaj_do_koszyka' type='submit' value='Do Koszyka!'>
+            <input name='dodaj_do_koszyka' type='submit' class='btn btn-info' value='Do Koszyka!'>
             </form>
 </form>
         </div>

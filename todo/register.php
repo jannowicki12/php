@@ -52,7 +52,7 @@ if (isset($_POST["username"]) & isset($_POST["email"]) & isset($_POST["password_
   </head>
   <body>
 <div class="container">
-    <div class="h-100 d-flex align-items-center justify-content-center">
+    <div class="position-absolute top-50 start-50 translate-middle">
         <div class="card">
             <div class="card-body">
                 <form method="POST">
@@ -97,6 +97,9 @@ if (isset($_POST["username"]) & isset($_POST["email"]) & isset($_POST["password_
                     <div class="mt-3 d-grid">
                         <button class="btn btn-primary" type="submit">Register</button>
                     </div>
+                    <div class="mb-3 d-grid">
+                        <a href="index.php" class="btn btn-link">Powrót</a>
+                    <div>
                     
                 </form>
             </div>
