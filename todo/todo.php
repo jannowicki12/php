@@ -62,12 +62,13 @@ if (isset($_POST['addBtn']))
 			}
 		}
 		{
-			echo '<div class="nNote nFailure hideit"><p><strong>ERROR:</strong><br />';
-			foreach($errors as $error)
-			{
-				echo '- '.$error.'<br />';
-			}
-			echo '</div>';
+		echo '<div class="nNote nFailure hideit"><p><strong>ERROR:</strong><br />';
+		foreach($errors as $error)
+		{
+			echo '- '.$error.'<br />';
+		}
+		echo '</div>';
+
 		}
 	}
 }
@@ -121,8 +122,10 @@ if(isset($_POST['edittodo'])) {
                 <h3 class="h3">Lista ToDo</h3>
             </div>
         </div>
+		
     </div> 
     <div class="line"></div>
+	
     <div style="width:600px;">
 		<form action="" class="form-control" method="POST">
 				<fieldset>

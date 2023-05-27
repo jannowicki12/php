@@ -28,7 +28,7 @@ if (isset($_POST['delete_cart'])){
         LayoutClass::printHeader();
 ?>
 <div class="bodykoszyka">
-    <h2> Koszyk dla <?php echo $user; ?> </h2>
+    <p style="font-size: 35px;"> Koszyk dla <?php echo $user; ?> </p>
 <table class="koszyktab">
     <thead>
     <th>Nazwa</th>
@@ -71,18 +71,22 @@ echo "
 ?>
 </div>
 <div class="dostawaform" id="formularzID">
-    <h2> Panel zamowienia </h2>
+    <h3 style="text-align: center;"> Panel zamowienia </h3>
     <form action="cart.php" method="post">
         <div class="sposobdostawy">
-            <h3> Metody Platnosci</h3>
+            <p>Metody Platnosci</p>
             <table>
                 <tr>
-                    <th><input type="radio" name="metodaplatnosc" required value="paymentcard">  </th>
-                    <th><span>Karta</span></th>
+                    <th><input type="radio" name="metodaplatnosc" required value="kartaplatnicza"><span> Karta</span></th>
                 </tr>
                 <tr>
-                    <th><input type="radio" name="metodaplatnosc" required value="applepay"></th>
-                    <th><span>Apple Pay</span></th>
+                    <th><input type="radio" name="metodaplatnosc" required value="applepay"><span> Apple Pay</span></th>
+                </tr>
+                <tr>
+                    <th><input type="radio" name="metodaplatnosc" required value="paysafecard"><span> Paysafecard</span></th>
+                </tr>
+                <tr>
+                    <th><input type="radio" name="metodaplatnosc" required value="blik"><span> Blik</span></th>
                 </tr>
 
             </table>
